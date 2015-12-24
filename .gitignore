@@ -1,0 +1,5 @@
+/vendor
+/.idea
+/app/config/production.php
+/app/config/development.php
+# Created by .ignore support plugin (hsz.mobi)
