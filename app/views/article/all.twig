@@ -22,7 +22,7 @@
                     <tr>
                         <td>{{ article.id }}</td>
                         <td>{{ article.subject }}</td>
-                        <td>{{ article.content }}</td>
+                        <td>{{ article.content|raw }}</td>
                         <td><a href="{{ urlFor('article.all') }}">Wijzigen</a></td>
                     </tr>
                 {% endfor %}

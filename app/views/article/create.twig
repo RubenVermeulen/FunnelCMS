@@ -19,7 +19,7 @@
         </div>
         <div class="form-group">
             <label for="content">Bericht</label>
-            <textarea name="content" id="content" class="form-control" rows="10">{% if request.post('content') %}{{ request.post('content') }}{% endif %}</textarea>
+            <textarea name="content" id="content" class="form-control editor" rows="10">{% if request.post('content') %}{{ request.post('content') }}{% endif %}</textarea>
             {% include 'errors/field.twig' with {field: 'content'} %}
         </div>
         <div class="form-group">
@@ -38,5 +38,9 @@
 
         <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}"/>
     </form>
+{% endblock %}
+
+{% block scripts %}
+    {% include 'templates/scripts/editor.twig' %}
 {% endblock %}
 
