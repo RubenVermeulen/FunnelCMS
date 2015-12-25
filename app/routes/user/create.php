@@ -6,6 +6,9 @@ $app->get('/users/create', $admin(), function() use($app) {
 
 })->name('user.create');
 
+// -----------------------------------------------------
+// -----------------------------------------------------
+
 $app->post('/users/create', $admin(), function() use($app) {
 
     $request = $app->request;

@@ -1,0 +1,34 @@
+{% extends 'templates/default.twig'%}
+
+{% block title %}Artikels{% endblock %}
+{% block pageTitle %}Artikels{% endblock %}
+
+{% block content %}
+    <p><a href="{{ urlFor('article.create') }}" class="btn btn-primary">Nieuw</a></p>
+    {% if articles is empty %}
+        <p>Er zijn nog geen artikels.</p>
+    {% else %}
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Onderwerp</th>
+                    <th>Bericht</th>
+                    <th>Actie</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for article in articles %}
+                    <tr>
+                        <td>{{ article.id }}</td>
+                        <td>{{ article.subject }}</td>
+                        <td>{{ article.content }}</td>
+                        <td><a href="{{ urlFor('article.all') }}">Wijzigen</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    {% endif %}
+{% endblock %}
+

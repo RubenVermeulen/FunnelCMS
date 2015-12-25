@@ -63,10 +63,11 @@ $app->post('/login', $guest(), function() use ($app) {
 
 
             $app->flash('global', 'Je bent nu ingelogd.');
+            $app->redirect($app->urlFor('home'));
         }
         else {
             $app->flash('error', 'Het was niet mogelijk om je in te loggen!');
-            $app->response->redirect($app->urlFor('login'));
+            $app->redirect($app->urlFor('login'));
         }
     }
 

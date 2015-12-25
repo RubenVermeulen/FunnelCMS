@@ -189,6 +189,20 @@ $app->container->set('user', function() {
 
 /*
 |--------------------------------------------------------------------------
+| User instance
+|--------------------------------------------------------------------------
+|
+| Create a new user instance.
+| Callable throughout the application.
+|
+*/
+
+$app->container->set('article', function() {
+    return new \FunnelCms\Article\Article();
+});
+
+/*
+|--------------------------------------------------------------------------
 | Hash instance
 |--------------------------------------------------------------------------
 |

@@ -53,3 +53,17 @@ require INC_ROOT . '/app/routes/user/delete.php';
 */
 
 require INC_ROOT . '/app/routes/errors/404.php';
+
+/*
+|--------------------------------------------------------------------------
+| Article
+|--------------------------------------------------------------------------
+|
+| All routes concerning articles.
+|
+*/
+
+require INC_ROOT . '/app/routes/article/all.php';
+require INC_ROOT . '/app/routes/article/create.php';
+//require INC_ROOT . '/app/routes/article/edit.php';
+//require INC_ROOT . '/app/routes/article/delete.php';
