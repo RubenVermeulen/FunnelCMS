@@ -55,7 +55,7 @@ class Mailer
          * Send the email.
          */
         $this->mailer->sendMessage($this->config->get('mail.domain'), [
-            'from' => $this->config->get('mail.from'),
+            'from' => $this->config->get('mail.from.noreply'),
             'to' => $credentials['to'],
             'subject' => $credentials['subject'],
             'html' => $this->view->render($template),
