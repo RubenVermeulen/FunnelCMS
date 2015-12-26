@@ -35,7 +35,7 @@
 
     {# Delete Form #}
 
-    <form action="{{ urlFor('user.delete', {userId: userId}) }}" method="post" autocomplete="off">
+    <form id="form-delete" action="{{ urlFor('user.delete', {userId: userId}) }}" method="post">
         <div class="form-group">
             <input type="submit" value="Verwijderen" class="btn btn-danger form-control"/>
         </div>
@@ -45,3 +45,6 @@
     </form>
 {% endblock %}
 
+{% block scripts %}
+    {% include 'templates/scripts/formDelete.twig' %}
+{% endblock %}

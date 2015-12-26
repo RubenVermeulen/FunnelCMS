@@ -65,5 +65,5 @@ require INC_ROOT . '/app/routes/errors/404.php';
 
 require INC_ROOT . '/app/routes/article/all.php';
 require INC_ROOT . '/app/routes/article/create.php';
-//require INC_ROOT . '/app/routes/article/edit.php';
-//require INC_ROOT . '/app/routes/article/delete.php';
+require INC_ROOT . '/app/routes/article/edit.php';
+require INC_ROOT . '/app/routes/article/delete.php';

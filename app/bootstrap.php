@@ -211,4 +211,3 @@ $view->parserOptions = [
 $view->parserExtensions = [
     new TwigExtension()
 ];
-

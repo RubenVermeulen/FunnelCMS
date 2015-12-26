@@ -13,7 +13,9 @@
                 <tr>
                     <th>Id</th>
                     <th>Onderwerp</th>
-                    <th>Bericht</th>
+                    <th>Aangemaakt op</th>
+                    <th>Laatst gewijzigd op</th>
+                    <th>Gepubliceerd op</th>
                     <th>Actie</th>
                 </tr>
             </thead>
@@ -22,8 +24,10 @@
                     <tr>
                         <td>{{ article.id }}</td>
                         <td>{{ article.subject }}</td>
-                        <td>{{ article.content|raw }}</td>
-                        <td><a href="{{ urlFor('article.all') }}">Wijzigen</a></td>
+                        <td>{{ article.getCreatedAt }}</td>
+                        <td>{{ article.getUpdatedAt }}</td>
+                        <td>{{ article.getPublishedAt }}</td>
+                        <td><a href="{{ urlFor('article.edit', {id: article.id}) }}">Wijzigen</a></td>
                     </tr>
                 {% endfor %}
             </tbody>
