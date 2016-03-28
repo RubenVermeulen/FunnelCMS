@@ -1,10 +1,10 @@
 <?php
 
-namespace FunnelCms\Article;
+namespace FunnelCms\Newsletter;
 
 use FunnelCms\Helpers\ItemTemplate;
 
-class Article extends ItemTemplate
+class Newsletter extends ItemTemplate
 {
     /**
      * Fillable fields for article.
@@ -13,8 +13,8 @@ class Article extends ItemTemplate
      */
     protected $fillable = [
         'subject',
-        'summary',
         'content',
+        'receivers',
         'published_at'
     ];
 }

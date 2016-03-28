@@ -67,3 +67,17 @@ require INC_ROOT . '/app/routes/article/all.php';
 require INC_ROOT . '/app/routes/article/create.php';
 require INC_ROOT . '/app/routes/article/edit.php';
 require INC_ROOT . '/app/routes/article/delete.php';
+
+/*
+|--------------------------------------------------------------------------
+| Newsletter
+|--------------------------------------------------------------------------
+|
+| All routes concerning newsletters.
+|
+*/
+
+require INC_ROOT . '/app/routes/newsletter/all.php';
+require INC_ROOT . '/app/routes/newsletter/create.php';
+require INC_ROOT . '/app/routes/newsletter/edit.php';
+require INC_ROOT . '/app/routes/newsletter/delete.php';

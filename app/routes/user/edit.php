@@ -44,7 +44,7 @@ $app->post('/users/:userId/edit', $admin(), function($userId) use($app) {
             'is_admin' => ($permission == 2 ? true : false),
         ]);
 
-        $app->flash('global', 'De gebruiker is gewijzigd.');
+        $app->flash('global', 'De gebruiker "' . $user->email . '" is gewijzigd.');
         $app->redirect($app->urlFor('user.all'));
     }
 

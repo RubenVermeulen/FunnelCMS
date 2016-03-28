@@ -1,0 +1,48 @@
+{% extends 'templates/default.twig'%}
+
+{% block title %}Nieuwsbrieven{% endblock %}
+{% block pageTitle %}Nieuwsbrieven{% endblock %}
+
+{% block content %}
+    <p><a href="{{ urlFor('newsletter.create') }}" class="btn btn-primary">Nieuw</a></p>
+    {% if newsletters is empty %}
+        <p>Er zijn nog geen nieuwsbrieven.</p>
+    {% else %}
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Onderwerp</th>
+                    <th>Auteur</th>
+                    <th>Ontvangers</th>
+                    <th>Aangemaakt op</th>
+                    <th>Laatst gewijzigd op</th>
+                    <th>Verzonden op</th>
+                    <th>Actie</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for newsletter in newsletters %}
+                    <tr>
+                        <td>{{ newsletter.id }}</td>
+                        <td>{{ newsletter.subject }}</td>
+                        <td>{{ newsletter.author.getFullNameOrEmail }}</td>
+                        <td>{{ newsletter.receivers }}</td>
+                        <td>{{ newsletter.getCreatedAt }}</td>
+                        <td>{{ newsletter.getUpdatedAt }}</td>
+                        <td>{{ newsletter.published_at is null ? "Niet verzonden" : newsletter.getPublishedAt }}</td>
+                        <td>
+                            {% if newsletter.published_at is null %}
+                                <a href="{{ urlFor('newsletter.edit', {id: newsletter.id}) }}">Wijzigen</a>
+                            {% else %}
+                                Geen acties
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    {% endif %}
+{% endblock %}
+

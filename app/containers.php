@@ -26,7 +26,7 @@ $app->container->set('user', function() {
 
 /*
 |--------------------------------------------------------------------------
-| User instance
+| Article instance
 |--------------------------------------------------------------------------
 |
 | Create a new user instance.
@@ -36,6 +36,20 @@ $app->container->set('user', function() {
 
 $app->container->set('article', function() {
     return new \FunnelCms\Article\Article();
+});
+
+/*
+|--------------------------------------------------------------------------
+| Newsletter instance
+|--------------------------------------------------------------------------
+|
+| Create a new user instance.
+| Callable throughout the application.
+|
+*/
+
+$app->container->set('newsletter', function() {
+    return new \FunnelCms\Newsletter\Newsletter();
 });
 
 /*
@@ -68,6 +82,20 @@ $app->container->singleton('debug', function() use($capsule) {
 
 /*
 |--------------------------------------------------------------------------
+| Mailgun instance
+|--------------------------------------------------------------------------
+|
+| Create a new Mailgun instance. Only created once.
+| Callable throughout the application.
+|
+*/
+
+$app->container->singleton('mailgun', function() use($app) {
+    return new Mailgun($app->config->get('mail.api_key'));
+});
+
+/*
+|--------------------------------------------------------------------------
 | Mailer instance
 |--------------------------------------------------------------------------
 |
@@ -79,7 +107,7 @@ $app->container->singleton('debug', function() use($capsule) {
 $app->container->singleton('mail', function() use($app) {
     $mailer = new Mailgun($app->config->get('mail.api_key'));
 
-    return new Mailer($app->config, $app->view, $mailer);
+    return new Mailer($app->config, $app->view, $app->mailgun);
 });
 
 /*

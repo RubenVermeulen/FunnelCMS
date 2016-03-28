@@ -1,6 +1,6 @@
 <?php
 
-$app->delete('/articles/:id', $admin(), function($id) use($app) {
+$app->delete('/articles/:id', $authenticated(), function($id) use($app) {
 
     $article = $app->article->find($id);
 

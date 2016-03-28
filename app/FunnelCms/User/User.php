@@ -33,8 +33,22 @@ class User extends Eloquent
      */
     protected $dates = ['deleted_at'];
 
+    /**
+     * Relationship with Article.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function articles() {
         return $this->hasMany('FunnelCms\Article\Article');
+    }
+
+    /**
+     * Relationship with Newsletter.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function newsletters() {
+        return $this->hasMany('FunnelCms\Newsletter\Newsletter');
     }
 
     /**
