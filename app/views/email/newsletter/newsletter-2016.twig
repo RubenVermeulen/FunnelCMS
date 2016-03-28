@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width"/>
+    <link rel="stylesheet" href="{{ assetUrl }}/css/foundation.css">
+</head>
+
+<body>
+<!-- <style> -->
+<table class="body" data-made-with-foundation>
+    <tr>
+        <!-- The class, align, and <center> tag center the container -->
+        <td class="center" align="center" valign="top">
+            <center>
+                <!-- The content of your email goes here. -->
+                <table class="container" style="border-top: 25px solid #f3f3f3; border-bottom: 25px solid #f3f3f3">
+                    <tr>
+                        <td>
+                            <!-- Header -->
+                            <table class="row" style="background-color: #ef3434">
+                                <tr>
+                                    <th class="small-12 large-12 first columns" style="padding-top: 25px; padding-bottom: 25px;">
+                                        <h1 class="text-center" style="margin-bottom: 0; color: #ffffff;">Flee Shuttle Nieuwsbrief</h1>
+                                    </th>
+                                </tr>
+                            </table>
+                            <!-- End Header -->
+
+                            <!-- Content -->
+                            <table class="row">
+                                <tr>
+                                    <th class="small-12 large-12 first columns"  style="padding-top: 16px;">
+                                        {{ content|raw }}
+                                    </th>
+                                </tr>
+                            </table>
+                            <!-- End Content -->
+
+                            <!-- Sponsors -->
+                            <table class="row">
+                                <tr>
+                                    <th class="small-12 large-6 first columns" valign="middle">
+                                        <center>
+                                            <a href="http://www.badmintonpro.be/">
+                                                <img src="https://static.fleeshuttle.be/images/sponsors/badmintonpro.png" alt="Badminton Pro Logo" align="center" class="text-center">
+                                            </a>
+                                        </center>
+                                    </th>
+                                    <th class="small-12 large-6 last columns" valign="middle">
+                                        <center>
+                                            <a href="http://www.maltwhiskycorner.be/">
+                                                <img src="https://static.fleeshuttle.be/images/sponsors/maltwhiskeycorner.png" alt="Malt Whiskey Corner Logo" align="center" class="text-center">
+                                            </a>
+                                        </center>
+                                    </th>
+                                </tr>
+                            </table>
+                            <!-- End Sponsors -->
+
+                            <!-- Footer -->
+                            <table class="row">
+                                <tr>
+                                    <th class="small-12 large-12 first columns">
+                                        <p class="text-center" style="font-size: 12px">
+                                            Wil je deze nieuwsbrief niet meer ontvangen? <a href="#">Uitschrijven</a>
+                                            <br>
+                                            <a href="{{ baseUrl }}">Website</a> - <a href="#">Galerij</a> - <a href="#">Facebook</a> - <a href="#">Twitter</a> - <a href="#">Google+</a>
+                                        </p>
+                                    </th>
+                                </tr>
+                            </table>
+                            <!-- End Footer -->
+
+                        </td>
+                    </tr>
+                </table>
+            </center>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

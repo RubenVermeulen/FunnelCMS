@@ -2,6 +2,8 @@
 
 namespace FunnelCms\Mail;
 
+use \TijsVerkoyen\CssToInlineStyles\CssToInlineStyles;
+
 class Mailer 
 {
     /**
@@ -59,6 +61,29 @@ class Mailer
             'to' => $credentials['to'],
             'subject' => $credentials['subject'],
             'html' => $this->view->render($template),
+        ]);
+    }
+
+    /**
+     * Sends newsletter.
+     *
+     * @param $template
+     * @param $data
+     * @param array $credentials
+     * @throws \TijsVerkoyen\CssToInlineStyles\Exception
+     */
+    public function sendNewsletter($template, $data, $credentials = []) {
+
+        $html = $this->view->render($template, $data);
+        $css = file_get_contents('https://www.fleeshuttle.be/admin/newsletter/foundation.css');
+
+        $cssToInlineStyles = new CssToInlineStyles($html, $css);
+
+        $this->mailer->sendMessage($this->config->get('mail.domain'), [
+            'from' => $this->config->get('mail.from.newsletter'),
+            'to' => $credentials['to'],
+            'subject' => $credentials['subject'],
+            'html' => $cssToInlineStyles->convert(),
         ]);
     }
 }

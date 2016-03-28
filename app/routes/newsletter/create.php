@@ -1,5 +1,7 @@
 <?php
 
+use \TijsVerkoyen\CssToInlineStyles\CssToInlineStyles;
+
 $app->get('/newsletters/create', $authenticated, function() use ($app) {
 
     $app->render('newsletter/create.twig');
@@ -19,11 +21,7 @@ $app->post('/newsletters/create', $authenticated, function() use ($app) {
 
     $v = $app->validation;
 
-    $validationRules = [
-        'subject|Onderwerp' => [$subject, 'required|max(150)'],
-        'content|Bericht' => [$content, 'required|max(30000)'],
-        'publish|"Wil je de nieuwsbrief verzenden?"' => [$publish, 'required|int'],
-    ];
+    $validationRules = include(__DIR__ . '/validation.php');
 
     $v->validate($validationRules);
 
@@ -39,12 +37,13 @@ $app->post('/newsletters/create', $authenticated, function() use ($app) {
         ]);
 
         if ($publish == 2) {
-            $app->mailgun->sendMessage($app->config->get('mail.domain'), [
-                'from' => $app->config->get('mail.from.newsletter'),
-                'to' => $app->config->get('mail.list'),
-                'subject' => $subject,
-                'html' => $content,
-            ]);
+            $app->mail->sendNewsletter(
+                $app->config->get('mail.template.newsletter'),
+                ['content' => $content],
+                [
+                    'to' => $app->config->get('mail.list'),
+                    'subject' => $subject,
+                ]);
 
             $app->flash('global', 'De nieuwsbrief "' . $subject . '" is opgesteld en verzonden.');
         }

@@ -32,10 +32,9 @@
                         <td>{{ newsletter.getUpdatedAt }}</td>
                         <td>{{ newsletter.published_at is null ? "Niet verzonden" : newsletter.getPublishedAt }}</td>
                         <td>
+                            <a href="{{ urlFor('newsletter.show', {id: newsletter.id}) }}" target="_blank">Preview</a>
                             {% if newsletter.published_at is null %}
-                                <a href="{{ urlFor('newsletter.edit', {id: newsletter.id}) }}">Wijzigen</a>
-                            {% else %}
-                                Geen acties
+                                - <a href="{{ urlFor('newsletter.edit', {id: newsletter.id}) }}">Wijzigen</a>
                             {% endif %}
                         </td>
                     </tr>
