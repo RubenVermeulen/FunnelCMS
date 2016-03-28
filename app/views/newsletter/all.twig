@@ -11,12 +11,9 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Onderwerp</th>
                     <th>Auteur</th>
                     <th>Ontvangers</th>
-                    <th>Aangemaakt op</th>
-                    <th>Laatst gewijzigd op</th>
                     <th>Verzonden op</th>
                     <th>Actie</th>
                 </tr>
@@ -24,13 +21,10 @@
             <tbody>
                 {% for newsletter in newsletters %}
                     <tr>
-                        <td>{{ newsletter.id }}</td>
                         <td>{{ newsletter.subject }}</td>
                         <td>{{ newsletter.author.getFullNameOrEmail }}</td>
                         <td>{{ newsletter.receivers }}</td>
-                        <td>{{ newsletter.getCreatedAt }}</td>
-                        <td>{{ newsletter.getUpdatedAt }}</td>
-                        {#{{ newsletter.published_at is null ? "Niet verzonden" : newsletter.getPublishedAt }}#}
+
                         {% if newsletter.published_at is null %}
                             <td class="danger">Niet verzonden</td>
                         {% else %}
