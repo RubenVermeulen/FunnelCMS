@@ -8,25 +8,26 @@
     {% if users is empty %}
         <p>Er zijn nog geen gebruikers.</p>
     {% else %}
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Gebruikersnaam</th>
-                    <th>Rechten</th>
-                    <th>Actie</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for user in users %}
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
                     <tr>
-                        <td>{{ user.email }}</td>
-                        <td>{{ user.isAdmin ? 'Admin' : 'Normaal' }}</td>
-                        <td><a href="{{ urlFor('user.edit', {userId: user.id}) }}" title="Wijzigen">Wijzigen</a></td>
+                        <th>Gebruikersnaam</th>
+                        <th>Rechten</th>
+                        <th>Actie</th>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.isAdmin ? 'Admin' : 'Normaal' }}</td>
+                            <td><a href="{{ urlFor('user.edit', {userId: user.id}) }}" title="Wijzigen">Wijzigen</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     {% endif %}
 {% endblock %}
 

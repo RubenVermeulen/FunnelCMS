@@ -8,40 +8,41 @@
     {% if newsletters is empty %}
         <p>Er zijn nog geen nieuwsbrieven.</p>
     {% else %}
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Onderwerp</th>
-                    <th>Auteur</th>
-                    <th>Ontvangers</th>
-                    <th>Verzonden op</th>
-                    <th>Actie</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for newsletter in newsletters %}
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
                     <tr>
-                        <td>{{ newsletter.subject }}</td>
-                        <td>{{ newsletter.author.getFullNameOrEmail }}</td>
-                        <td>{{ newsletter.receivers }}</td>
-
-                        {% if newsletter.published_at is null %}
-                            <td class="danger">Niet verzonden</td>
-                        {% else %}
-                            <td class="success">{{ newsletter.getPublishedAt }}</td>
-                        {% endif %}
-
-                        <td>
-                            <a href="{{ urlFor('newsletter.show', {id: newsletter.id}) }}" target="_blank" title="Preview">Preview</a>
-                            {% if newsletter.published_at is null %}
-                                - <a href="{{ urlFor('newsletter.edit', {id: newsletter.id}) }}" title="Wijzigen">Wijzigen</a>
-                            {% endif %}
-                        </td>
+                        <th>Onderwerp</th>
+                        <th>Auteur</th>
+                        <th>Ontvangers</th>
+                        <th>Verzonden op</th>
+                        <th>Actie</th>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {% for newsletter in newsletters %}
+                        <tr>
+                            <td>{{ newsletter.subject }}</td>
+                            <td>{{ newsletter.author.getFullNameOrEmail }}</td>
+                            <td>{{ newsletter.receivers }}</td>
 
+                            {% if newsletter.published_at is null %}
+                                <td class="danger">Niet verzonden</td>
+                            {% else %}
+                                <td class="success">{{ newsletter.getPublishedAt }}</td>
+                            {% endif %}
+
+                            <td>
+                                <a href="{{ urlFor('newsletter.show', {id: newsletter.id}) }}" target="_blank" title="Preview">Preview</a>
+                                {% if newsletter.published_at is null %}
+                                    - <a href="{{ urlFor('newsletter.edit', {id: newsletter.id}) }}" title="Wijzigen">Wijzigen</a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     {% endif %}
 {% endblock %}
 
