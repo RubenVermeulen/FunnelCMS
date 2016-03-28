@@ -21,7 +21,7 @@
                     <tr>
                         <td>{{ user.email }}</td>
                         <td>{{ user.isAdmin ? 'Admin' : 'Normaal' }}</td>
-                        <td><a href="{{ urlFor('user.edit', {userId: user.id}) }}">Wijzigen</a></td>
+                        <td><a href="{{ urlFor('user.edit', {userId: user.id}) }}" title="Wijzigen">Wijzigen</a></td>
                     </tr>
                 {% endfor %}
             </tbody>

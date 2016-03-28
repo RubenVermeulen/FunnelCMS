@@ -30,11 +30,17 @@
                         <td>{{ newsletter.receivers }}</td>
                         <td>{{ newsletter.getCreatedAt }}</td>
                         <td>{{ newsletter.getUpdatedAt }}</td>
-                        <td>{{ newsletter.published_at is null ? "Niet verzonden" : newsletter.getPublishedAt }}</td>
+                        {#{{ newsletter.published_at is null ? "Niet verzonden" : newsletter.getPublishedAt }}#}
+                        {% if newsletter.published_at is null %}
+                            <td class="danger">Niet verzonden</td>
+                        {% else %}
+                            <td class="success">{{ newsletter.getPublishedAt }}</td>
+                        {% endif %}
+
                         <td>
-                            <a href="{{ urlFor('newsletter.show', {id: newsletter.id}) }}" target="_blank">Preview</a>
+                            <a href="{{ urlFor('newsletter.show', {id: newsletter.id}) }}" target="_blank" title="Preview">Preview</a>
                             {% if newsletter.published_at is null %}
-                                - <a href="{{ urlFor('newsletter.edit', {id: newsletter.id}) }}">Wijzigen</a>
+                                - <a href="{{ urlFor('newsletter.edit', {id: newsletter.id}) }}" title="Wijzigen">Wijzigen</a>
                             {% endif %}
                         </td>
                     </tr>

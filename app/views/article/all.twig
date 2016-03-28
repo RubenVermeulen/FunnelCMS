@@ -29,7 +29,7 @@
                         <td>{{ article.getCreatedAt }}</td>
                         <td>{{ article.getUpdatedAt }}</td>
                         <td>{{ article.getPublishedAt }}</td>
-                        <td><a href="{{ urlFor('article.edit', {id: article.id}) }}">Wijzigen</a></td>
+                        <td><a href="{{ urlFor('article.edit', {id: article.id}) }}" title="Wijzigen">Wijzigen</a></td>
                     </tr>
                 {% endfor %}
             </tbody>
