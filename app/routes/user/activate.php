@@ -27,7 +27,6 @@ $app->get('/activate', $guest(), function() use($app) {
      * Render the view if all data is correct.
      */
     $app->render('user/activate.twig', [
-        'username' => $user->username,
         'email' => $email,
         'identifier' => $identifier
     ]);
@@ -69,12 +68,11 @@ $app->post('/activate', $guest(), function() use($app) {
     if ($v->passes()) {
         $user->activateAccount($app->hash->password($password));
 
-        $app->flash('global', 'Je account is succesvol geactiveerd. Gebruik je e-mailadres of gebruikersnaam om in te loggen.');
+        $app->flash('global', 'Je account is succesvol geactiveerd. Gebruik je e-mailadres om in te loggen.');
         $app->response->redirect($app->urlFor('login'));
     }
 
     $app->render('user/activate.twig', [
-        'username' => $user->username,
         'email' => $email,
         'identifier' => $identifier,
         'errors' => $v->errors()

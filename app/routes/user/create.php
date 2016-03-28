@@ -14,14 +14,12 @@ $app->post('/users/create', $admin(), function() use($app) {
     $request = $app->request;
 
     $email = $request->post('email');
-    $username = $request->post('username');
     $permission = $request->post('permission');
 
     $v = $app->validation;
 
     $v->validate([
         'email|E-mailadres' => [$email, 'required|email|uniqueEmail|max(255)'],
-        'username|Gebruikersnaam' => [$username, 'required|alnumDash|max(20)|uniqueUsername|max(45)'],
         'permission|Rechten' => [$permission, 'required|int'],
     ]);
 
@@ -30,7 +28,6 @@ $app->post('/users/create', $admin(), function() use($app) {
 
         $user = $app->user->create([
             'email' => $email,
-            'username' => $username,
             'active' => false,
             'active_hash' => $app->hash->hash($identifier)
         ]);
@@ -42,13 +39,26 @@ $app->post('/users/create', $admin(), function() use($app) {
         /*
          * Send an email.
          */
-        $app->mail->send('email/auth/registered.twig', ['user' => $user, 'identifier' => $identifier, 'username' => $username], [
+        $app->mail->send('email/auth/registered.twig', ['user' => $user, 'identifier' => $identifier], [
             'to' => $user->email,
             'subject' => 'Je account is aangemaakt.',
         ]);
 
-        $app->flash('global', 'De gebruiker is aangemaakt. Hij/zij zal binnenkort een e-mail ontvangen met verdere intructies.');
+        $app->flash('global', 'De gebruiker "' . $user->email . '" is aangemaakt. Hij/zij zal binnenkort een e-mail ontvangen met verdere intructies.');
         $app->response->redirect($app->urlFor('user.all'));
+    }
+    else {
+        $user = $app->user->withTrashed()->where('email', $email)->first();
+
+        if ($user) { // Undo soft delete and update permissions
+            $user->restore();
+            $user->permissions()->update([
+                'is_admin' => ($permission == 2 ? true : false),
+            ]);
+
+            $app->flash('global', 'De gebruiker"' . $user->email . '" bestond al in ons systeem en is hersteld. Hij/zij kan inloggen met dezelfde gegevens.');
+            $app->response->redirect($app->urlFor('user.all'));
+        }
     }
 
     /*

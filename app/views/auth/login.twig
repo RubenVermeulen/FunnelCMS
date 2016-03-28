@@ -6,7 +6,7 @@
 {% block content %}
     <form action="{{ urlFor('login.post') }}" method="post" autocomplete="off">
         <div class="form-group">
-            <label for="identifier">Gebruikersnaam/ e-mailadres</label>
+            <label for="identifier">E-mailadres</label>
             <input type="text" name="identifier" id="identifier" class="form-control"/>
             {% include 'errors/field.twig' with {'field': 'identifier'} %}
         </div>

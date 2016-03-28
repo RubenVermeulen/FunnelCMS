@@ -27,27 +27,26 @@ $app->post('/articles/edit/:id', $authenticated, function($id) use($app) {
     $request = $app->request;
 
     $subject = $request->post('subject');
+    $summary = $request->post('$summary');
     $content = $request->post('content');
     $date = $request->post('date');
     $time = $request->post('time');
 
     $v = $app->validation;
 
-    $v->validate([
-        'subject|Onderwerp' => [$subject, 'required|max(150)'],
-        'content|Bericht' => [$content, 'required|max(30000)'],
-        'date|Datum' => [$date, 'required|date'],
-        'time|Tijd' => [$time, 'required'],
-    ]);
+    $validationRules = include (__DIR__ . '/validation.php');
+
+    $v->validate($validationRules);
 
     if ($v->passes()) {
         $article->update([
             'subject' => $subject,
+            'summary' => $summary,
             'content' => $content,
             'published_at' => \Carbon\Carbon::createFromTimestamp(strtotime($date . ' '.  $time)),
         ]);
 
-        $app->flash('global', 'Het artikel is gewijzigd.');
+        $app->flash('global', 'Het artikel "' . $subject . '" is gewijzigd.');
         $app->redirect($app->urlFor('article.all'));
     }
 

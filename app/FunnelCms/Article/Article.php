@@ -13,6 +13,7 @@ class Article extends Eloquent
      */
     protected $fillable = [
         'subject',
+        'summary',
         'content',
         'published_at'
     ];
@@ -37,6 +38,15 @@ class Article extends Eloquent
      * @var string
      */
     private $formatTime = 'H:i';
+
+    /**
+     * Belongs to a User model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function author() {
+        return $this->belongsTo('FunnelCms\User\User', 'user_id');
+    }
 
     /**
      * Return datetime for given field.

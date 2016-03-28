@@ -1,0 +1,66 @@
+/* Menu bar*/
+
+.navbar-inverse {
+    background: #009d7e;
+    border-bottom: 1px solid #00876C;
+}
+
+.navbar-inverse .navbar-nav > li > a,
+.navbar-inverse .navbar-brand {
+    color: #ffffff;
+    transition: background .1s linear;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:active,
+.navbar-inverse .navbar-brand:active,
+.navbar-inverse .navbar-brand:hover {
+    background: #00876C;
+    color: #fff;
+}
+
+/*
+ * Responsive nav button.
+ */
+
+.navbar-inverse .navbar-toggle:hover,
+.navbar-inverse .navbar-toggle:focus,
+.navbar-inverse .collapsed {
+    background: #009d7e;
+}
+
+.navbar-inverse .navbar-toggle {
+    border: 1px solid #00876C;
+}
+
+.navbar-inverse .navbar-toggle .icon-bar {
+    background: #fff;
+}
+
+/*
+ * Dropdown
+ */
+
+.navbar-inverse .navbar-nav > .open > a,
+.nav .open>a {
+    background: #009d7e !important;
+    color: #fff !important;
+}
+
+.navbar-collapse {
+    border: 0;
+}
+
+/* Button */
+
+.btn-primary {
+    background: #009d7e;
+    border: 1px solid #00876C;
+    transition: background .2s linear;
+}
+
+.btn-primary:active,
+.btn-primary:hover {
+    background: #00876C;
+    border: 1px solid #00876C;
+}

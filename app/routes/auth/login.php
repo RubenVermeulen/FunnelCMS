@@ -23,7 +23,7 @@ $app->post('/login', $guest(), function() use ($app) {
     $v = $app->validation;
 
     $v->validate([
-        'identifier|Gebruikersnaam / e-mailadres' => [$identifier, 'required'],
+        'identifier|E-mailadres' => [$identifier, 'required'],
         'password|Wachtwoord' => [$password, 'required']
     ]);
 
@@ -31,8 +31,7 @@ $app->post('/login', $guest(), function() use ($app) {
         $user = $app->user
             ->where('active', true)
             ->where(function($query) use ($identifier) {
-                return $query->where('email', $identifier)
-                    ->orWhere('username', $identifier);
+                return $query->where('email', $identifier);
             })
             ->first();
 

@@ -3,9 +3,12 @@
 namespace FunnelCms\User;
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Eloquent
 {
+    use SoftDeletes;
+
     /**
      * Fillable fields for user.
      *
@@ -13,7 +16,6 @@ class User extends Eloquent
      */
     protected $fillable = [
         'email',
-        'username',
         'first_name',
         'last_name',
         'password',
@@ -23,6 +25,17 @@ class User extends Eloquent
         'remember_identifier',
         'remember_token'
     ];
+
+    /**
+     * Custom fields which should be treated as Carbon instances.
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at'];
+
+    public function articles() {
+        return $this->hasMany('FunnelCms\Article\Article');
+    }
 
     /**
      * Return the full name.
@@ -39,12 +52,12 @@ class User extends Eloquent
     }
 
     /**
-     * Return the full name or username.
+     * Return the full name or email.
      *
      * @return mixed
      */
-    public function getFullNameOrUsername() {
-        return $this->getFullName() ?: $this->username;
+    public function getFullNameOrEmail() {
+        return $this->getFullName() ?: $this->email;
     }
 
     /**

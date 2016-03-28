@@ -6,8 +6,8 @@
 {% block content %}
     <form action="{{ urlFor('user.activate.post') }}?email={{ email }}&identifier={{ identifier|url_encode }}" method="post" autocomplete="off">
         <div class="form-group">
-            <label>Gebruikersnaam</label>
-            <p class="form-control-static">{{ username }}</p>
+            <label>E-mailadres</label>
+            <p class="form-control-static">{{ email }}</p>
         </div>
         <div class="form-group">
             <label for="password">Wachtwoord</label>

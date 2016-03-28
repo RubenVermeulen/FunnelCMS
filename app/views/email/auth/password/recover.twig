@@ -3,5 +3,5 @@
 {% block content %}
     <p>Je hebt een aanvraag ingediend om je wachtwoord te resetten.</p>
     <p>Klik op onderstaande URL op je wachtwoord te resetten.</p>
-    <a href="{{ urlFor('auth.password.reset') }}?email={{ user.email }}&identifier={{ identifier|url_encode }}">{{ baseUrl }}{{ urlFor('auth.password.reset') }}?email={{ user.email }}&identifier={{ identifier|url_encode }}</a>
+    <a href="{{ baseUrl }}{{ urlFor('auth.password.reset') }}?email={{ user.email }}&identifier={{ identifier|url_encode }}">{{ baseUrl }}{{ urlFor('auth.password.reset') }}?email={{ user.email }}&identifier={{ identifier|url_encode }}</a>
 {% endblock %}

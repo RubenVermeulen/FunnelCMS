@@ -86,7 +86,7 @@ class Validator extends  Violin
      * @return bool
      */
     public function validate_uniqueEmail($value, $input, $args) {
-        $user = $this->user->where('email', $value);
+        $user = $this->user->withTrashed()->where('email', $value);
 
         /*
          * Exclude email address.
@@ -108,7 +108,7 @@ class Validator extends  Violin
      * @return bool
      */
     public function validate_uniqueUsername($value, $input, $args) {
-        $user = $this->user->where('username', $value);
+        $user = $this->user->withTrashed()->where('username', $value);
 
         return ! (bool) $user->count();
     }

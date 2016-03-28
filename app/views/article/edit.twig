@@ -18,6 +18,11 @@
             {% include 'errors/field.twig' with {field: 'subject'} %}
         </div>
         <div class="form-group">
+            <label for="summary">Korte beschrijving (1 à 2 zinnen)</label>
+            <textarea name="summary" id="summary" rows="2" class="form-control">{{ request.post('summary') ? request.post('summary') : article.summary }}</textarea>
+            {% include 'errors/field.twig' with {field: 'summary'} %}
+        </div>
+        <div class="form-group">
             <label for="content">Bericht</label>
             <textarea name="content" id="content" class="form-control editor" rows="10">{{ request.post('content') ? request.post('content') : article.content }}</textarea>
             {% include 'errors/field.twig' with {field: 'content'} %}

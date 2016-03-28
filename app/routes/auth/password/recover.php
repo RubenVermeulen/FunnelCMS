@@ -21,11 +21,7 @@ $app->post('/recover-password', $guest(), function() use($app) {
     if ($v->passes()) {
         $user = $app->user->where('email', $email)->first();
 
-        if ( ! $user) {
-            $app->flash('error', 'We konden geen gebruikers vinden.');
-            $app->response->redirect($app->urlFor('auth.password.recover'));
-        }
-        else {
+        if ($user) {
             $identifier = $app->randomlib->generateString(128);
 
             $user->update([
@@ -39,10 +35,10 @@ $app->post('/recover-password', $guest(), function() use($app) {
                 'to' => $user->email,
                 'subject' => 'Reset je wachtwoord.',
             ]);
-
-            $app->flash('global', 'We hebben je instructies gestuurd om je wachtwoord te reseten.');
-            $app->response->redirect($app->urlFor('login'));
         }
+
+        $app->flash('global', 'Als we een gebruiker hebben met het gegeven e-mailadres zal je binnenkort instructies ontvangen om je wachtwoord te resetten.');
+        $app->response->redirect($app->urlFor('login'));
     }
 
     $app->render('auth/password/recover.twig', [
