@@ -14,7 +14,7 @@
     <form action="{{ urlFor('user.create.post') }}" method="post" autocomplete="off">
         <div class="form-group">
             <label for="email">E-mailadres</label>
-            <input type="text" name="email" id="email" {% if request.post('email') %} value="{{ request.post('email') }}" {% endif %} class="form-control"/>
+            <input type="email" name="email" id="email" {% if request.post('email') %} value="{{ request.post('email') }}" {% endif %} class="form-control"/>
             {% include 'errors/field.twig' with {field: 'email'} %}
         </div>
         <div class="form-group">

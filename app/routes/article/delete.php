@@ -9,7 +9,7 @@ $app->delete('/articles/:id', $authenticated(), function($id) use($app) {
 
     $article->delete();
 
-    $app->flash('global', 'Het artikel is verwijderd.');
+    $app->flash('global', 'Het artikel "' . $article->subject . '" is verwijderd.');
     $app->redirect($app->urlFor('article.all'));
 
 })->name('article.delete');

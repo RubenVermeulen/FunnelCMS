@@ -32,6 +32,9 @@ return [
             'newsletter' => 'Example Newsletter <newsletter@example.local>',
             'noreply' => 'Example <noreply@example.local>'
         ],
+        'template' => [
+            'newsletter' => 'email/newsletter/newsletter-2016.twig',
+        ],
     ],
     'twig' => [
         'debug' => true
