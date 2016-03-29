@@ -1,16 +1,32 @@
 <?php
 
-$app->get('/articles', $authenticated(),function() use($app) {
+use \FunnelCms\Helpers\Pagination;
 
+function articlesAllRoute($app, $page) {
     $articles = $app->article
         ->latest('created_at')
         ->with(['author' => function($q) {
             return $q->withTrashed();
-        }])
-        ->get();
+        }]);
+
+    $pagination = new Pagination($app, $articles, $page);
+    $pagination->execute();
 
     $app->render('article/all.twig', [
-        'articles' => $articles
+        'articles' => $pagination->getItems(),
+        'pages' => $pagination->getTotalPages(),
+        'page' => $page,
     ]);
+};
+
+$app->get('/articles', $authenticated(), function($page = 1) use($app) {
+
+    articlesAllRoute($app, $page);
 
 })->name('article.all');
+
+$app->get('/articles(/page/:page)', $authenticated(), function($page = 1) use($app) {
+
+    articlesAllRoute($app, $page);
+
+})->name('article.all.page');

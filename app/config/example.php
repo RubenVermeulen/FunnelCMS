@@ -7,6 +7,9 @@ return [
         'hash' => [
             'algo' => PASSWORD_BCRYPT,
             'cost' => 10
+        ],
+        'pagination' => [
+            'items' => 20,
         ]
     ],
     'db' => [

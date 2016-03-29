@@ -1,0 +1,29 @@
+{% if pages > 1 %}
+    <div class="btn-group" role="group">
+
+        {% if page > 1 %}
+            <a class="btn btn-default" href="{{ urlFor(routeName, {page: page - 1}) }}">
+                &larr;
+            </a>
+        {% else %}
+            <a class="btn btn-default" href="{{ urlFor(routeName, {page: page}) }}">
+                &larr;
+            </a>
+        {% endif %}
+
+        {% for i in 1..pages %}
+            <a href="{{ urlFor(routeName, {'page': i}) }}" class="btn {{ i == page ? 'btn-primary' : 'btn-default' }}">{{ i }}</a>
+        {% endfor %}
+
+        {% if page < pages %}
+            <a class="btn btn-default" href="{{ urlFor(routeName, {page: page + 1}) }}">
+                &rarr;
+            </a>
+        {% else %}
+            <a class="btn btn-default" href="{{ urlFor(routeName, {page: page}) }}">
+                &rarr;
+            </a>
+        {% endif %}
+
+    </div>
+{% endif %}

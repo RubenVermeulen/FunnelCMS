@@ -43,6 +43,10 @@
                 </tbody>
             </table>
         </div>
+
+        {#Pagination#}
+        {% include 'templates/partials/pagination.twig' with {'routeName': 'newsletter.all.page','pages': pages, 'page': page} only %}
+        <br><br>
     {% endif %}
 {% endblock %}
 

@@ -34,6 +34,10 @@
                 </tbody>
             </table>
         </div>
+
+        {#Pagination#}
+        {% include 'templates/partials/pagination.twig' with {'routeName': 'article.all.page','pages': pages, 'page': page} only %}
+        <br><br>
     {% endif %}
 {% endblock %}
 
