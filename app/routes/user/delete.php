@@ -11,9 +11,14 @@ $app->delete('/users/:userId', $admin(), function($userId) use($app) {
         $app->notFound();
     }
 
-    $user->delete();
+    if ($user->isActivated()) {
+        $user->delete();
+    }
+    else{
+        $user->forceDelete();
+    }
 
-    $app->flash('global', 'De gebruiker is verwijderd.');
+    $app->flash('global', 'De gebruiker "' . $user->email . '" is verwijderd.');
     $app->redirect($app->urlFor('user.all'));
 
 })->name('user.delete');

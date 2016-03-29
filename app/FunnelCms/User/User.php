@@ -156,4 +156,8 @@ class User extends Eloquent
     public function permissions() {
         return $this->hasOne('FunnelCms\User\UserPermission', 'user_id');
     }
+
+    public function isActivated() {
+        return (bool) $this->active;
+    }
 }

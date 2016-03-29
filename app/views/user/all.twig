@@ -20,7 +20,7 @@
                 <tbody>
                     {% for user in users %}
                         <tr>
-                            <td>{{ user.email }}</td>
+                            <td>{{ user.email }} {{ user.isActivated ? "" : "(Niet geactiveerd)" }}</td>
                             <td>{{ user.isAdmin ? 'Admin' : 'Normaal' }}</td>
                             <td><a href="{{ urlFor('user.edit', {userId: user.id}) }}" title="Wijzigen">Wijzigen</a></td>
                         </tr>

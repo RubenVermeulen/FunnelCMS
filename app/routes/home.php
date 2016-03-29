@@ -2,8 +2,6 @@
 
 $app->get('/', function() use ($app) {
 
-    $app->flashKeep();
-
     if ( ! $app->auth) {
         $app->redirect($app->urlFor('login'));
     }
