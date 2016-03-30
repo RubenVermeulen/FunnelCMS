@@ -41,6 +41,22 @@ interface MailerInterface
     public function getRecipients($limit, $offset);
 
     /**
+     * Returns the recipient.
+     *
+     * @param $recipient
+     * @return mixed
+     */
+    public function getRecipient($recipient);
+
+    /**
+     * Updates a recipient.
+     *
+     * @param Recipient $recipient
+     * @return mixed
+     */
+    public function updateRecipient(Recipient $recipient);
+
+    /**
      * Adds a recipient to the list.
      *
      * @param $recipient

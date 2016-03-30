@@ -4,7 +4,12 @@
 {% block pageTitle %}Mailinglijst{% endblock %}
 
 {% block content %}
-    <p><a href="{{ urlFor('newsletter.create') }}" class="btn btn-primary">Nieuw</a></p>
+    <p>
+        <a href="{{ urlFor('newsletter.all') }}" class="btn btn-primary">
+            <span class="glyphicon glyphicon-arrow-left"></span>
+        </a>
+        <a href="{{ urlFor('newsletter.mailingList.create') }}" class="btn btn-primary">Nieuw</a>
+    </p>
     {% if recipients is empty %}
         <p>Er zijn nog geen ontvangers voor de nieuwsbrief.</p>
     {% else %}
@@ -29,7 +34,7 @@
                             {% endif %}
 
                             <td>
-                                <a href="{{ urlFor('newsletter.edit', {id: newsletter.id}) }}" title="Wijzigen">Wijzigen</a>
+                                <a href="{{ urlFor('newsletter.mailingList.edit', {'address': recipient.address}) }}" title="Wijzigen">Wijzigen</a>
                             </td>
                         </tr>
                     {% endfor %}

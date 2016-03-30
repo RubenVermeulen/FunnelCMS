@@ -82,6 +82,10 @@ require INC_ROOT . '/app/routes/newsletter/all.php';
 require INC_ROOT . '/app/routes/newsletter/create.php';
 require INC_ROOT . '/app/routes/newsletter/edit.php';
 require INC_ROOT . '/app/routes/newsletter/delete.php';
+
 require INC_ROOT . '/app/routes/newsletter/mailinglist/all.php';
 require INC_ROOT . '/app/routes/newsletter/mailinglist/create.php';
+require INC_ROOT . '/app/routes/newsletter/mailinglist/edit.php';
+require INC_ROOT . '/app/routes/newsletter/mailinglist/delete.php';
+
 require INC_ROOT . '/app/routes/newsletter/show.php';

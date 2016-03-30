@@ -10,6 +10,15 @@ use Mailgun\Connection\Exceptions\MissingRequiredParameters;
 
 use TijsVerkoyen\CssToInlineStyles\CssToInlineStyles;
 
+/**
+ * REMARK
+ * When trying to set the subscribed key in the array do not use true or false.
+ * It does not always work, instead use 1,0 or on,off.
+ *
+ * Class MailgunMailer
+ * @package FunnelCms\Mail
+ */
+
 class MailgunMailer implements MailerInterface
 {
     /**
@@ -114,6 +123,57 @@ class MailgunMailer implements MailerInterface
     }
 
     /**
+     * Returns the recipient.
+     *
+     * @param $recipient
+     * @return Recipient
+     * @throws \Exception
+     */
+    public function getRecipient($recipient) {
+        $this->validateRecipient($recipient);
+
+        try {
+            $result = $this->mailer->get('lists/' . $this->config->get('mail.list') . '/members/' . $recipient)
+                ->http_response_body
+                ->member;
+
+            return new Recipient($result->address, $result->name, $result->subscribed);
+        }
+        catch (MissingEndpoint $e) {
+            throw new \Exception('De ontvanger "' . $recipient . '" is niet aanwezig in de lijst.');
+        }
+        catch (\Exception $e) {
+            throw new \Exception('We konden je aanvraag niet verwerken. Neem contact op met de webmaster.');
+        }
+    }
+
+    /**
+     * Updates a recipient.
+     *
+     * @param Recipient $recipient
+     * @return mixed
+     * @throws \Exception
+     */
+    public function updateRecipient(Recipient $recipient) {
+        $this->validateRecipient($recipient->getAddress());
+
+        try {
+            $result = $this->mailer->put('lists/' . $this->config->get('mail.list') . '/members/' . $recipient->getAddress(), [
+                'subscribed' => ($recipient->getSubscribed() ? 1 : 0), // if statement is necessary because false does not work for some reason
+                'name' => $recipient->getName(),
+            ]);
+
+            var_dump($result);
+        }
+        catch (MissingEndpoint $e) {
+            throw new \Exception('De ontvanger "' . $recipient->getAddress() . '" is niet aanwezig in de lijst.');
+        }
+        catch (\Exception $e) {
+            throw new \Exception('We konden je aanvraag niet verwerken. Neem contact op met de webmaster.');
+        }
+    }
+
+    /**
      * Adds a recipient to the list.
      *
      * @param $recipient
@@ -124,13 +184,13 @@ class MailgunMailer implements MailerInterface
         $this->validateRecipient($recipient);
 
         try {
-            return $this->mailer->post('lists/' . $this->config->get('mail.list') . '/members', [
+            $this->mailer->post('lists/' . $this->config->get('mail.list') . '/members', [
                 'address' => $recipient,
-                'subscribed' => true,
+                'subscribed' => 1,
             ]);
         }
         catch (MissingRequiredParameters $e) {
-            throw new \Exception('Het e-mailadres "' . $recipient . '" is al aanwezig in de lijst.');
+            throw new \Exception('De ontvanger "' . $recipient . '" is al aanwezig in de lijst.');
         }
         catch (\Exception $e) {
             throw new \Exception('We konden je aanvraag niet verwerken. Neem contact op met de webmaster.');
@@ -151,7 +211,7 @@ class MailgunMailer implements MailerInterface
             $this->mailer->delete('lists/' . $this->config->get('mail.list') . '/members/' . $recipient);
         }
         catch (MissingEndpoint $e) {
-            throw new \Exception('Het e-mailadres "' . $recipient . '" is niet aanwezig in de lijst.');
+            throw new \Exception('De ontvanger "' . $recipient . '" is niet aanwezig in de lijst.');
         }
         catch (\Exception $e) {
             throw new \Exception('We konden je aanvraag niet verwerken. Neem contact op met de webmaster.');
