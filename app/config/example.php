@@ -28,7 +28,8 @@ return [
     ],
     // Mailgun
     'mail' => [
-        'api_key' => '',
+        'public_api_key' => '',
+        'private_api_key' => '',
         'domain' => '',
         'list' => '',
         'from' => [

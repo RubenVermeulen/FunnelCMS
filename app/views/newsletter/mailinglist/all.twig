@@ -1,0 +1,51 @@
+{% extends 'templates/default.twig'%}
+
+{% block title %}Mailinglijst{% endblock %}
+{% block pageTitle %}Mailinglijst{% endblock %}
+
+{% block content %}
+    <p><a href="{{ urlFor('newsletter.create') }}" class="btn btn-primary">Nieuw</a></p>
+    {% if recipients is empty %}
+        <p>Er zijn nog geen ontvangers voor de nieuwsbrief.</p>
+    {% else %}
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>E-mailadres</th>
+                        <th>Status</th>
+                        <th>Actie</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for recipient in recipients %}
+                        <tr>
+                            <td>{{ recipient.address }}</td>
+
+                            {% if recipient.subscribed == 'yes' %}
+                                <td class="success">Ingeschreven</td>
+                            {% else %}
+                                <td class="danger">Uitgeschreven</td>
+                            {% endif %}
+
+                            <td>
+                                <a href="{{ urlFor('newsletter.edit', {id: newsletter.id}) }}" title="Wijzigen">Wijzigen</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+
+                <tr>
+                    <th>E-mailadres</th>
+                    <th>Status</th>
+                    <th>Actie</th>
+                </tr>
+            </table>
+        </div>
+
+        {#Pagination#}
+        {% include 'templates/partials/pagination.twig' with {'routeName': 'newsletter.mailingList.all.page','pages': pages, 'page': page} only %}
+        <br><br>
+    {% endif %}
+{% endblock %}
+

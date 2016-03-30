@@ -4,10 +4,11 @@ use RandomLib\Factory as RandomLib;
 
 use Mailgun\Mailgun;
 
-use FunnelCms\Debug\Debug;
 use FunnelCms\User\User;
+use FunnelCms\Debug\Debug;
 use FunnelCms\Mail\Mailer;
 use FunnelCms\Helpers\Hash;
+use FunnelCms\Mail\MailgunMailer;
 use FunnelCms\Validation\Validator;
 
 /*
@@ -82,20 +83,6 @@ $app->container->singleton('debug', function() use($capsule) {
 
 /*
 |--------------------------------------------------------------------------
-| Mailgun instance
-|--------------------------------------------------------------------------
-|
-| Create a new Mailgun instance. Only created once.
-| Callable throughout the application.
-|
-*/
-
-$app->container->singleton('mailgun', function() use($app) {
-    return new Mailgun($app->config->get('mail.api_key'));
-});
-
-/*
-|--------------------------------------------------------------------------
 | Mailer instance
 |--------------------------------------------------------------------------
 |
@@ -105,9 +92,10 @@ $app->container->singleton('mailgun', function() use($app) {
 */
 
 $app->container->singleton('mail', function() use($app) {
-    $mailer = new Mailgun($app->config->get('mail.api_key'));
+    $mailer = new Mailgun($app->config->get('mail.private_api_key'));
+    $mailerValidate = new Mailgun($app->config->get('mail.public_api_key'));
 
-    return new Mailer($app->config, $app->view, $app->mailgun);
+    return new MailgunMailer($app->config, $app->view, $mailer, $mailerValidate);
 });
 
 /*
