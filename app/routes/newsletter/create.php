@@ -1,7 +1,5 @@
 <?php
 
-use \TijsVerkoyen\CssToInlineStyles\CssToInlineStyles;
-
 $app->get('/newsletters/create', $authenticated, function() use ($app) {
 
     $app->render('newsletter/create.twig');

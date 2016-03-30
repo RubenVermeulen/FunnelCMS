@@ -130,7 +130,7 @@ class MailgunMailer implements MailerInterface
             ]);
         }
         catch (MissingRequiredParameters $e) {
-            throw new \Exception('Het e-mailadres is al aanwezig in de lijst.');
+            throw new \Exception('Het e-mailadres "' . $recipient . '" is al aanwezig in de lijst.');
         }
         catch (\Exception $e) {
             throw new \Exception('We konden je aanvraag niet verwerken. Neem contact op met de webmaster.');
@@ -151,7 +151,7 @@ class MailgunMailer implements MailerInterface
             $this->mailer->delete('lists/' . $this->config->get('mail.list') . '/members/' . $recipient);
         }
         catch (MissingEndpoint $e) {
-            throw new \Exception('Het e-mailadres is niet aanwezig in de lijst.');
+            throw new \Exception('Het e-mailadres "' . $recipient . '" is niet aanwezig in de lijst.');
         }
         catch (\Exception $e) {
             throw new \Exception('We konden je aanvraag niet verwerken. Neem contact op met de webmaster.');

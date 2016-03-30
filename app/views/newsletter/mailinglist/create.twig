@@ -1,0 +1,31 @@
+{% extends 'templates/default.twig' %}
+
+{% block title %}E-mailadres toevoegen{% endblock %}
+{% block pageTitle %}E-mailadres toevoegen{% endblock %}
+
+{% block content %}
+    {# Back button#}
+    <p>
+        <a href="{{ urlFor('newsletter.mailingList.all') }}" class="btn btn-primary">
+            <span class="glyphicon glyphicon-arrow-left"></span>
+        </a>
+    </p>
+
+    <form action="{{ urlFor('newsletter.mailingList.create.post') }}" method="post" autocomplete="off">
+        <div class="form-group">
+            <label for="email">E-mailadres</label>
+            <input type="email" name="email" id="email" {% if request.post('email') %} value="{{ request.post('email') }}" {% endif %}class="form-control"/>
+            {% include 'errors/field.twig' with {field: 'email'} %}
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Toevoegen" class="btn btn-primary form-control"/>
+        </div>
+
+        <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}"/>
+    </form>
+{% endblock %}
+
+{% block scripts %}
+    {% include 'templates/scripts/editor.twig' %}
+{% endblock %}
+
