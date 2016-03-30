@@ -37,7 +37,7 @@ $app->post('/newsletters/edit/:id', $authenticated, function($id) use ($app) {
     $v->validate($validationRules);
 
     if ($v->passes()) {
-        $receivers = ($publish == 2) ? $app->mailgun->get('lists/' . $app->config->get('mail.list'))->http_response_body->list->members_count : 0;
+        $receivers = ($publish == 2) ? $app->mail->recipientsCount() : 0;
 
         $newsletter->update([
             'subject' => $subject,

@@ -27,7 +27,7 @@ $app->post('/newsletters/create', $authenticated, function() use ($app) {
 
     if ($v->passes()) {
 
-        $receivers = ($publish == 2) ? $app->mailgun->get('lists/' . $app->config->get('mail.list'))->http_response_body->list->members_count : 0;
+        $receivers = ($publish == 2) ? $app->mail->recipientsCount() : 0;
 
         $app->auth->newsletters()->create([
             'subject' => $subject,

@@ -9,7 +9,6 @@ use Mailgun\Connection\Exceptions\MissingEndpoint;
 use Mailgun\Connection\Exceptions\MissingRequiredParameters;
 
 use TijsVerkoyen\CssToInlineStyles\CssToInlineStyles;
-use TijsVerkoyen\CssToInlineStyles\Exception;
 
 class MailgunMailer implements MailerInterface
 {
