@@ -1,0 +1,54 @@
+{% extends 'templates/default.twig' %}
+
+{% block title %}Ontvanger wijzigen{% endblock %}
+{% block pageTitle %}Ontvanger wijzigen{% endblock %}
+
+{% block content %}
+    {# Back button#}
+    <p>
+        <a href="{{ urlFor('newsletter.mailingList.all') }}" class="btn btn-primary">
+            <span class="glyphicon glyphicon-arrow-left"></span>
+        </a>
+    </p>
+
+    <form action="{{ urlFor('newsletter.mailingList.edit.post', {'address': recipient.getAddress}) }}" method="post" autocomplete="off">
+        <div class="form-group">
+            <label for="name">E-mailadres</label>
+            <p class="form-control-static">{{ recipient.getAddress }}</p>
+        </div>
+        <div class="form-group">
+            <label for="name">Naam</label>
+            <input type="text" name="name" id="name" value="{{ request.post('name') ? request.post('name') : recipient.getName }}" class="form-control"/>
+            {% include 'errors/field.twig' with {field: 'name'} %}
+        </div>
+        <div class="form-group">
+            <label for="subscribe">Wil de nieuwsbrief ontvangen?</label>
+            <select name="subscribe" id="subscribe" class="form-control">
+                <option value="1" {{ (request.post('subsribe') and request.post('subsribe') == 1) or recipient.getSubscribed ? 'selected' : '' }}>Ja</option>
+                <option value="0" {{ (request.post('subsribe') and request.post('subsribe') == 2) or not recipient.getSubscribed  ? 'selected' : '' }}>Nee</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Wijzigingen opslaan" class="btn btn-primary form-control"/>
+        </div>
+
+        <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}"/>
+    </form>
+
+    {# Delete Form #}
+
+    <form id="form-delete" action="{{ urlFor('newsletter.mailingList.delete', {'address': recipient.getAddress}) }}" method="post">
+        <div class="form-group">
+            <input type="submit" value="Verwijderen" class="btn btn-danger form-control"/>
+        </div>
+
+        <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}"/>
+        <input name="_METHOD" value="DELETE" type="hidden"/>
+    </form>
+{% endblock %}
+
+{% block scripts %}
+    {% include 'templates/scripts/editor.twig' %}
+    {% include 'templates/scripts/formDelete.twig' %}
+{% endblock %}
+

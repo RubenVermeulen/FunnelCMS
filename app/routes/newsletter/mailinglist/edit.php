@@ -54,9 +54,6 @@ $app->post('/newsletters/mailing-list/edit/:address', $authenticated, function($
         }
     }
 
-    /*
-     * Validation failed.
-     */
     $app->render('newsletter/mailingList/edit.twig', [
         'recipient' => $recipient,
         'errors' => $v->errors(),

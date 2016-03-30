@@ -3,7 +3,6 @@
 
 namespace FunnelCms\Mail;
 
-
 use Mailgun\Mailgun;
 use Mailgun\Connection\Exceptions\MissingEndpoint;
 use Mailgun\Connection\Exceptions\MissingRequiredParameters;
@@ -50,6 +49,13 @@ class MailgunMailer implements MailerInterface
     private $mailerValidate;
 
     /**
+     * Address of the mailing list.
+     *
+     * @var
+     */
+    private $listAddress;
+
+    /**
      * Create a mailer instance.
      * The mailer parameter as a instance of the mailer we are using.
      *
@@ -63,6 +69,8 @@ class MailgunMailer implements MailerInterface
         $this->view = $view;
         $this->mailer = $mailer;
         $this->mailerValidate = $mailerValidate;
+
+        $this->listAddress = $this->config->get('mail.list');
     }
 
     /**
@@ -102,7 +110,7 @@ class MailgunMailer implements MailerInterface
 
         $this->mailer->sendMessage($this->config->get('mail.domain'), [
             'from' => $this->config->get('mail.from.newsletter'),
-            'to' => $credentials['to'],
+            'to' => $this->listAddress,
             'subject' => $credentials['subject'],
             'html' => $cssToInlineStyles->convert(),
         ]);
@@ -116,7 +124,7 @@ class MailgunMailer implements MailerInterface
      * @return mixed
      */
     public function getRecipients($limit, $offset) {
-        return $this->mailer->get('lists/' . $this->config->get('mail.list') . '/members', [
+        return $this->mailer->get('lists/' . $this->listAddress . '/members', [
             'limit' => $limit,
             'skip' => $offset,
         ])->http_response_body->items;
@@ -125,22 +133,22 @@ class MailgunMailer implements MailerInterface
     /**
      * Returns the recipient.
      *
-     * @param $recipient
+     * @param $address
      * @return Recipient
      * @throws \Exception
      */
-    public function getRecipient($recipient) {
-        $this->validateRecipient($recipient);
+    public function getRecipient($address) {
+        $this->validateRecipient($address);
 
         try {
-            $result = $this->mailer->get('lists/' . $this->config->get('mail.list') . '/members/' . $recipient)
+            $result = $this->mailer->get('lists/' . $this->listAddress . '/members/' . $address)
                 ->http_response_body
                 ->member;
 
             return new Recipient($result->address, $result->name, $result->subscribed);
         }
         catch (MissingEndpoint $e) {
-            throw new \Exception('De ontvanger "' . $recipient . '" is niet aanwezig in de lijst.');
+            throw new \Exception('De ontvanger "' . $address . '" is niet aanwezig in de lijst.');
         }
         catch (\Exception $e) {
             throw new \Exception('We konden je aanvraag niet verwerken. Neem contact op met de webmaster.');
@@ -158,7 +166,7 @@ class MailgunMailer implements MailerInterface
         $this->validateRecipient($recipient->getAddress());
 
         try {
-            $result = $this->mailer->put('lists/' . $this->config->get('mail.list') . '/members/' . $recipient->getAddress(), [
+            $result = $this->mailer->put('lists/' . $this->listAddress . '/members/' . $recipient->getAddress(), [
                 'subscribed' => ($recipient->getSubscribed() ? 1 : 0), // if statement is necessary because false does not work for some reason
                 'name' => $recipient->getName(),
             ]);
@@ -176,21 +184,21 @@ class MailgunMailer implements MailerInterface
     /**
      * Adds a recipient to the list.
      *
-     * @param $recipient
+     * @param $address
      * @return mixed
      * @throws \Exception
      */
-    public function addRecipient($recipient) {
-        $this->validateRecipient($recipient);
+    public function addRecipient($address) {
+        $this->validateRecipient($address);
 
         try {
-            $this->mailer->post('lists/' . $this->config->get('mail.list') . '/members', [
-                'address' => $recipient,
+            $this->mailer->post('lists/' . $this->listAddress . '/members', [
+                'address' => $address,
                 'subscribed' => 1,
             ]);
         }
         catch (MissingRequiredParameters $e) {
-            throw new \Exception('De ontvanger "' . $recipient . '" is al aanwezig in de lijst.');
+            throw new \Exception('De ontvanger "' . $address . '" is al aanwezig in de lijst.');
         }
         catch (\Exception $e) {
             throw new \Exception('We konden je aanvraag niet verwerken. Neem contact op met de webmaster.');
@@ -200,18 +208,18 @@ class MailgunMailer implements MailerInterface
     /**
      * Removes a recipient from the list.
      *
-     * @param $recipient
+     * @param $address
      * @return mixed
      * @throws \Exception
      */
-    public function deleteRecipient($recipient) {
-        $this->validateRecipient($recipient);
+    public function deleteRecipient($address) {
+        $this->validateRecipient($address);
 
         try {
-            $this->mailer->delete('lists/' . $this->config->get('mail.list') . '/members/' . $recipient);
+            $this->mailer->delete('lists/' . $this->listAddress . '/members/' . $address);
         }
         catch (MissingEndpoint $e) {
-            throw new \Exception('De ontvanger "' . $recipient . '" is niet aanwezig in de lijst.');
+            throw new \Exception('De ontvanger "' . $address . '" is niet aanwezig in de lijst.');
         }
         catch (\Exception $e) {
             throw new \Exception('We konden je aanvraag niet verwerken. Neem contact op met de webmaster.');
@@ -225,7 +233,7 @@ class MailgunMailer implements MailerInterface
      * @return mixed
      */
     public function recipientsCount() {
-        return $this->mailer->get('lists/' . $this->config->get('mail.list'))
+        return $this->mailer->get('lists/' . $this->listAddress)
             ->http_response_body
             ->list
             ->members_count;
@@ -234,12 +242,12 @@ class MailgunMailer implements MailerInterface
     /**
      * Validates the recipient.
      *
-     * @param $recipient
+     * @param $address
      * @return mixed
      * @throws \Exception
      */
-    public function validateRecipient($recipient) {
-        $result = $this->mailerValidate->get('address/validate', ['address' => $recipient]);
+    public function validateRecipient($address) {
+        $result = $this->mailerValidate->get('address/validate', ['address' => $address]);
 
         if ( ! $result->http_response_body->is_valid)
             throw new \Exception('Geen geldig e-mailadres.');

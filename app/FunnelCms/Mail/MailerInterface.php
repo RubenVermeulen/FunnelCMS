@@ -43,10 +43,10 @@ interface MailerInterface
     /**
      * Returns the recipient.
      *
-     * @param $recipient
+     * @param $address
      * @return mixed
      */
-    public function getRecipient($recipient);
+    public function getRecipient($address);
 
     /**
      * Updates a recipient.
@@ -59,18 +59,18 @@ interface MailerInterface
     /**
      * Adds a recipient to the list.
      *
-     * @param $recipient
+     * @param $address
      * @return mixed
      */
-    public function addRecipient($recipient);
+    public function addRecipient($address);
 
     /**
      * Removes a recipient from the list.
      *
-     * @param $recipient
+     * @param $address
      * @return mixed
      */
-    public function deleteRecipient($recipient);
+    public function deleteRecipient($address);
 
     /**
      * Returns the number of recipients in the list.
@@ -82,8 +82,8 @@ interface MailerInterface
     /**
      * Validates the recipient.
      *
-     * @param $recipient
+     * @param $address
      * @return mixed
      */
-    public function validateRecipient($recipient);
+    public function validateRecipient($address);
 }
