@@ -4,7 +4,10 @@
 {% block pageTitle %}Nieuwsbrieven{% endblock %}
 
 {% block content %}
-    <p><a href="{{ urlFor('newsletter.create') }}" class="btn btn-primary">Nieuw</a></p>
+    <p>
+        <a href="{{ urlFor('newsletter.create') }}" class="btn btn-primary">Nieuw</a>
+        <a href="{{ urlFor('newsletter.mailingList.all') }}" class="btn btn-primary">Mailinglijst</a>
+    </p>
     {% if newsletters is empty %}
         <p>Er zijn nog geen nieuwsbrieven.</p>
     {% else %}

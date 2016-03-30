@@ -86,4 +86,30 @@ class Mailer
             'html' => $cssToInlineStyles->convert(),
         ]);
     }
+
+    /**
+     * Returns number of newsletter recipients.
+     *
+     * @return mixed
+     */
+    public function numberOfNewsletterRecipients() {
+        return $this->mailer->get('lists/' . $this->config->get('mail.list'))
+            ->http_response_body
+            ->list
+            ->members_count;
+    }
+
+    /**
+     * Returns x amount of newsletter recipients.
+     *
+     * @param $limit
+     * @param $offset
+     * @return mixed
+     */
+    public function fetchNewsletterRecipients($limit, $offset) {
+        return $this->mailer->get('lists/' . $this->config->get('mail.list') . '/members', [
+            'limit' => $limit,
+            'skip' => $offset,
+        ])->http_response_body->items;
+    }
 }

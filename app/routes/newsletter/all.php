@@ -13,7 +13,7 @@ function newslettersAllRoute($app, $page) {
     $pagination->execute();
 
     $app->render('newsletter/all.twig', [
-        'newsletters' => $pagination->getItems(),
+        'newsletters' => $pagination->getResult(),
         'pages' => $pagination->getTotalPages(),
         'page' => $page,
     ]);

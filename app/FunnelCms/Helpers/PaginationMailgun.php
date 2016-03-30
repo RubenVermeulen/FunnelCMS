@@ -4,23 +4,26 @@
 namespace FunnelCms\Helpers;
 
 
-class Pagination implements PaginationInterface
+use FunnelCms\Mail\Mailer;
+
+class PaginationMailgun implements PaginationInterface
 {
     private $app;
-    private $items;
+    private $mailer;
     private $page;
     private $totalPages;
+    private $result;
 
     /**
      * Pagination constructor.
      *
      * @param $app
-     * @param $items
+     * @param $mailer
      * @param $page
      */
-    public function __construct($app, $items, $page) {
+    public function __construct($app, Mailer $mailer, $page) {
         $this->app = $app;
-        $this->items = $items;
+        $this->mailer = $mailer;
         $this->page = $page;
     }
 
@@ -38,15 +41,15 @@ class Pagination implements PaginationInterface
         if ( ! $this->page || ! ctype_digit((string) $this->page))
             $this->app->notFound();
 
-        $totalItems = $this->items->count();
-        $this->totalPages = ceil($totalItems / $show);
+        $this->totalPages = ceil($this->mailer->numberOfNewsletterRecipients() / $show);
 
         if ($this->page > $this->totalPages)
             $this->app->notFound();
 
         $offset = ($this->page - 1) * $show;
 
-        $this->items = $this->items->limit($show)->offset($offset)->get();
+
+        $this->result = $this->mailer->fetchNewsletterRecipients($show, $offset);
     }
 
     /**
@@ -64,6 +67,8 @@ class Pagination implements PaginationInterface
      * @return mixed
      */
     public function getResult() {
-        return $this->items;
+        return $this->result;
     }
+
+
 }

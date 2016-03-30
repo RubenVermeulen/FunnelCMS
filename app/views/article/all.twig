@@ -10,7 +10,7 @@
     {% else %}
         <div class="table-responsive">
             <table class="table table-bordered">
-
+                <thead>
                     <tr>
                         <th>Onderwerp</th>
                         <th>Auteur</th>
@@ -19,18 +19,18 @@
                         <th>Gepubliceerd op</th>
                         <th>Actie</th>
                     </tr>
-
+                </thead>
                 <tbody>
-                {% for article in articles %}
-                    <tr>
-                        <td>{{ article.subject }}</td>
-                        <td>{{ article.author.getFullNameOrEmail }}</td>
-                        <td>{{ article.getCreatedAt }}</td>
-                        <td>{{ article.getUpdatedAt }}</td>
-                        <td>{{ article.getPublishedAt }}</td>
-                        <td><a href="{{ urlFor('article.edit', {id: article.id}) }}" title="Wijzigen">Wijzigen</a></td>
-                    </tr>
-                {% endfor %}
+                    {% for article in articles %}
+                        <tr>
+                            <td>{{ article.subject }}</td>
+                            <td>{{ article.author.getFullNameOrEmail }}</td>
+                            <td>{{ article.getCreatedAt }}</td>
+                            <td>{{ article.getUpdatedAt }}</td>
+                            <td>{{ article.getPublishedAt }}</td>
+                            <td><a href="{{ urlFor('article.edit', {id: article.id}) }}" title="Wijzigen">Wijzigen</a></td>
+                        </tr>
+                    {% endfor %}
                 </tbody>
 
                 <tr>

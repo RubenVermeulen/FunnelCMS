@@ -13,7 +13,7 @@ function articlesAllRoute($app, $page) {
     $pagination->execute();
 
     $app->render('article/all.twig', [
-        'articles' => $pagination->getItems(),
+        'articles' => $pagination->getResult(),
         'pages' => $pagination->getTotalPages(),
         'page' => $page,
     ]);
@@ -25,7 +25,7 @@ $app->get('/articles', $authenticated(), function($page = 1) use($app) {
 
 })->name('article.all');
 
-$app->get('/articles(/page/:page)', $authenticated(), function($page = 1) use($app) {
+$app->get('/articles/page/:page', $authenticated(), function($page = 1) use($app) {
 
     articlesAllRoute($app, $page);
 
