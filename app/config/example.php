@@ -9,7 +9,7 @@ return [
             'cost' => 10
         ],
         'pagination' => [
-            'items' => 20,
+            'items' => 20, // Can not be higher then 100
         ]
     ],
     'db' => [

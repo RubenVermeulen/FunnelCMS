@@ -123,7 +123,7 @@ class MailgunMailer implements MailerInterface
      * @param $offset
      * @return mixed
      */
-    public function getRecipients($limit, $offset) {
+    public function getRecipients($limit = 100, $offset = 0) {
         return $this->mailer->get('lists/' . $this->listAddress . '/members', [
             'limit' => $limit,
             'skip' => $offset,
@@ -253,5 +253,26 @@ class MailgunMailer implements MailerInterface
 
         if ( ! $result->http_response_body->is_valid)
             throw new \Exception('Geen geldig e-mailadres.');
+    }
+
+    public function searchRecipient($keyword) {
+        $requests = ceil($this->recipientsCount() / 100);
+
+        $results = [];
+
+        for ($i = 0; $i < $requests; $i++) {
+            $recipients = $this->getRecipients(100, $i * 100);
+
+            foreach ($recipients as $recipient) {
+                if (stripos($recipient->address, $keyword) !== false) {
+                    $results[] = new Recipient($recipient->address, $recipient->name, $recipient->subscribed);
+                }
+                else if (stripos($recipient->name, $keyword) !== false) {
+                    $results[] = new Recipient($recipient->address, $recipient->name, $recipient->subscribed);
+                }
+            }
+        }
+
+        return $results;
     }
 }

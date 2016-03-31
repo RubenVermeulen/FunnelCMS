@@ -27,7 +27,7 @@ $app->post('/articles/edit/:id', $authenticated, function($id) use($app) {
     $request = $app->request;
 
     $subject = $request->post('subject');
-    $summary = $request->post('$summary');
+    $summary = $request->post('summary');
     $content = $request->post('content');
     $date = $request->post('date');
     $time = $request->post('time');

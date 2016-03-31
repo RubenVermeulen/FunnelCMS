@@ -31,7 +31,7 @@ $app->post('/newsletters/mailing-list/create', $authenticated, function() use ($
 
             $app->mail->addRecipient($recipient);
 
-            $app->flash('global', 'Het e-mailadres "' . $recipient->getAddress() . '" is toevoegd.');
+            $app->flash('global', 'De ontvanger "' . $recipient->getAddress() . '" is toegevoegd.');
             $app->redirect($app->urlFor('newsletter.mailingList.all'));
         }
         catch (\Exception $e) {
