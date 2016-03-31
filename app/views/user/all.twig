@@ -4,10 +4,26 @@
 {% block pageTitle %}Gebruikers{% endblock %}
 
 {% block content %}
-    <p><a href="{{ urlFor('user.create') }}" class="btn btn-primary">Nieuw</a></p>
+    <div class="row toolbar">
+        <div class="col-md-4">
+            <a href="{{ urlFor('user.create') }}" class="btn btn-primary">Nieuw</a>
+        </div>
+        <div class="col-md-8">
+            {% include 'templates/partials/searchForm.twig' with {'url': urlFor('user.search')} only %}
+        </div>
+    </div>
+
     {% if users is empty %}
-        <p>Er zijn nog geen gebruikers.</p>
+        {% if not searchCount %}
+            <p>Er zijn geen resultaten gevonden voor je zoekopdracht "<strong>{{ keyword }}</strong>".</p>
+        {% else %}
+            <p>Er zijn nog geen gebruikers.</p>
+        {% endif %}
     {% else %}
+        {% if searchCount %}
+            <p>Er zijn <strong>{{ searchCount }}</strong> resultaten gevonden voor je zoekopdracht "<strong>{{ keyword }}</strong>".</p>
+        {% endif %}
+
         <div class="table-responsive">
             <table class="table table-bordered">
                 <thead>
@@ -34,6 +50,10 @@
                 </tr>
             </table>
         </div>
+
+        {#Pagination#}
+        {% include 'templates/partials/pagination.twig' with {'routeName': 'user.all.page','pages': pages, 'page': page} only %}
+        <br><br>
     {% endif %}
 {% endblock %}
 

@@ -31,7 +31,7 @@ $app->post('/recover-password', $guest(), function() use($app) {
             /*
              * Send an email.
              */
-            $app->mail->send('email/auth/password/recover.twig', ['user' => $user, 'identifier' => $identifier], [
+            $app->mail->sendMessage('email/auth/password/recover.twig', ['user' => $user, 'identifier' => $identifier], [
                 'to' => $user->email,
                 'subject' => 'Reset je wachtwoord.',
             ]);

@@ -43,6 +43,7 @@ require INC_ROOT . '/app/routes/user/create.php';
 require INC_ROOT . '/app/routes/user/activate.php';
 require INC_ROOT . '/app/routes/user/edit.php';
 require INC_ROOT . '/app/routes/user/delete.php';
+require INC_ROOT . '/app/routes/user/search.php';
 
 /*
 |--------------------------------------------------------------------------

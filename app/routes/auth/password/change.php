@@ -30,7 +30,7 @@ $app->post('/change-password', $authenticated(), function() use($app) {
         /*
          * Send an email.
          */
-        $app->mail->send('email/auth/password/changed.twig', [], [
+        $app->mail->sendMessage('email/auth/password/changed.twig', [], [
             'to' => $user->email,
             'subject' => 'Je wachtwoord is gewijzigd.',
         ]);

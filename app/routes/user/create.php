@@ -39,7 +39,7 @@ $app->post('/users/create', $admin(), function() use($app) {
         /*
          * Send an email.
          */
-        $app->mail->send('email/auth/registered.twig', ['user' => $user, 'identifier' => $identifier], [
+        $app->mail->sendMessage('email/auth/registered.twig', ['user' => $user, 'identifier' => $identifier], [
             'to' => $user->email,
             'subject' => 'Je account is aangemaakt.',
         ]);
