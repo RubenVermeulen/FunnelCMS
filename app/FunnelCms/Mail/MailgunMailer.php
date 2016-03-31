@@ -86,7 +86,7 @@ class MailgunMailer implements MailerInterface
 
         $this->mailer->sendMessage($this->config->get('mail.domain'), [
             'from' => $credentials['from'],
-            'to' => $credentials['to'],
+            'to' => $this->listAddress,
             'subject' => $credentials['subject'],
             'html' => $this->view->render($template),
         ]);
@@ -184,21 +184,23 @@ class MailgunMailer implements MailerInterface
     /**
      * Adds a recipient to the list.
      *
-     * @param $address
+     * @param Recipient $recipient
      * @return mixed
      * @throws \Exception
+     * @internal param $address
      */
-    public function addRecipient($address) {
-        $this->validateRecipient($address);
+    public function addRecipient(Recipient $recipient) {
+        $this->validateRecipient($recipient->getAddress());
 
         try {
             $this->mailer->post('lists/' . $this->listAddress . '/members', [
-                'address' => $address,
-                'subscribed' => 1,
+                'address' => $recipient->getAddress(),
+                'name' => $recipient->getName(),
+                'subscribed' => ($recipient->getSubscribed() ? 1 : 0),
             ]);
         }
         catch (MissingRequiredParameters $e) {
-            throw new \Exception('De ontvanger "' . $address . '" is al aanwezig in de lijst.');
+            throw new \Exception('De ontvanger "' . $recipient->getAddress() . '" is al aanwezig in de lijst.');
         }
         catch (\Exception $e) {
             throw new \Exception('We konden je aanvraag niet verwerken. Neem contact op met de webmaster.');

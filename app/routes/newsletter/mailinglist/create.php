@@ -1,5 +1,7 @@
 <?php
 
+use \FunnelCms\Mail\Recipient;
+
 $app->get('/newsletters/mailing-list/create', $authenticated, function() use ($app) {
 
     $app->render('newsletter/mailingList/create.twig');
@@ -14,18 +16,22 @@ $app->post('/newsletters/mailing-list/create', $authenticated, function() use ($
     $request = $app->request;
 
     $email = $request->post('email');
+    $name = $request->post('name');
 
     $v = $app->validation;
 
     $v->validate([
         'email|E-mailadres' => [$email, 'required|email'],
+        'name|Naam' => [$email, 'max(150)'],
     ]);
 
     if ($v->passes()) {
         try {
-            $app->mail->addRecipient($email);
+            $recipient = new Recipient($email, $name, true);
 
-            $app->flash('global', 'Het e-mailadres "' . $email . '" is toevoegd.');
+            $app->mail->addRecipient($recipient);
+
+            $app->flash('global', 'Het e-mailadres "' . $recipient->getAddress() . '" is toevoegd.');
             $app->redirect($app->urlFor('newsletter.mailingList.all'));
         }
         catch (\Exception $e) {

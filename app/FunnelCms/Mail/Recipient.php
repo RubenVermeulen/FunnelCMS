@@ -61,6 +61,4 @@ class Recipient
 
         $this->subscribed = $subscribed;
     }
-
-
 }

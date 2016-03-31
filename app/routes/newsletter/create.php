@@ -24,7 +24,6 @@ $app->post('/newsletters/create', $authenticated, function() use ($app) {
     $v->validate($validationRules);
 
     if ($v->passes()) {
-
         $receivers = ($publish == 2) ? $app->mail->recipientsCount() : 0;
 
         $app->auth->newsletters()->create([
@@ -39,7 +38,6 @@ $app->post('/newsletters/create', $authenticated, function() use ($app) {
                 $app->config->get('mail.template.newsletter'),
                 ['content' => $content],
                 [
-                    'to' => $app->config->get('mail.list'),
                     'subject' => $subject,
                 ]);
 

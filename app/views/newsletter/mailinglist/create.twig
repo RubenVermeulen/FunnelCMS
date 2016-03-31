@@ -18,6 +18,11 @@
             {% include 'errors/field.twig' with {field: 'email'} %}
         </div>
         <div class="form-group">
+            <label for="name">Naam (optioneel)</label>
+            <input type="name" name="name" id="name" {% if request.post('name') %} value="{{ request.post('name') }}" {% endif %}class="form-control"/>
+            {% include 'errors/field.twig' with {field: 'name'} %}
+        </div>
+        <div class="form-group">
             <input type="submit" value="Toevoegen" class="btn btn-primary form-control"/>
         </div>
 

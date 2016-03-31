@@ -51,7 +51,6 @@ $app->post('/newsletters/edit/:id', $authenticated, function($id) use ($app) {
                 $app->config->get('mail.template.newsletter'),
                 ['content' => $content],
                 [
-                    'to' => $app->config->get('mail.list'),
                     'subject' => $subject,
                 ]);
 

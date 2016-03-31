@@ -59,10 +59,11 @@ interface MailerInterface
     /**
      * Adds a recipient to the list.
      *
-     * @param $address
+     * @param Recipient $recipient
      * @return mixed
+     * @internal param $address
      */
-    public function addRecipient($address);
+    public function addRecipient(Recipient $recipient);
 
     /**
      * Removes a recipient from the list.
