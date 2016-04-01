@@ -40,15 +40,21 @@ class PaginationMailgun implements PaginationInterface
         if ( ! $this->page || ! ctype_digit((string) $this->page))
             $this->app->notFound();
 
-        $this->totalPages = ceil($this->mailer->recipientsCount() / $show);
+        $totalItems = $this->mailer->recipientsCount();
 
-        if ($this->page > $this->totalPages)
-            $this->app->notFound();
+        if ($totalItems == 0) {
+            $this->result = [];
+        }
+        else {
+            $this->totalPages = ceil($totalItems / $show);
 
-        $offset = ($this->page - 1) * $show;
+            if ($this->page > $this->totalPages)
+                $this->app->notFound();
 
+            $offset = ($this->page - 1) * $show;
 
-        $this->result = $this->mailer->getRecipients($show, $offset);
+            $this->result = $this->mailer->getRecipients($show, $offset);
+        }
     }
 
     /**

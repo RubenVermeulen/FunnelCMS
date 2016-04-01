@@ -39,14 +39,20 @@ class Pagination implements PaginationInterface
             $this->app->notFound();
 
         $totalItems = $this->items->count();
-        $this->totalPages = ceil($totalItems / $show);
 
-        if ($this->page > $this->totalPages)
-            $this->app->notFound();
+        if ($totalItems == 0) {
+            $this->items = [];
+        }
+        else {
+            $this->totalPages = ceil($totalItems / $show);
 
-        $offset = ($this->page - 1) * $show;
+            if ($this->page > $this->totalPages)
+                $this->app->notFound();
 
-        $this->items = $this->items->limit($show)->offset($offset)->get();
+            $offset = ($this->page - 1) * $show;
+
+            $this->items = $this->items->limit($show)->offset($offset)->get();
+        }
     }
 
     /**

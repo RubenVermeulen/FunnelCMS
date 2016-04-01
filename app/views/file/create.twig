@@ -1,0 +1,27 @@
+{% extends 'templates/default.twig' %}
+
+{% block title %}Bestand uploaden{% endblock %}
+{% block pageTitle %}Bestand uploaden{% endblock %}
+
+{% block content %}
+    {# Back button#}
+    <p>
+        <a href="{{ urlFor('file.all') }}" class="btn btn-primary">
+            <span class="glyphicon glyphicon-arrow-left"></span>
+        </a>
+    </p>
+
+    <form action="{{ urlFor('file.create.post') }}" method="post" enctype="multipart/form-data" autocomplete="off">
+        <div class="form-group">
+            <label for="file">Kies een bestand</label>
+            <input type="file" id="file" name="file">
+            <p class="help-block">Deze bestanden zijn toegestaan: jpg, png, gif en pdf</p>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Uploaden" class="btn btn-primary form-control"/>
+        </div>
+
+        <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}"/>
+    </form>
+{% endblock %}
+

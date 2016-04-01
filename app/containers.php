@@ -44,13 +44,27 @@ $app->container->set('article', function() {
 | Newsletter instance
 |--------------------------------------------------------------------------
 |
-| Create a new user instance.
+| Create a new newsletter instance.
 | Callable throughout the application.
 |
 */
 
 $app->container->set('newsletter', function() {
     return new \FunnelCms\Newsletter\Newsletter();
+});
+
+/*
+|--------------------------------------------------------------------------
+| File instance
+|--------------------------------------------------------------------------
+|
+| Create a new file instance.
+| Callable throughout the application.
+|
+*/
+
+$app->container->set('file', function() {
+    return new \FunnelCms\File\File();
 });
 
 /*

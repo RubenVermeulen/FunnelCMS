@@ -17,7 +17,7 @@
     </div>
 
     {% if recipients is empty %}
-        {% if not searchCount %}
+        {% if searchCount and searchCount == 0 %}
             <p>Er zijn geen resultaten gevonden voor je zoekopdracht "<strong>{{ keyword }}</strong>".</p>
         {% else %}
             <p>Er zijn nog geen ontvangers voor de nieuwsbrief.</p>

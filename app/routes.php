@@ -93,3 +93,18 @@ require INC_ROOT . '/app/routes/newsletter/mailinglist/delete.php';
 require INC_ROOT . '/app/routes/newsletter/mailinglist/search.php';
 
 require INC_ROOT . '/app/routes/newsletter/show.php';
+
+/*
+|--------------------------------------------------------------------------
+| File
+|--------------------------------------------------------------------------
+|
+| All routes concerning files.
+|
+*/
+
+require INC_ROOT . '/app/routes/file/all.php';
+require INC_ROOT . '/app/routes/file/create.php';
+require INC_ROOT . '/app/routes/file/edit.php';
+require INC_ROOT . '/app/routes/file/delete.php';
+require INC_ROOT . '/app/routes/file/search.php';

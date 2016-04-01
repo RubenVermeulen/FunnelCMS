@@ -1,0 +1,66 @@
+{% extends 'templates/default.twig'%}
+
+{% block title %}Bestanden{% endblock %}
+{% block pageTitle %}Bestanden{% endblock %}
+
+{% block content %}
+    <div class="row toolbar">
+        <div class="col-md-4">
+            <a href="{{ urlFor('file.create') }}" class="btn btn-primary">Nieuw</a>
+        </div>
+        <div class="col-md-8">
+            {% include 'templates/partials/searchForm.twig' with {'url': urlFor('file.search')} only %}
+        </div>
+    </div>
+
+    {% if files is empty %}
+        {% if not searchCount %}
+            <p>Er zijn geen resultaten gevonden voor je zoekopdracht "<strong>{{ keyword }}</strong>".</p>
+        {% else %}
+            <p>Er zijn nog geen bestanden.</p>
+        {% endif %}
+    {% else %}
+        {% if searchCount %}
+            <p>Er zijn <strong>{{ searchCount }}</strong> resultaten gevonden voor je zoekopdracht "<strong>{{ keyword }}</strong>".</p>
+        {% endif %}
+
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Naam</th>
+                    <th>Type</th>
+                    <th>Bestandsgrootte</th>
+                    <th>URL</th>
+                    <th>Actie</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for file in files %}
+                    <tr>
+                        <td>{{ file.name_human }}</td>
+                        <td>{{ file.getType }}</td>
+                        <td>{{ file.getSizeInKiloByte }} kB</td>
+                        <td><a href="{{ assetUrl }}/files/{{ file.name_system }}" target="_blank">{{ file.name_system }}</a></td>
+
+                        <td><a href="{{ urlFor('file.edit', {id: file.id}) }}" title="Wijzigen">Wijzigen</a></td>                     </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+
+                <tr>
+                    <th>Naam</th>
+                    <th>Type</th>
+                    <th>Bestandsgrootte</th>
+                    <th>URL</th>
+                    <th>Actie</th>
+                </tr>
+            </table>
+        </div>
+
+        {#Pagination#}
+        {% include 'templates/partials/pagination.twig' with {'routeName': 'file.all.page','pages': pages, 'page': page} only %}
+        <br><br>
+    {% endif %}
+{% endblock %}
+
