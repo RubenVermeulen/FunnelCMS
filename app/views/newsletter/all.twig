@@ -5,11 +5,11 @@
 
 {% block content %}
     <div class="row toolbar">
-        <div class="col-md-4">
+        <div class="col-md-4 col-sm-6">
             <a href="{{ urlFor('newsletter.create') }}" class="btn btn-primary">Nieuw</a>
             <a href="{{ urlFor('newsletter.mailingList.all') }}" class="btn btn-primary">Mailinglijst</a>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-8 col-sm-6">
             {% include 'templates/partials/searchForm.twig' with {'url': urlFor('newsletter.search')} only %}
         </div>
     </div>

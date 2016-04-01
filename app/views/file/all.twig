@@ -5,10 +5,10 @@
 
 {% block content %}
     <div class="row toolbar">
-        <div class="col-md-4">
+        <div class="col-md-4 col-sm-6">
             <a href="{{ urlFor('file.create') }}" class="btn btn-primary">Nieuw</a>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-8 col-sm-6">
             {% include 'templates/partials/searchForm.twig' with {'url': urlFor('file.search')} only %}
         </div>
     </div>
@@ -24,38 +24,45 @@
             <p>Er zijn <strong>{{ searchCount }}</strong> resultaten gevonden voor je zoekopdracht "<strong>{{ keyword }}</strong>".</p>
         {% endif %}
 
-        <div class="table-responsive">
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th>Naam</th>
-                    <th>Type</th>
-                    <th>Bestandsgrootte</th>
-                    <th>URL</th>
-                    <th>Actie</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for file in files %}
-                    <tr>
-                        <td>{{ file.name_human }}</td>
-                        <td>{{ file.getType }}</td>
-                        <td>{{ file.getSizeInKiloByte }} kB</td>
-                        <td><a href="{{ assetUrl }}/files/{{ file.name_system }}" target="_blank">{{ file.name_system }}</a></td>
+        <div id="files" class="row">
+            {% for file in files %}
+                <div class="col-md-3 col-sm-6 file">
+                    <div class="frame">
+                        <div class="image">
+                            <a href="{{ assetUrl }}/files/{{ file.name_system }}">
+                                {% if file.getType == 'image' %}
+                                    <img src="{{ assetUrl }}/files/{{ file.name_system }}" alt="{{ file.name_human }}">
+                                {% else %}
+                                    <img src="{{ assetUrl }}/images/pdf.svg" alt="{{ file.name_human }}" height="100%">
+                                {% endif %}
+                            </a>
+                        </div>
+                        <div class="details">
+                            <p class="name" title="{{ file.name_human }}"><strong>{{ file.name_human }}</strong></p>
 
-                        <td><a href="{{ urlFor('file.edit', {id: file.id}) }}" title="Wijzigen">Wijzigen</a></td>                     </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
+                            <input type="text" name="url" id="url" value="{{ assetUrl }}/files/{{ file.name_system }}" class="form-control url" onclick="this.select();">
 
-                <tr>
-                    <th>Naam</th>
-                    <th>Type</th>
-                    <th>Bestandsgrootte</th>
-                    <th>URL</th>
-                    <th>Actie</th>
-                </tr>
-            </table>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="pull-left">
+                                        {{ file.getSizeInKiloByte }} kB
+                                    </div>
+                                    <div class="pull-right">
+                                        <a href="{{ assetUrl }}/files/{{ file.name_system }}" target="_blank" title="Wijzigen">
+                                            <span class="glyphicon glyphicon-search"></span>
+                                        </a>
+                                        <span style="display: inline-block; padding: 0 2px"></span>
+                                        <a href="{{ urlFor('file.edit', {id: file.id}) }}" title="Openen">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            {% endfor %}
         </div>
 
         {#Pagination#}
