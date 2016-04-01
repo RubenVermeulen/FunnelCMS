@@ -3,6 +3,10 @@
 {% block title %}Bestanden{% endblock %}
 {% block pageTitle %}Bestanden{% endblock %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ assetUrl }}/css/lightbox.css">
+{% endblock %}
+
 {% block content %}
     <div class="row toolbar">
         <div class="col-md-4 col-sm-6">
@@ -29,13 +33,15 @@
                 <div class="col-md-3 col-sm-6 file">
                     <div class="frame">
                         <div class="image">
-                            <a href="{{ assetUrl }}/files/{{ file.name_system }}">
-                                {% if file.getType == 'image' %}
+                            {% if file.getType == 'image' %}
+                                <a href="{{ assetUrl }}/files/{{ file.name_system }}" target="_blank" data-lightbox="files">
                                     <img src="{{ assetUrl }}/files/{{ file.name_system }}" alt="{{ file.name_human }}">
-                                {% else %}
+                                </a>
+                            {% else %}
+                                <a href="{{ assetUrl }}/files/{{ file.name_system }}" target="_blank">
                                     <img src="{{ assetUrl }}/images/pdf.svg" alt="{{ file.name_human }}" height="100%">
-                                {% endif %}
-                            </a>
+                                </a>
+                            {% endif %}
                         </div>
                         <div class="details">
                             <p class="name" title="{{ file.name_human }}"><strong>{{ file.name_human }}</strong></p>
@@ -48,11 +54,7 @@
                                         {{ file.getSizeInKiloByte }} kB
                                     </div>
                                     <div class="pull-right">
-                                        <a href="{{ assetUrl }}/files/{{ file.name_system }}" target="_blank" title="Wijzigen">
-                                            <span class="glyphicon glyphicon-search"></span>
-                                        </a>
-                                        <span style="display: inline-block; padding: 0 2px"></span>
-                                        <a href="{{ urlFor('file.edit', {id: file.id}) }}" title="Openen">
+                                        <a href="{{ urlFor('file.edit', {id: file.id}) }}" title="Wijzigen">
                                             <span class="glyphicon glyphicon-pencil"></span>
                                         </a>
                                     </div>
@@ -69,5 +71,9 @@
         {% include 'templates/partials/pagination.twig' with {'routeName': 'file.all.page','pages': pages, 'page': page} only %}
         <br><br>
     {% endif %}
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ assetUrl }}/js/lightbox.js"></script>
 {% endblock %}
 

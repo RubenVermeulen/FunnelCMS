@@ -51,4 +51,8 @@ return [
         'port' => '11211',
         'expiration' => 3600,
     ],
+    'upload' => [
+        'filePath' => '', // start from the folder where app and public are located
+        'galleryPath' => '', // start from the folder where app and public are located
+    ]
 ];

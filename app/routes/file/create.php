@@ -43,7 +43,7 @@ $app->post('/files/create', $authenticated(), function() use($app) {
                 // New details
                 $key = md5(uniqid());
                 $systemFileName = "{$key}.{$extension}";
-                $newFilePath = INC_ROOT . "/public/assets/files/{$systemFileName}";
+                $newFilePath = INC_ROOT . "/{$app->config->get('upload.filePath')}/{$systemFileName}";
 
                 // Move the file
                 move_uploaded_file($tmpName, $newFilePath);
