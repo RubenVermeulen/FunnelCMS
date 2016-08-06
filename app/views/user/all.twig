@@ -14,13 +14,13 @@
     </div>
 
     {% if users is empty %}
-        {% if searchCount and searchCount == 0 %}
+        {% if searchCount is defined and searchCount == 0 %}
             <p>Er zijn geen resultaten gevonden voor je zoekopdracht "<strong>{{ keyword }}</strong>".</p>
         {% else %}
             <p>Er zijn nog geen gebruikers.</p>
         {% endif %}
     {% else %}
-        {% if searchCount %}
+        {% if searchCount is defined %}
             <p>Er zijn <strong>{{ searchCount }}</strong> resultaten gevonden voor je zoekopdracht "<strong>{{ keyword }}</strong>".</p>
         {% endif %}
 

@@ -18,13 +18,13 @@
     </div>
 
     {% if files is empty %}
-        {% if not searchCount %}
+        {% if searchCount is defined and searchCount == 0 %}
             <p>Er zijn geen resultaten gevonden voor je zoekopdracht "<strong>{{ keyword }}</strong>".</p>
         {% else %}
             <p>Er zijn nog geen bestanden.</p>
         {% endif %}
     {% else %}
-        {% if searchCount %}
+        {% if searchCount is defined %}
             <p>Er zijn <strong>{{ searchCount }}</strong> resultaten gevonden voor je zoekopdracht "<strong>{{ keyword }}</strong>".</p>
         {% endif %}
 
