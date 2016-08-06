@@ -54,5 +54,6 @@ return [
     'upload' => [
         'filePath' => '', // start from the folder where app and public are located
         'galleryPath' => '', // start from the folder where app and public are located
+        'maxSize' => 500000, // in byte
     ]
 ];

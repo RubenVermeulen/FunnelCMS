@@ -36,8 +36,8 @@ $app->post('/files/create', $authenticated(), function() use($app) {
             if ( ! in_array($extension, $allowedExtensions)) {
                 $app->flashNow('error', 'Enkel bestanden met de extensie jpg, png, gif of pdf zijn toegestaan.');
             }
-            else if ($size > 500000) {
-                $app->flashNow('error', 'De bestandsgrootte mag niet groter zijn dan 0,5MB.');
+            else if ($size > $app->config('upload.maxSize')) {
+                $app->flashNow('error', "De bestandsgrootte mag niet groter zijn dan " . round($app->config->get('upload.maxSize') / 1000000, 1) . "MB.");
             }
             else {
                 // New details
