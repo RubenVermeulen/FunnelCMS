@@ -24,7 +24,7 @@ $app->post('/pages/create', $authenticated, function() use ($app) {
     $v->validate($validationRules);
 
     if ($v->passes()) {
-        $slug = str_replace (" ", "-", strtolower($name));
+        $slug = str_replace (" ", "-", strtolower(trim($name)));
         $slug = preg_replace('/[^a-zA-Z0-9-]/', '', $slug);
 
         // Check if slug exists

@@ -4,7 +4,7 @@ $app->get('/pages/edit/:id', $authenticated, function($id) use($app) {
 
     $page = $app->page->find($id);
 
-    if ( ! $page || $page->isLocked())
+    if ( ! $page || $page->is_loced)
         $app->notFound();
 
     $app->render('page/edit.twig', [
@@ -21,7 +21,7 @@ $app->post('/pages/edit/:id', $authenticated, function($id) use($app) {
 
     $page = $app->page->find($id);
 
-    if ( ! $page || $page->isLocked())
+    if ( ! $page || $page->is_locked)
         $app->notFound();
 
     $request = $app->request;
@@ -37,12 +37,19 @@ $app->post('/pages/edit/:id', $authenticated, function($id) use($app) {
     $v->validate($validationRules);
 
     if ($v->passes()) {
-        $slug = str_replace (" ", "-", strtolower($name));
-        $slug = preg_replace('/[^a-zA-Z0-9-]/', '', $slug);
+        $modName = strtolower(trim($name));
 
-        // Check if slug exists
-        if ($app->page->where('slug', $slug)->where('id', '!=', $page->id)->count() > 0) {
-            $slug .= '-' . time();
+        if ($modName != strtolower($page->name)) {
+            $slug = str_replace (" ", "-", $modName);
+            $slug = preg_replace('/[^a-zA-Z0-9-]/', '', $slug);
+
+            // Check if slug exists
+            if ($app->page->where('slug', $slug)->where('id', '!=', $page->id)->count() > 0) {
+                $slug .= '-' . time();
+            }
+        }
+        else {
+            $slug = $page->slug;
         }
 
         $page->update([

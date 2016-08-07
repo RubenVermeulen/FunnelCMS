@@ -18,11 +18,13 @@ class Page extends ItemTemplate
         'is_visible',
     ];
 
-    public function isVisible() {
-        return (bool) $this->is_visible;
-    }
-
-    public function isLocked() {
-        return (bool) $this->is_locked;
-    }
+    /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'is_visible' => 'boolean',
+        'is_locked' => 'boolean',
+    ];
 }
