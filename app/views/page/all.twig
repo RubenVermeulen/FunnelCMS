@@ -134,10 +134,7 @@
                     '{{ csrf_key }}': '{{ csrf_token }}'
                 }, function(data) {
                     if (data.success) {
-                        $('#sort-modal').modal('hide');
-                    }
-                    else {
-                        console.log('failed');
+                        location.reload();
                     }
                 }, 'json');
             });
