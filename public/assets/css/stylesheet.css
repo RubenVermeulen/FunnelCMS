@@ -120,6 +120,23 @@
     margin-bottom: 10px
 }
 
+/* Modal */
+
+.modal-content {
+    border-radius: 3px;
+    -webkit-box-shadow: 0 5px 15px rgba(0,0,0,.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,.1);
+}
+
+.modal-content table tr {
+    background: #fff;
+}
+
+.modal-header {
+    background: #009D7E;
+    color: #fff;
+}
+
 /* Start collapse sooner */
 @media (min-width: 768px) and (max-width: 991px) {
     .navbar-header {

@@ -7,6 +7,7 @@
     <div class="row toolbar">
         <div class="col-md-4 col-sm-6">
             <a href="{{ urlFor('page.create') }}" class="btn btn-primary">Nieuw</a>
+            <a href="#" id="sort-pages" class="btn btn-primary">Wijzig volgorde</a>
         </div>
         <div class="col-md-8 col-sm-6">
             {% include 'templates/partials/searchForm.twig' with {'url': urlFor('page.search')} only %}
@@ -72,6 +73,89 @@
         {#Pagination#}
         {% include 'templates/partials/pagination.twig' with {'routeName': 'page.all.page','pages': pages, 'page': page} only %}
         <br><br>
+
+        <div id="sort-modal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Wijzig volgorde</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p class="alert alert-info">Versleep de namen om de volgorde te wijzigen.</p>
+                        <div style="max-height: 500px; overflow-x:hidden;">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Naam</th>
+                                </tr>
+                                </thead>
+                                <tbody id="sortable">
+                                {% for item in items %}
+                                    <tr>
+                                        <td data-id="{{ item.id }}">{{ item.name }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="confirm" type="button" class="btn btn-primary">Opslaan</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Annuleer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     {% endif %}
+{% endblock %}
+
+{% block scripts %}
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+    <script>
+        $( function() {
+            $('#sort-pages').on('click', function (e) {
+                e.preventDefault();
+
+                $('#sort-modal').modal('show');
+            });
+
+            $('#confirm').click(function() {
+                var result = [];
+
+                $('#sortable tr').each(function(index, tr) {
+                    $('td', tr).map(function(index, td) {
+                        result.push($(td).attr('data-id'));
+                    });
+                });
+
+                $.post('{{ baseUrl }}/pages/order', {
+                    orderList: JSON.stringify(result),
+                    '{{ csrf_key }}': '{{ csrf_token }}'
+                }, function(data) {
+                    console.log(data);
+                    if (data.success) {
+                        $('#sort-modal').modal('hide');
+                    }
+                    else {
+                        console.log('failed');
+                    }
+                }, 'json');
+            });
+
+            $( "#sortable" ).sortable({
+                helper: fixWidthHelper,
+                containment: 'parent',
+            });
+//            $( "#sortable" ).disableSelection();
+
+            function fixWidthHelper(e, ui) {
+                ui.children().each(function() {
+                    $(this).width($(this).width());
+                });
+                return ui;
+            }
+        } );
+    </script>
 {% endblock %}
 

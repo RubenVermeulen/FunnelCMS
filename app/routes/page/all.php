@@ -4,7 +4,7 @@ use \FunnelCms\Helpers\Pagination;
 
 function pagesAllRoute($app, $page) {
     $items = $app->page
-        ->latest('created_at');
+        ->oldest('priority');
 
     $pagination = new Pagination($app, $items, $page);
     $pagination->execute();

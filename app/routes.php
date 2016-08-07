@@ -123,3 +123,4 @@ require INC_ROOT . '/app/routes/page/create.php';
 require INC_ROOT . '/app/routes/page/edit.php';
 require INC_ROOT . '/app/routes/page/delete.php';
 require INC_ROOT . '/app/routes/page/search.php';
+require INC_ROOT . '/app/routes/page/order.php';
