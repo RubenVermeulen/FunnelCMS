@@ -133,7 +133,6 @@
                     orderList: JSON.stringify(result),
                     '{{ csrf_key }}': '{{ csrf_token }}'
                 }, function(data) {
-                    console.log(data);
                     if (data.success) {
                         $('#sort-modal').modal('hide');
                     }
