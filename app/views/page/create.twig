@@ -1,0 +1,53 @@
+{% extends 'templates/default.twig' %}
+
+{% block title %}Pagina aanmaken{% endblock %}
+{% block pageTitle %}Pagina aanmaken{% endblock %}
+
+{% block content %}
+    {# Back button#}
+    <p>
+        <a href="{{ urlFor('page.all') }}" class="btn btn-primary">
+            <span class="glyphicon glyphicon-arrow-left"></span>
+        </a>
+    </p>
+
+    <form action="{{ urlFor('page.create.post') }}" method="post" autocomplete="off">
+        <div class="form-group">
+            <label for="name">Naam</label>
+            <input type="text" name="name" id="name" {% if request.post('name') %} value="{{ request.post('name') }}" {% endif %}class="form-control"/>
+            {% include 'errors/field.twig' with {field: 'name'} %}
+        </div>
+        <div class="form-group">
+            <label for="content">Inhoud</label>
+            <textarea name="content" id="content" class="form-control editor" rows="10">{% if request.post('content') %}{{ request.post('content') }}{% endif %}</textarea>
+            {% include 'errors/field.twig' with {field: 'content'} %}
+        </div>
+        <br>
+        <div class="form-group">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="is_visible"
+                           {% if request.post('is_visible') is defined %}
+                                {% if request.post('is_visible') %}
+                                    checked
+                                {% endif %}
+                            {% else %}
+                                checked
+                            {% endif %}
+                    > Zichtbaar op de navigatiebalk
+                </label>
+            </div>
+        </div>
+        <br>
+        <div class="form-group">
+            <input type="submit" value="Aanmaken" class="btn btn-primary form-control"/>
+        </div>
+
+        <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}"/>
+    </form>
+{% endblock %}
+
+{% block scripts %}
+    {% include 'templates/scripts/editor.twig' %}
+{% endblock %}
+

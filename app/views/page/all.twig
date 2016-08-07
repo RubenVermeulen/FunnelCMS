@@ -1,0 +1,77 @@
+{% extends 'templates/default.twig'%}
+
+{% block title %}Pagina's{% endblock %}
+{% block pageTitle %}Pagina's{% endblock %}
+
+{% block content %}
+    <div class="row toolbar">
+        <div class="col-md-4 col-sm-6">
+            <a href="{{ urlFor('page.create') }}" class="btn btn-primary">Nieuw</a>
+        </div>
+        <div class="col-md-8 col-sm-6">
+            {% include 'templates/partials/searchForm.twig' with {'url': urlFor('page.search')} only %}
+        </div>
+    </div>
+
+    {% if items is empty %}
+        {% if searchCount is defined and searchCount == 0 %}
+            <p>Er zijn geen resultaten gevonden voor je zoekopdracht "<strong>{{ keyword }}</strong>".</p>
+        {% else %}
+            <p>Er zijn nog geen pagina's.</p>
+        {% endif %}
+    {% else %}
+        {% if searchCount is defined %}
+            <p>Er zijn <strong>{{ searchCount }}</strong> resultaten gevonden voor je zoekopdracht "<strong>{{ keyword }}</strong>".</p>
+        {% endif %}
+
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Naam</th>
+                    <th>Zichtbaar</th>
+                    <th>Aangemaakt op</th>
+                    <th>Laatst gewijzigd op</th>
+                    <th>Actie</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in items %}
+                    <tr>
+                        <td>{{ item.name }}</td>
+
+                        {% if item.isVisible %}
+                            <td class="success">Ja</td>
+                        {% else %}
+                            <td class="danger">Nee</td>
+                        {% endif %}
+
+                        <td>{{ item.getCreatedAt }}</td>
+                        <td>{{ item.getUpdatedAt }}</td>
+                        <td>
+                            {% if item.isLocked == false %}
+                                <a href="{{ urlFor('page.edit', {id: item.id}) }}" title="Wijzigen">Wijzigen</a>
+                            {% else %}
+                                <span title="Je kan deze pagina niet wijzigen">Vergrendeld</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+
+                <tr>
+                    <th>Naam</th>
+                    <th>Zichtbaar</th>
+                    <th>Aangemaakt op</th>
+                    <th>Laatst gewijzigd op</th>
+                    <th>Actie</th>
+                </tr>
+            </table>
+        </div>
+
+        {#Pagination#}
+        {% include 'templates/partials/pagination.twig' with {'routeName': 'page.all.page','pages': pages, 'page': page} only %}
+        <br><br>
+    {% endif %}
+{% endblock %}
+

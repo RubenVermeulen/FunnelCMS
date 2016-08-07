@@ -108,3 +108,18 @@ require INC_ROOT . '/app/routes/file/create.php';
 require INC_ROOT . '/app/routes/file/edit.php';
 require INC_ROOT . '/app/routes/file/delete.php';
 require INC_ROOT . '/app/routes/file/search.php';
+
+/*
+|--------------------------------------------------------------------------
+| Page
+|--------------------------------------------------------------------------
+|
+| All routes concerning pages.
+|
+*/
+
+require INC_ROOT . '/app/routes/page/all.php';
+require INC_ROOT . '/app/routes/page/create.php';
+require INC_ROOT . '/app/routes/page/edit.php';
+require INC_ROOT . '/app/routes/page/delete.php';
+require INC_ROOT . '/app/routes/page/search.php';
