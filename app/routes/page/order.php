@@ -16,6 +16,8 @@ $app->post('/pages/order', $authenticated, function() use($app) {
         }
 
         $result['success'] = true;
+
+        $app->flash('global', 'De volgorde is succesvol gewijzigd.');
     }
 
     echo json_encode($result);
