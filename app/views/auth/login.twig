@@ -1,28 +1,28 @@
 {% extends 'templates/default.twig' %}
 
-{% block title %}Inloggen{% endblock %}
-{% block pageTitle %}Inloggen{% endblock %}
+{% block title %}{{ translator.get('LogIn') }}{% endblock %}
+{% block pageTitle %}{{ translator.get('LogIn') }}{% endblock %}
 
 {% block content %}
     <form action="{{ urlFor('login.post') }}" method="post" autocomplete="off">
         <div class="form-group">
-            <label for="identifier">E-mailadres</label>
+            <label for="identifier">{{ translator.get('Email') }}</label>
             <input type="email" name="identifier" id="identifier" class="form-control"/>
             {% include 'errors/field.twig' with {'field': 'identifier'} %}
         </div>
         <div class="form-group">
-            <label for="password">Wachtwoord</label>
+            <label for="password">{{ translator.get('Password') }}</label>
             <input type="password" name="password" id="password" class="form-control"/>
             {% include 'errors/field.twig' with {'field': 'password'} %}
         </div>
         <div class="form-group">
-            <input type="checkbox" name="remember" id="remember"/> <label for="remember">Ingelogd blijven</label>
+            <input type="checkbox" name="remember" id="remember"/> <label for="remember">{{ translator.get('StayLoggedIn') }}</label>
         </div>
         <div class="form-group">
-            <input type="submit" value="Inloggen" class="btn btn-primary form-control"/>
+            <input type="submit" value="{{ translator.get('LogIn') }}" class="btn btn-primary form-control"/>
         </div>
         <div class="form-group">
-            <a href="{{ urlFor('auth.password.recover') }}">Wachtwoord vergeten?</a>
+            <a href="{{ urlFor('auth.password.recover') }}">{{ translator.get('ForgotPassword') }}</a>
         </div>
 
         <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}"/>

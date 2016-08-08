@@ -1,27 +1,27 @@
 {% extends 'templates/default.twig'%}
 
-{% block title %}Change wijzigen{% endblock %}
-{% block pageTitle %}Wachtwoord wijzigen{% endblock %}
+{% block title %}{{ translator.get('ChangePassword') }}{% endblock %}
+{% block pageTitle %}{{ translator.get('ChangePassword') }}{% endblock %}
 
 {% block content %}
     <form action="{{ urlFor('auth.password.change.post') }}" method="post" autocomplete="off">
         <div class="form-group">
-            <label for="password_old">Huidig wachtwoord</label>
+            <label for="password_old">{{ translator.get('CurrentPassword') }}</label>
             <input type="password" name="password_old" id="password_old" class="form-control"/>
             {% include 'errors/field.twig' with {'field': 'password_old'} %}
         </div>
         <div class="form-group">
-            <label for="password">Nieuw wachtwoord</label>
+            <label for="password">{{ translator.get('NewPassword') }}</label>
             <input type="password" name="password" id="password" class="form-control"/>
             {% include 'errors/field.twig' with {'field': 'password'} %}
         </div>
         <div class="form-group">
-            <label for="password_confirm">Wachtwoord bevestigen</label>
+            <label for="password_confirm">{{ translator.get('ConfirmPassword') }}</label>
             <input type="password" name="password_confirm" id="password_confirm" class="form-control"/>
             {% include 'errors/field.twig' with {'field': 'password_confirm'} %}
         </div>
         <div class="form-group">
-            <input type="submit" value="Wijzigen" class="btn btn-primary form-control"/>
+            <input type="submit" value="{{ translator.get('Save') }}" class="btn btn-primary form-control"/>
         </div>
 
         <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}"/>

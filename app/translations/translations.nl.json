@@ -19,6 +19,7 @@
   "EditUser": "Gebruiken wijzigen",
   "ActivateAccount": "Account activeren",
   "EditAccountInformation": "Gegevens wijzigen",
+  "ResetPassword": "Wachtwoord resetten",
 
   "ButtonNew": "Nieuw",
 
@@ -83,6 +84,12 @@
   "Activate": "Activeer",
   "FirstName": "Voornaam",
   "LastName": "Familienaam",
+  "LogIn": "Inloggen",
+  "StayLoggedIn": "Ingelogd blijven",
+  "ForgotPassword": "Wachtwoord vergeten",
+  "CurrentPassword": "Huidig wachtwoord",
+  "NewPassword": "Nieuw wachtwoord",
+  "RequestPasswordReset": "Reset aanvragen",
 
   "InfoChangeOrder": "Sleep een rij naar boven of onder om de volgorde te wijzigen",
   "InfoDelete": "Ben je zeker dat je dit wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
