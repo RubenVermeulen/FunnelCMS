@@ -1,0 +1,16 @@
+<script>
+    $( function() {
+        $( "#sortable" ).sortable({
+            helper: fixWidthHelper,
+            containment: 'parent',
+        });
+        $( "#sortable" ).disableSelection();
+
+        function fixWidthHelper(e, ui) {
+            ui.children().each(function() {
+                $(this).width($(this).width());
+            });
+            return ui;
+        }
+    });
+</script>

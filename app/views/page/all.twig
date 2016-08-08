@@ -112,46 +112,8 @@
 
 {% block scripts %}
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
-    <script>
-        $( function() {
-            $('#sort-pages').on('click', function (e) {
-                e.preventDefault();
 
-                $('#sort-modal').modal('show');
-            });
-
-            $('#confirm').click(function() {
-                var result = [];
-
-                $('#sortable tr').each(function(index, tr) {
-                    $('td', tr).map(function(index, td) {
-                        result.push($(td).attr('data-id'));
-                    });
-                });
-
-                $.post('{{ baseUrl }}/pages/order', {
-                    orderList: JSON.stringify(result),
-                    '{{ csrf_key }}': '{{ csrf_token }}'
-                }, function(data) {
-                    if (data.success) {
-                        location.reload();
-                    }
-                }, 'json');
-            });
-
-            $( "#sortable" ).sortable({
-                helper: fixWidthHelper,
-                containment: 'parent',
-            });
-//            $( "#sortable" ).disableSelection();
-
-            function fixWidthHelper(e, ui) {
-                ui.children().each(function() {
-                    $(this).width($(this).width());
-                });
-                return ui;
-            }
-        } );
-    </script>
+    {% include 'templates/scripts/sortable.twig' %}
+    {% include 'templates/scripts/page.all.twig' %}
 {% endblock %}
 
