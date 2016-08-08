@@ -1,7 +1,7 @@
 {% extends 'templates/default.twig' %}
 
-{% block title %}Bestand uploaden{% endblock %}
-{% block pageTitle %}Bestand uploaden{% endblock %}
+{% block title %}{{ translator.get('UploadFiles') }}{% endblock %}
+{% block pageTitle %}{{ translator.get('UploadFiles') }}{% endblock %}
 
 {% block content %}
     {# Back button#}
@@ -13,12 +13,12 @@
 
     <form action="{{ urlFor('file.create.post') }}" method="post" enctype="multipart/form-data" autocomplete="off">
         <div class="form-group">
-            <label for="file">Kies een bestand</label>
+            <label for="file">{{ translator.get('ChooseFiles') }}</label>
             <input type="file" id="file" name="file">
-            <p class="help-block">Deze bestanden zijn toegestaan: jpg, png, gif en pdf</p>
+            <p class="help-block">{{ translator.get('InfoAllowedFiles') }}</p>
         </div>
         <div class="form-group">
-            <input type="submit" value="Uploaden" class="btn btn-primary form-control"/>
+            <input type="submit" value="{{ translator.get('Upload') }}" class="btn btn-primary form-control"/>
         </div>
 
         <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}"/>

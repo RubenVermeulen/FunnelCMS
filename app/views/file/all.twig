@@ -1,7 +1,7 @@
 {% extends 'templates/default.twig'%}
 
-{% block title %}Bestanden{% endblock %}
-{% block pageTitle %}Bestanden{% endblock %}
+{% block title %}{{ translator.get('Files') }}{% endblock %}
+{% block pageTitle %}{{ translator.get('Files') }}{% endblock %}
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ assetUrl }}/css/lightbox.css">
@@ -10,22 +10,22 @@
 {% block content %}
     <div class="row toolbar">
         <div class="col-md-4 col-sm-6">
-            <a href="{{ urlFor('file.create') }}" class="btn btn-primary">Nieuw</a>
+            <a href="{{ urlFor('file.create') }}" class="btn btn-primary">{{ translator.get('ButtonNew') }}</a>
         </div>
         <div class="col-md-8 col-sm-6">
-            {% include 'templates/partials/searchForm.twig' with {'url': urlFor('file.search')} only %}
+            {% include 'templates/partials/searchForm.twig' with {'url': urlFor('file.search'), 'translator': translator} only %}
         </div>
     </div>
 
     {% if files is empty %}
         {% if searchCount is defined and searchCount == 0 %}
-            <p>Er zijn geen resultaten gevonden voor je zoekopdracht "<strong>{{ keyword }}</strong>".</p>
+            <p>{{ translator.get('NoResultsForSearch') | format(keyword) | raw }}</p>
         {% else %}
-            <p>Er zijn nog geen bestanden.</p>
+            <p>{{ translator.get('NoFiles') }}</p>
         {% endif %}
     {% else %}
         {% if searchCount is defined %}
-            <p>Er zijn <strong>{{ searchCount }}</strong> resultaten gevonden voor je zoekopdracht "<strong>{{ keyword }}</strong>".</p>
+            <p>{{ translator.get('ResultsForSearch') | format(searchCount, keyword) | raw }}</p>
         {% endif %}
 
         <div id="files" class="row">
@@ -54,7 +54,7 @@
                                         {{ file.getSizeInKiloByte }} kB
                                     </div>
                                     <div class="pull-right">
-                                        <a href="{{ urlFor('file.edit', {id: file.id}) }}" title="Wijzigen">
+                                        <a href="{{ urlFor('file.edit', {id: file.id}) }}" title="{{ translator.get('Edit') }}">
                                             <span class="glyphicon glyphicon-pencil"></span>
                                         </a>
                                     </div>

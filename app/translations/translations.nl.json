@@ -13,6 +13,8 @@
   "EditNewsletter": "Nieuwsbrief wijzigen",
   "AddRecipient": "Ontvanger toevoegen",
   "EditRecipient": "Ontvanger wijzigen",
+  "UploadFiles": "Upload bestanden",
+  "EditFile": "Bestand wijzigen",
 
   "ButtonNew": "Nieuw",
 
@@ -66,7 +68,10 @@
   "Unsubscribed": "Uitgeschreven",
   "Add": "Toevoegen",
   "WantsNewsletter": "Wil de nieuwsbrief ontvangen?",
+  "Upload": "Uploaden",
+  "ChooseFiles": "Kies bestanden",
 
   "InfoChangeOrder": "Sleep een rij naar boven of onder om de volgorde te wijzigen",
-  "InfoDelete": "Ben je zeker dat je dit wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt."
+  "InfoDelete": "Ben je zeker dat je dit wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
+  "InfoAllowedFiles": "Deze bestanden zijn toegestaan: jpg, png, gif en pdf"
 }

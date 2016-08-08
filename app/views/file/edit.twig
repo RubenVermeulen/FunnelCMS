@@ -1,7 +1,7 @@
 {% extends 'templates/default.twig' %}
 
-{% block title %}Bestand wijzigen{% endblock %}
-{% block pageTitle %}Bestand wijzigen{% endblock %}
+{% block title %}{{ translator.get('EditFile') }}{% endblock %}
+{% block pageTitle %}{{ translator.get('EditFile') }}{% endblock %}
 
 {% block content %}
     {# Back button#}
@@ -13,12 +13,12 @@
 
     <form action="{{ urlFor('file.edit.post', {id: id}) }}" method="post" autocomplete="off">
         <div class="form-group">
-            <label for="name">Naam</label>
+            <label for="name">{{ translator.get('Name') }}</label>
             <input type="text" name="name" id="name" value="{{ request.post('name') ? request.post('name') : file.name_human }}" class="form-control"/>
             {% include 'errors/field.twig' with {field: 'name'} %}
         </div>
         <div class="form-group">
-            <input type="submit" value="Wijzigingen opslaan" class="btn btn-primary form-control"/>
+            <input type="submit" value="{{ translator.get('Edit') }}" class="btn btn-primary form-control"/>
         </div>
 
         <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}"/>
@@ -28,7 +28,7 @@
 
     <form id="form-delete" action="{{ urlFor('file.delete', {id: id}) }}" method="post">
         <div class="form-group">
-            <input type="submit" value="Verwijderen" class="btn btn-danger form-control"/>
+            <input type="submit" value="{{ translator.get('Delete') }}" class="btn btn-danger form-control"/>
         </div>
 
         <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}"/>
