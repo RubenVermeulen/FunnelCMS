@@ -1,39 +1,39 @@
 {% extends 'templates/default.twig'%}
 
-{% block title %}Nieuwsbrieven{% endblock %}
-{% block pageTitle %}Nieuwsbrieven{% endblock %}
+{% block title %}{{ translator.get('Newsletters') }}{% endblock %}
+{% block pageTitle %}{{ translator.get('Newsletters') }}{% endblock %}
 
 {% block content %}
     <div class="row toolbar">
         <div class="col-md-4 col-sm-6">
-            <a href="{{ urlFor('newsletter.create') }}" class="btn btn-primary">Nieuw</a>
-            <a href="{{ urlFor('newsletter.mailingList.all') }}" class="btn btn-primary">Mailinglijst</a>
+            <a href="{{ urlFor('newsletter.create') }}" class="btn btn-primary">{{ translator.get('ButtonNew') }}</a>
+            <a href="{{ urlFor('newsletter.mailingList.all') }}" class="btn btn-primary">{{ translator.get('MailingList') }}</a>
         </div>
         <div class="col-md-8 col-sm-6">
-            {% include 'templates/partials/searchForm.twig' with {'url': urlFor('newsletter.search')} only %}
+            {% include 'templates/partials/searchForm.twig' with {'url': urlFor('newsletter.search'), 'translator': translator} only %}
         </div>
     </div>
 
     {% if newsletters is empty %}
         {% if searchCount is defined and searchCount == 0 %}
-            <p>Er zijn geen resultaten gevonden voor je zoekopdracht "<strong>{{ keyword }}</strong>".</p>
+            <p>{{ translator.get('NoResultsForSearch') | format(keyword) | raw }}</p>
         {% else %}
-            <p>Er zijn nog geen nieuwsbrieven.</p>
+            <p>{{ translator.get('NoNewsletters') }}</p>
         {% endif %}
     {% else %}
         {% if searchCount is defined %}
-            <p>Er zijn <strong>{{ searchCount }}</strong> resultaten gevonden voor je zoekopdracht "<strong>{{ keyword }}</strong>".</p>
+            <p>{{ translator.get('ResultsForSearch') | format(searchCount, keyword) | raw }}</p>
         {% endif %}
 
         <div class="table-responsive">
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>Onderwerp</th>
-                        <th>Auteur</th>
-                        <th>Ontvangers</th>
-                        <th>Verzonden op</th>
-                        <th>Actie</th>
+                        <th>{{ translator.get('Subject') }}</th>
+                        <th>{{ translator.get('Author') }}</th>
+                        <th>{{ translator.get('Recipients') }}</th>
+                        <th>{{ translator.get('SentAt') }}</th>
+                        <th>{{ translator.get('Action') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,15 +44,15 @@
                             <td>{{ newsletter.receivers }}</td>
 
                             {% if newsletter.published_at is null %}
-                                <td class="danger">Niet verzonden</td>
+                                <td class="danger">{{ translator.get('NotSent') }}</td>
                             {% else %}
                                 <td class="success">{{ newsletter.getPublishedAt }}</td>
                             {% endif %}
 
                             <td>
-                                <a href="{{ urlFor('newsletter.show', {id: newsletter.id}) }}" target="_blank" title="Preview">Preview</a>
+                                <a href="{{ urlFor('newsletter.show', {id: newsletter.id}) }}" target="_blank" title="Preview">{{ translator.get('Preview') }}</a>
                                 {% if newsletter.published_at is null %}
-                                    - <a href="{{ urlFor('newsletter.edit', {id: newsletter.id}) }}" title="Wijzigen">Wijzigen</a>
+                                    - <a href="{{ urlFor('newsletter.edit', {id: newsletter.id}) }}" title="Wijzigen">{{ translator.get('Edit') }}</a>
                                 {% endif %}
                             </td>
                         </tr>
@@ -60,11 +60,11 @@
                 </tbody>
 
                 <tr>
-                    <th>Onderwerp</th>
-                    <th>Auteur</th>
-                    <th>Ontvangers</th>
-                    <th>Verzonden op</th>
-                    <th>Actie</th>
+                    <th>{{ translator.get('Subject') }}</th>
+                    <th>{{ translator.get('Author') }}</th>
+                    <th>{{ translator.get('Recipients') }}</th>
+                    <th>{{ translator.get('SentAt') }}</th>
+                    <th>{{ translator.get('Action') }}</th>
                 </tr>
             </table>
         </div>

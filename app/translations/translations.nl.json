@@ -9,6 +9,8 @@
   "EditPage": "Pagina wijzigen",
   "CreateArticle": "Artikel aanmaken",
   "EditArticle": "Artikel wijzigen",
+  "CreateNewsletter": "Nieuwsbrief aanmaken",
+  "EditNewsletter": "Nieuwsbrief wijzigen",
 
   "ButtonNew": "Nieuw",
 
@@ -48,6 +50,14 @@
   "Summary": "Korte beschrijving (1 à 2 zinnen)",
   "DatePublication": "Datum (publicatie)",
   "TimePublication": "Tijd (publicatie)",
+  "Recipients": "Ontvangers",
+  "SentAt": "Verzonden op",
+  "NotSent": "Niet verzonden",
+  "Preview": "Preview",
+  "DoYouWantToSendNewsletter": "Wil je de nieuwsbrief verzenden?",
+  "Choose": "Maak een keuze",
+  "DoNotSendNewsletter": "Nee, niet verzenden",
+  "SendNewsletter": "Ja, verzenden",
 
   "InfoChangeOrder": "Sleep een rij naar boven of onder om de volgorde te wijzigen",
   "InfoDelete": "Ben je zeker dat je dit wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt."

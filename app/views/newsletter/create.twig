@@ -1,7 +1,7 @@
 {% extends 'templates/default.twig' %}
 
-{% block title %}Nieuwsbrief opstellen{% endblock %}
-{% block pageTitle %}Nieuwsbrief opstellen{% endblock %}
+{% block title %}{{ translator.get('CreateNewsletter') }}{% endblock %}
+{% block pageTitle %}{{ translator.get('CreateNewsletter') }}{% endblock %}
 
 {% block content %}
     {# Back button#}
@@ -13,26 +13,26 @@
 
     <form action="{{ urlFor('newsletter.create.post') }}" method="post" autocomplete="off">
         <div class="form-group">
-            <label for="subject">Onderwerp</label>
+            <label for="subject">{{ translator.get('Subject') }}</label>
             <input type="text" name="subject" id="subject" {% if request.post('subject') %} value="{{ request.post('subject') }}" {% endif %}class="form-control"/>
             {% include 'errors/field.twig' with {field: 'subject'} %}
         </div>
         <div class="form-group">
-            <label for="content">Bericht</label>
+            <label for="content">{{ translator.get('Content') }}</label>
             <textarea name="content" id="content" class="form-control editor" rows="10">{% if request.post('content') %}{{ request.post('content') }}{% endif %}</textarea>
             {% include 'errors/field.twig' with {field: 'content'} %}
         </div>
         <div class="form-group">
-            <label for="publish">Wil je de nieuwsbrief verzenden?</label>
+            <label for="publish">{{ translator.get('DoYouWantToSendNewsletter') }}</label>
             <select name="publish" id="publish" class="form-control">
-                <option value="0">Maak een keuze</option>
-                <option value="1" {{ request.post('publish') and request.post('publish') == 1 ? 'selected' : '' }}>Nee, niet verzenden</option>
-                <option value="2" {{ request.post('publish') and request.post('publish') == 2 ? 'selected' : '' }}>Ja, verzenden</option>
+                <option value="0">{{ translator.get('Choose') }}</option>
+                <option value="1" {{ request.post('publish') and request.post('publish') == 1 ? 'selected' : '' }}>{{ translator.get('DoNotSendNewsletter') }}</option>
+                <option value="2" {{ request.post('publish') and request.post('publish') == 2 ? 'selected' : '' }}>{{ translator.get('SendNewsletter') }}</option>
             </select>
             {% include 'errors/field.twig' with {field: 'publish'} %}
         </div>
         <div class="form-group">
-            <input type="submit" value="Opstellen" class="btn btn-primary form-control"/>
+            <input type="submit" value="{{ translator.get('Create') }}" class="btn btn-primary form-control"/>
         </div>
 
         <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}"/>

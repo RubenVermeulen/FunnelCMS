@@ -9,6 +9,8 @@
   "EditPage": "Edit page",
   "CreateArticle": "Create article",
   "EditArticle": "Edit article",
+  "CreateNewsletter": "Create newsletter",
+  "EditNewsletter": "Edit newsletter",
 
   "ButtonNew": "New",
 
@@ -48,6 +50,14 @@
   "Summary": "Summary (1 to 2 sentences)",
   "DatePublication": "Date (publication)",
   "TimePublication": "Time (publication)",
+  "Recipients": "Recipients",
+  "SentAt": "Sent at",
+  "NotSent": "Not sent",
+  "Preview": "Preview",
+  "DoYouWantToSendNewsletter": "Do you want to send the newsletter?",
+  "Choose": "Choose",
+  "DoNotSendNewsletter": "No, do not send",
+  "SendNewsletter": "Yes, send",
 
   "InfoChangeOrder": "Drag a row upwards or downwards to change the order",
   "InfoDelete": "Are you sure you want to delete this? This action cannot be reverted."
