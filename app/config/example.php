@@ -10,7 +10,8 @@ return [
         ],
         'pagination' => [
             'items' => 20, // Can not be higher then 100
-        ]
+        ],
+        'language' => 'nl',
     ],
     'db' => [
         'driver' => 'mysql',

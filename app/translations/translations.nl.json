@@ -1,0 +1,35 @@
+{
+  "Pages": "Pagina's",
+  "Articles": "Artikels",
+  "Newsletters": "Nieuwsbrieven",
+  "MailingList": "Mailinglijst",
+  "Files": "Bestanden",
+  "Users": "Gebruikers",
+
+  "ButtonNew": "Nieuw",
+
+  "NoPages": "Er zijn nog geen pagina's",
+  "NoArticles": "Er zijn nog geen artikels",
+  "NoNewsletters": "Er zijn nog geen nieuwsbrieven",
+  "NoMailingList": "Er zijn nog geen ontvangers",
+  "NoFiles": "Er zijn nog geen bestanden",
+  "NoUsers": "Er zijn nog geen gebruikers",
+
+  "NoResultsForSearch": "Er zijn geen resultaten gevonden voor je zoekopdracht \"<strong>%s</strong>\"",
+  "ResultsForSearch": "Er zijn <strong>%s</strong> resultaten gevonden voor je zoekopdracht \"<strong>%s</strong>\"",
+
+  "ChangeOrder": "Wijzig volgorde",
+  "Name": "Naam",
+  "Visible": "Zichtbaar",
+  "CreatedAt": "Aangemaakt op",
+  "UpdatedAt": "Laatst gewijzigd op",
+  "Action": "Actie",
+  "Edit": "Wijzigen",
+  "Locked": "Vergrendeld",
+  "Yes": "Ja",
+  "No": "Nee",
+  "Save": "Opslaan",
+  "Cancel": "Annuleer",
+
+  "InfoChangeOrder": "Sleep een rij naar boven of onder om de volgorde te wijzigen"
+}

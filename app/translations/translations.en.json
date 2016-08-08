@@ -1,0 +1,35 @@
+{
+  "Pages": "Pages",
+  "Articles": "Articles",
+  "Newsletters": "Newsletters",
+  "MailingList": "Mailing list",
+  "Files": "Files",
+  "Users": "Users",
+
+  "ButtonNew": "New",
+
+  "NoPages": "There are no pages",
+  "NoArticles": "There are no articles",
+  "NoNewsletters": "There are no newsletters",
+  "NoMailingList": "There are no recipient",
+  "NoFiles": "There are no files",
+  "NoUsers": "There are no users",
+
+  "NoResultsForSearch": "No results found for \"<strong>%s</strong>\"",
+  "ResultsForSearch": "<strong>%s</strong> result(s) found for \"<strong>%s</strong>\"",
+
+  "ChangeOrder": "Change order",
+  "Name": "Name",
+  "Visible": "Visible",
+  "CreatedAt": "Created at",
+  "UpdatedAt": "Updated at",
+  "Action": "Action",
+  "Edit": "Edit",
+  "Locked": "Locked",
+  "Yes": "Yes",
+  "No": "No",
+  "Save": "Save",
+  "Cancel": "Cancel",
+
+  "InfoChangeOrder": "Drag a row upwards or downwards to change the order"
+}

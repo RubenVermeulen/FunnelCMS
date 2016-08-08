@@ -13,6 +13,22 @@ use FunnelCms\Validation\Validator;
 
 /*
 |--------------------------------------------------------------------------
+| Translator instance
+|--------------------------------------------------------------------------
+|
+| Create a new translator instance. Only created once.
+| Callable throughout the application.
+|
+*/
+
+$app->container->singleton('translator', function() use($app) {
+    $map = json_decode(file_get_contents(INC_ROOT . '/app/translations/translations.' . $app->config->get('app.language') . '.json'), true);
+
+    return new FunnelCms\Translator\Translator($map);
+});
+
+/*
+|--------------------------------------------------------------------------
 | User instance
 |--------------------------------------------------------------------------
 |
