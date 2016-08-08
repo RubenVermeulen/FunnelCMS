@@ -5,6 +5,8 @@
   "MailingList": "Mailinglijst",
   "Files": "Bestanden",
   "Users": "Gebruikers",
+  "CreatePage": "Pagina aanmaken",
+  "EditPage": "Pagina wijzigen",
 
   "ButtonNew": "Nieuw",
 
@@ -30,6 +32,12 @@
   "No": "Nee",
   "Save": "Opslaan",
   "Cancel": "Annuleer",
+  "Content": "Inhoud",
+  "VisibleOnNavigation": "Zichtbaar op navigatiebalk",
+  "Create": "Aanmaken",
+  "Delete": "Verwijderen",
+  "Keyword": "Zoekterm",
 
-  "InfoChangeOrder": "Sleep een rij naar boven of onder om de volgorde te wijzigen"
+  "InfoChangeOrder": "Sleep een rij naar boven of onder om de volgorde te wijzigen",
+  "InfoDelete": "Ben je zeker dat je dit wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt."
 }
