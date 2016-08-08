@@ -1,27 +1,27 @@
 {% extends 'templates/default.twig'%}
 
-{% block title %}Gegevens wijzigen{% endblock %}
-{% block pageTitle %}Gegevens wijzigen{% endblock %}
+{% block title %}{{ translator.get('EditAccountInformation') }}{% endblock %}
+{% block pageTitle %}{{ translator.get('EditAccountInformation') }}{% endblock %}
 
 {% block content %}
     <form action="{{ urlFor('account.profile.post') }}" method="post" autocomplete="off">
         <div class="form-group">
-            <label for="email">E-mailadres</label>
+            <label for="email">{{ translator.get('Email') }}</label>
             <input type="text" name="email" id="email" value="{{ request.post('email') ? request.post('email') : auth.email }}" class="form-control"/>
             {% include 'errors/field.twig' with {'field': 'email'} %}
         </div>
         <div class="form-group">
-            <label for="first_name">Voornaam</label>
+            <label for="first_name">{{ translator.get('FirstName') }}</label>
             <input type="text" name="first_name" id="first_name" value="{{ request.post('first_name') ? request.post('first_name') : auth.first_name }}" class="form-control"/>
             {% include 'errors/field.twig' with {'field': 'first_name'} %}
         </div>
         <div class="form-group">
-            <label for="last_name">Familienaam</label>
+            <label for="last_name">{{ translator.get('LastName') }}</label>
             <input type="text" name="last_name" id="last_name" value="{{ request.post('last_name') ? request.post('last_name') : auth.last_name }}" class="form-control"/>
             {% include 'errors/field.twig' with {'field': 'last_name'} %}
         </div>
         <div class="form-group">
-            <input type="submit" value="Wijzigingen opslaan" class="btn btn-primary form-control"/>
+            <input type="submit" value="{{ translator.get('Save') }}" class="btn btn-primary form-control"/>
         </div>
 
         <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}"/>

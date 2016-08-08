@@ -18,6 +18,7 @@
   "CreateUser": "Gebruiker aanmaken",
   "EditUser": "Gebruiken wijzigen",
   "ActivateAccount": "Account activeren",
+  "EditAccountInformation": "Gegevens wijzigen",
 
   "ButtonNew": "Nieuw",
 
@@ -41,7 +42,7 @@
   "Locked": "Vergrendeld",
   "Yes": "Ja",
   "No": "Nee",
-  "Save": "Opslaan",
+  "Save": "Wijzigingen opslaan",
   "Cancel": "Annuleer",
   "Content": "Inhoud",
   "VisibleOnNavigation": "Zichtbaar op navigatiebalk",
@@ -80,6 +81,8 @@
   "Password": "Wachtwoord",
   "ConfirmPassword": "Bevestig wachtwoord",
   "Activate": "Activeer",
+  "FirstName": "Voornaam",
+  "LastName": "Familienaam",
 
   "InfoChangeOrder": "Sleep een rij naar boven of onder om de volgorde te wijzigen",
   "InfoDelete": "Ben je zeker dat je dit wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
