@@ -15,6 +15,9 @@
   "EditRecipient": "Ontvanger wijzigen",
   "UploadFiles": "Upload bestanden",
   "EditFile": "Bestand wijzigen",
+  "CreateUser": "Gebruiker aanmaken",
+  "EditUser": "Gebruiken wijzigen",
+  "ActivateAccount": "Account activeren",
 
   "ButtonNew": "Nieuw",
 
@@ -70,6 +73,13 @@
   "WantsNewsletter": "Wil de nieuwsbrief ontvangen?",
   "Upload": "Uploaden",
   "ChooseFiles": "Kies bestanden",
+  "Rights": "Rechten",
+  "NotActivated": "Niet geactiveerd",
+  "Admin": "Admin",
+  "Normal": "Normaal",
+  "Password": "Wachtwoord",
+  "ConfirmPassword": "Bevestig wachtwoord",
+  "Activate": "Activeer",
 
   "InfoChangeOrder": "Sleep een rij naar boven of onder om de volgorde te wijzigen",
   "InfoDelete": "Ben je zeker dat je dit wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",

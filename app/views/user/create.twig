@@ -1,7 +1,7 @@
 {% extends 'templates/default.twig' %}
 
-{% block title %}Gebruiker aanmaken{% endblock %}
-{% block pageTitle %}Gebruiker aanmaken{% endblock %}
+{% block title %}{{ translator.get('CreateUser') }}{% endblock %}
+{% block pageTitle %}{{ translator.get('CreateUser') }}{% endblock %}
 
 {% block content %}
     {# Back button#}
@@ -13,21 +13,21 @@
 
     <form action="{{ urlFor('user.create.post') }}" method="post" autocomplete="off">
         <div class="form-group">
-            <label for="email">E-mailadres</label>
+            <label for="email">{{ translator.get('Email') }}</label>
             <input type="email" name="email" id="email" {% if request.post('email') %} value="{{ request.post('email') }}" {% endif %} class="form-control"/>
             {% include 'errors/field.twig' with {field: 'email'} %}
         </div>
         <div class="form-group">
-            <label for="permission">Rechten</label>
+            <label for="permission">{{ translator.get('Rights') }}</label>
             <select name="permission" id="permission" class="form-control">
-                <option value="0">Maak een keuze</option>
-                <option value="1" {{ request.post('permission') and request.post('permission') == 1 ? 'selected' : '' }}>Normaal</option>
-                <option value="2" {{ request.post('permission') and request.post('permission') == 2 ? 'selected' : '' }}>Admin</option>
+                <option value="0">{{ translator.get('Choose') }}</option>
+                <option value="1" {{ request.post('permission') and request.post('permission') == 1 ? 'selected' : '' }}>{{ translator.get('Normal') }}</option>
+                <option value="2" {{ request.post('permission') and request.post('permission') == 2 ? 'selected' : '' }}>{{ translator.get('Admin') }}</option>
             </select>
             {% include 'errors/field.twig' with {field: 'permission'} %}
         </div>
         <div class="form-group">
-            <input type="submit" value="Aanmaken" class="btn btn-primary form-control"/>
+            <input type="submit" value="{{ translator.get('Create') }}" class="btn btn-primary form-control"/>
         </div>
 
         <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}"/>

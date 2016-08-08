@@ -40,6 +40,7 @@ $app->post('/users/create', $admin(), function() use($app) {
          * Send an email.
          */
         $app->mail->sendMessage('email/auth/registered.twig', ['user' => $user, 'identifier' => $identifier], [
+            'from' => $app->config->get('mail.from.noreply'),
             'to' => $user->email,
             'subject' => 'Je account is aangemaakt.',
         ]);

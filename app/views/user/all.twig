@@ -1,52 +1,52 @@
 {% extends 'templates/default.twig'%}
 
-{% block title %}Gebruikers{% endblock %}
-{% block pageTitle %}Gebruikers{% endblock %}
+{% block title %}{{ translator.get('Users') }}{% endblock %}
+{% block pageTitle %}{{ translator.get('Users') }}{% endblock %}
 
 {% block content %}
     <div class="row toolbar">
         <div class="col-md-4">
-            <a href="{{ urlFor('user.create') }}" class="btn btn-primary">Nieuw</a>
+            <a href="{{ urlFor('user.create') }}" class="btn btn-primary">{{ translator.get('ButtonNew') }}</a>
         </div>
         <div class="col-md-8">
-            {% include 'templates/partials/searchForm.twig' with {'url': urlFor('user.search')} only %}
+            {% include 'templates/partials/searchForm.twig' with {'url': urlFor('user.search'), 'translator': translator} only %}
         </div>
     </div>
 
     {% if users is empty %}
         {% if searchCount is defined and searchCount == 0 %}
-            <p>Er zijn geen resultaten gevonden voor je zoekopdracht "<strong>{{ keyword }}</strong>".</p>
+            <p>{{ translator.get('NoResultsForSearch') | format(keyword) | raw }}</p>
         {% else %}
-            <p>Er zijn nog geen gebruikers.</p>
+            <p>{{ translator.get('NoUsers') }}</p>
         {% endif %}
     {% else %}
         {% if searchCount is defined %}
-            <p>Er zijn <strong>{{ searchCount }}</strong> resultaten gevonden voor je zoekopdracht "<strong>{{ keyword }}</strong>".</p>
+            <p>{{ translator.get('ResultsForSearch') | format(searchCount, keyword) | raw }}</p>
         {% endif %}
 
         <div class="table-responsive">
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>Gebruikersnaam</th>
-                        <th>Rechten</th>
-                        <th>Actie</th>
+                        <th>{{ translator.get('Email') }}</th>
+                        <th>{{ translator.get('Rights') }}</th>
+                        <th>{{ translator.get('Action') }}</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for user in users %}
                         <tr>
-                            <td>{{ user.email }} {{ user.isActivated ? "" : "(Niet geactiveerd)" }}</td>
-                            <td>{{ user.isAdmin ? 'Admin' : 'Normaal' }}</td>
-                            <td><a href="{{ urlFor('user.edit', {userId: user.id}) }}" title="Wijzigen">Wijzigen</a></td>
+                            <td>{{ user.email }} {{ user.isActivated ? "" : translate.get('NotActivated') }}</td>
+                            <td>{{ user.isAdmin ? translate.get('Admin') : translate.get('Normal') }}</td>
+                            <td><a href="{{ urlFor('user.edit', {userId: user.id}) }}">{{ translator.get('Edit') }}</a></td>
                         </tr>
                     {% endfor %}
                 </tbody>
 
                 <tr>
-                    <th>Gebruikersnaam</th>
-                    <th>Rechten</th>
-                    <th>Actie</th>
+                    <th>{{ translator.get('Email') }}</th>
+                    <th>{{ translator.get('Rights') }}</th>
+                    <th>{{ translator.get('Action') }}</th>
                 </tr>
             </table>
         </div>
