@@ -1,7 +1,7 @@
 {% extends 'templates/default.twig'%}
 
-{% block title %}Mailinglijst{% endblock %}
-{% block pageTitle %}Mailinglijst{% endblock %}
+{% block title %}{{ translator.get('MailingList') }}{% endblock %}
+{% block pageTitle %}{{ translator.get('MailingList') }}{% endblock %}
 
 {% block content %}
     <div class="row toolbar">
@@ -9,32 +9,32 @@
             <a href="{{ urlFor('newsletter.all') }}" class="btn btn-primary">
                 <span class="glyphicon glyphicon-arrow-left"></span>
             </a>
-            <a href="{{ urlFor('newsletter.mailingList.create') }}" class="btn btn-primary">Nieuw</a>
+            <a href="{{ urlFor('newsletter.mailingList.create') }}" class="btn btn-primary">{{ translator.get('ButtonNew') }}</a>
         </div>
         <div class="col-md-8 col-sm-6">
-            {% include 'templates/partials/searchForm.twig' with {'url': urlFor('newsletter.mailingList.search')} only %}
+            {% include 'templates/partials/searchForm.twig' with {'url': urlFor('newsletter.mailingList.search'), 'translator': translator} only %}
         </div>
     </div>
 
     {% if recipients is empty %}
         {% if searchCount is defined and searchCount == 0 %}
-            <p>Er zijn geen resultaten gevonden voor je zoekopdracht "<strong>{{ keyword }}</strong>".</p>
+            <p>{{ translator.get('NoResultsForSearch') | format(keyword) | raw }}</p>
         {% else %}
-            <p>Er zijn nog geen ontvangers voor de nieuwsbrief.</p>
+            <p>{{ translator.get('NoMailingList') }}</p>
         {% endif %}
     {% else %}
         {% if searchCount is defined %}
-            <p>Er zijn <strong>{{ searchCount }}</strong> resultaten gevonden voor je zoekopdracht "<strong>{{ keyword }}</strong>".</p>
+            <p>{{ translator.get('ResultsForSearch') | format(searchCount, keyword) | raw }}</p>
         {% endif %}
 
         <div class="table-responsive">
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>E-mailadres</th>
-                        <th>Naam</th>
-                        <th>Status</th>
-                        <th>Actie</th>
+                        <th>{{ translator.get('Email') }}</th>
+                        <th>{{ translator.get('Name') }}</th>
+                        <th>{{ translator.get('Status') }}</th>
+                        <th>{{ translator.get('Action') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,23 +44,23 @@
                             <td>{{ recipient.name }}</td>
 
                             {% if recipient.subscribed == 'yes' %}
-                                <td class="success">Ingeschreven</td>
+                                <td class="success">{{ translator.get('Subscribed') }}</td>
                             {% else %}
-                                <td class="danger">Uitgeschreven</td>
+                                <td class="danger">{{ translator.get('Unsubscribed') }}</td>
                             {% endif %}
 
                             <td>
-                                <a href="{{ urlFor('newsletter.mailingList.edit', {'address': recipient.address}) }}" title="Wijzigen">Wijzigen</a>
+                                <a href="{{ urlFor('newsletter.mailingList.edit', {'address': recipient.address}) }}">{{ translator.get('Edit') }}</a>
                             </td>
                         </tr>
                     {% endfor %}
                 </tbody>
 
                 <tr>
-                    <th>E-mailadres</th>
-                    <th>Naam</th>
-                    <th>Status</th>
-                    <th>Actie</th>
+                    <th>{{ translator.get('Email') }}</th>
+                    <th>{{ translator.get('Name') }}</th>
+                    <th>{{ translator.get('Status') }}</th>
+                    <th>{{ translator.get('Action') }}</th>
                 </tr>
             </table>
         </div>

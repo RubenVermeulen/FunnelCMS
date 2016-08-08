@@ -11,6 +11,8 @@
   "EditArticle": "Edit article",
   "CreateNewsletter": "Create newsletter",
   "EditNewsletter": "Edit newsletter",
+  "AddRecipient": "Add recipient",
+  "EditRecipient": "Edit recipient",
 
   "ButtonNew": "New",
 
@@ -58,6 +60,12 @@
   "Choose": "Choose",
   "DoNotSendNewsletter": "No, do not send",
   "SendNewsletter": "Yes, send",
+  "Email": "Email address",
+  "Status": "Status",
+  "Subscribed": "Subscribed",
+  "Unsubscribed": "Unsubscribed",
+  "Add": "Add",
+  "WantsNewsletter": "Would like to receive the newsletter?",
 
   "InfoChangeOrder": "Drag a row upwards or downwards to change the order",
   "InfoDelete": "Are you sure you want to delete this? This action cannot be reverted."

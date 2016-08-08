@@ -1,7 +1,7 @@
 {% extends 'templates/default.twig' %}
 
-{% block title %}Ontvanger toevoegen{% endblock %}
-{% block pageTitle %}Ontvanger toevoegen{% endblock %}
+{% block title %}{{ translator.get('AddRecipient') }}{% endblock %}
+{% block pageTitle %}{{ translator.get('AddRecipient') }}{% endblock %}
 
 {% block content %}
     {# Back button#}
@@ -13,17 +13,17 @@
 
     <form action="{{ urlFor('newsletter.mailingList.create.post') }}" method="post" autocomplete="off">
         <div class="form-group">
-            <label for="email">E-mailadres</label>
+            <label for="email">{{ translator.get('Email') }}</label>
             <input type="email" name="email" id="email" {% if request.post('email') %} value="{{ request.post('email') }}" {% endif %}class="form-control"/>
             {% include 'errors/field.twig' with {field: 'email'} %}
         </div>
         <div class="form-group">
-            <label for="name">Naam (optioneel)</label>
+            <label for="name">{{ translator.get('Name') }}</label>
             <input type="name" name="name" id="name" {% if request.post('name') %} value="{{ request.post('name') }}" {% endif %}class="form-control"/>
             {% include 'errors/field.twig' with {field: 'name'} %}
         </div>
         <div class="form-group">
-            <input type="submit" value="Toevoegen" class="btn btn-primary form-control"/>
+            <input type="submit" value="{{ translator.get('Add') }}" class="btn btn-primary form-control"/>
         </div>
 
         <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}"/>

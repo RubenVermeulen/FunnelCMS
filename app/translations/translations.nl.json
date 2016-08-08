@@ -11,6 +11,8 @@
   "EditArticle": "Artikel wijzigen",
   "CreateNewsletter": "Nieuwsbrief aanmaken",
   "EditNewsletter": "Nieuwsbrief wijzigen",
+  "AddRecipient": "Ontvanger toevoegen",
+  "EditRecipient": "Ontvanger wijzigen",
 
   "ButtonNew": "Nieuw",
 
@@ -58,6 +60,12 @@
   "Choose": "Maak een keuze",
   "DoNotSendNewsletter": "Nee, niet verzenden",
   "SendNewsletter": "Ja, verzenden",
+  "Email": "E-mailadres",
+  "Status": "Status",
+  "Subscribed": "Ingeschreven",
+  "Unsubscribed": "Uitgeschreven",
+  "Add": "Toevoegen",
+  "WantsNewsletter": "Wil de nieuwsbrief ontvangen?",
 
   "InfoChangeOrder": "Sleep een rij naar boven of onder om de volgorde te wijzigen",
   "InfoDelete": "Ben je zeker dat je dit wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt."
