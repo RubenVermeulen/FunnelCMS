@@ -37,6 +37,9 @@
   "Create": "Aanmaken",
   "Delete": "Verwijderen",
   "Keyword": "Zoekterm",
+  "Logout": "Uitloggen",
+  "ChangePassword": "Wachtwoord wijzigen",
+  "ChangeInformation": "Gegevens wijzigen",
 
   "InfoChangeOrder": "Sleep een rij naar boven of onder om de volgorde te wijzigen",
   "InfoDelete": "Ben je zeker dat je dit wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt."

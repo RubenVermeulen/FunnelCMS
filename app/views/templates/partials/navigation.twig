@@ -21,13 +21,13 @@
 
                 {# Left navigation #}
                     <ul class="nav navbar-nav">
-                        <li><a href="{{ urlFor('page.all') }}">Pagina's</a></li>
-                        <li><a href="{{ urlFor('article.all') }}">Artikels</a></li>
-                        <li><a href="{{ urlFor('newsletter.all') }}">Nieuwsbrieven</a></li>
-                        <li><a href="{{ urlFor('file.all') }}">Bestanden</a></li>
+                        <li><a href="{{ urlFor('page.all') }}">{{ translator.get('Pages') }}</a></li>
+                        <li><a href="{{ urlFor('article.all') }}">{{ translator.get('Articles') }}</a></li>
+                        <li><a href="{{ urlFor('newsletter.all') }}">{{ translator.get('Newsletters') }}</a></li>
+                        <li><a href="{{ urlFor('file.all') }}">{{ translator.get('Files') }}</a></li>
 
                         {% if auth.isAdmin %}
-                            <li><a href="{{ urlFor('user.all') }}">Gebruikers</a></li>
+                            <li><a href="{{ urlFor('user.all') }}">{{ translator.get('Users') }}</a></li>
                         {% endif %}
                     </ul>
 
@@ -38,11 +38,11 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 {{ auth.getFullNameOrEmail }} <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ urlFor('account.profile') }}">Gegevens wijzigen</a></li>
-                                <li><a href="{{ urlFor('auth.password.change') }}">Wachtwoord wijzigen</a></li>
+                                <li><a href="{{ urlFor('account.profile') }}">{{ translator.get('ChangeInformation') }}</a></li>
+                                <li><a href="{{ urlFor('auth.password.change') }}">{{ translator.get('ChangePassword') }}</a></li>
                             </ul>
                         </li>
-                        <li><a href="{{ urlFor('logout') }}">Uitloggen</a></li>
+                        <li><a href="{{ urlFor('logout') }}">{{ translator.get('Logout') }}</a></li>
                     {% endif %}
                 </ul>
             </div>
