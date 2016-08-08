@@ -1,0 +1,12 @@
+<script>
+    $('#form-delete').submit(function(e) {
+        e.preventDefault();
+
+        $('#sort-modal').modal('show');
+
+        $('#confirm').click(function() {
+
+            $('#form-delete').unbind('submit').submit();
+        });
+    });
+</script>

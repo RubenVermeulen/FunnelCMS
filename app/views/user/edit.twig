@@ -43,8 +43,10 @@
         <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}"/>
         <input name="_METHOD" value="DELETE" type="hidden"/>
     </form>
+
+    {% include 'templates/partials/modalDelete.twig' %}
 {% endblock %}
 
 {% block scripts %}
-    {% include 'templates/scripts/formDelete.twig' %}
+    {% include 'templates/scripts/modalDelete.twig' %}
 {% endblock %}
