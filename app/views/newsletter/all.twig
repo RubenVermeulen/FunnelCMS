@@ -52,7 +52,7 @@
                             <td>
                                 <a href="{{ urlFor('newsletter.show', {id: newsletter.id}) }}" target="_blank" title="Preview">{{ translator.get('Preview') }}</a>
                                 {% if newsletter.published_at is null %}
-                                    - <a href="{{ urlFor('newsletter.edit', {id: newsletter.id}) }}" title="Wijzigen">{{ translator.get('Edit') }}</a>
+                                    - <a href="{{ urlFor('newsletter.edit', {id: newsletter.id}) }}">{{ translator.get('Edit') }}</a>
                                 {% endif %}
                             </td>
                         </tr>
