@@ -1,7 +1,7 @@
 {% extends 'templates/default.twig' %}
 
-{% block title %}Artikel aanmaken{% endblock %}
-{% block pageTitle %}Artikel aanmaken{% endblock %}
+{% block title %}{{ translator.get('CreateArticle') }}{% endblock %}
+{% block pageTitle %}{{ translator.get('CreateArticle') }}{% endblock %}
 
 {% block content %}
     {# Back button#}
@@ -13,32 +13,32 @@
 
     <form action="{{ urlFor('article.create.post') }}" method="post" autocomplete="off">
         <div class="form-group">
-            <label for="subject">Onderwerp</label>
+            <label for="subject">{{ translator.get('Subject') }}</label>
             <input type="text" name="subject" id="subject" {% if request.post('subject') %} value="{{ request.post('subject') }}" {% endif %}class="form-control"/>
             {% include 'errors/field.twig' with {field: 'subject'} %}
         </div>
         <div class="form-group">
-            <label for="summary">Korte beschrijving (1 à 2 zinnen)</label>
+            <label for="summary">{{ translator.get('Summary') }}</label>
             <textarea name="summary" id="summary" rows="2" class="form-control">{% if request.post('summary') %}{{ request.post('summary') }}{% endif %}</textarea>
             {% include 'errors/field.twig' with {field: 'summary'} %}
         </div>
         <div class="form-group">
-            <label for="content">Bericht</label>
+            <label for="content">{{ translator.get('Content') }}</label>
             <textarea name="content" id="content" class="form-control editor" rows="10">{% if request.post('content') %}{{ request.post('content') }}{% endif %}</textarea>
             {% include 'errors/field.twig' with {field: 'content'} %}
         </div>
         <div class="form-group">
-            <label for="date">Datum (publicatie)</label>
+            <label for="date">{{ translator.get('DatePublication') }}</label>
             <input type="date" name="date" id="date" class="form-control" {% if request.post('date') %} value="{{ request.post('date') }}" {% else %} value="{{ date }}" {% endif %}/>
             {% include 'errors/field.twig' with {field: 'date'} %}
         </div>
         <div class="form-group">
-            <label for="time">Tijd (publicatie)</label>
+            <label for="time">{{ translator.get('TimePublication') }}</label>
             <input type="time" name="time" id="time" class="form-control" {% if request.post('time') %} value="{{ request.post('time') }}" {% else %} value="{{ time }}" {% endif %}/>
             {% include 'errors/field.twig' with {field: 'time'} %}
         </div>
         <div class="form-group">
-            <input type="submit" value="Aanmaken" class="btn btn-primary form-control"/>
+            <input type="submit" value="{{ translator.get('Create') }}" class="btn btn-primary form-control"/>
         </div>
 
         <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}"/>

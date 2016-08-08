@@ -7,6 +7,8 @@
   "Users": "Users",
   "CreatePage": "Create page",
   "EditPage": "Edit page",
+  "CreateArticle": "Create article",
+  "EditArticle": "Edit article",
 
   "ButtonNew": "New",
 
@@ -40,6 +42,12 @@
   "Logout": "Logout",
   "ChangePassword": "Change password",
   "ChangeInformation": "Change information",
+  "Subject": "Subject",
+  "Author": "Author",
+  "PublishedAt": "Published at",
+  "Summary": "Summary (1 to 2 sentences)",
+  "DatePublication": "Date (publication)",
+  "TimePublication": "Time (publication)",
 
   "InfoChangeOrder": "Drag a row upwards or downwards to change the order",
   "InfoDelete": "Are you sure you want to delete this? This action cannot be reverted."

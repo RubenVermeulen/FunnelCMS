@@ -7,6 +7,8 @@
   "Users": "Gebruikers",
   "CreatePage": "Pagina aanmaken",
   "EditPage": "Pagina wijzigen",
+  "CreateArticle": "Artikel aanmaken",
+  "EditArticle": "Artikel wijzigen",
 
   "ButtonNew": "Nieuw",
 
@@ -40,6 +42,12 @@
   "Logout": "Uitloggen",
   "ChangePassword": "Wachtwoord wijzigen",
   "ChangeInformation": "Gegevens wijzigen",
+  "Subject": "Onderwerp",
+  "Author": "Auteur",
+  "PublishedAt": "Gepubliceerd op",
+  "Summary": "Korte beschrijving (1 à 2 zinnen)",
+  "DatePublication": "Datum (publicatie)",
+  "TimePublication": "Tijd (publicatie)",
 
   "InfoChangeOrder": "Sleep een rij naar boven of onder om de volgorde te wijzigen",
   "InfoDelete": "Ben je zeker dat je dit wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt."

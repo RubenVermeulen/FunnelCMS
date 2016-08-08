@@ -1,39 +1,39 @@
 {% extends 'templates/default.twig'%}
 
-{% block title %}Artikels{% endblock %}
-{% block pageTitle %}Artikels{% endblock %}
+{% block title %}{{ translator.get('Articles') }}{% endblock %}
+{% block pageTitle %}{{ translator.get('Articles') }}{% endblock %}
 
 {% block content %}
     <div class="row toolbar">
         <div class="col-md-4 col-sm-6">
-            <a href="{{ urlFor('article.create') }}" class="btn btn-primary">Nieuw</a>
+            <a href="{{ urlFor('article.create') }}" class="btn btn-primary">{{ translator.get('ButtonNew') }}</a>
         </div>
         <div class="col-md-8 col-sm-6">
-            {% include 'templates/partials/searchForm.twig' with {'url': urlFor('article.search')} only %}
+            {% include 'templates/partials/searchForm.twig' with {'url': urlFor('article.search'), 'translator': translator} only %}
         </div>
     </div>
 
     {% if articles is empty %}
         {% if searchCount is defined and searchCount == 0 %}
-            <p>Er zijn geen resultaten gevonden voor je zoekopdracht "<strong>{{ keyword }}</strong>".</p>
+            <p>{{ translator.get('NoResultsForSearch') | format(keyword) | raw }}</p>
         {% else %}
-            <p>Er zijn nog geen artikels.</p>
+            <p>{{ translator.get('NoArticles') }}</p>
         {% endif %}
     {% else %}
         {% if searchCount is defined %}
-            <p>Er zijn <strong>{{ searchCount }}</strong> resultaten gevonden voor je zoekopdracht "<strong>{{ keyword }}</strong>".</p>
+            <p>{{ translator.get('ResultsForSearch') | format(searchCount, keyword) | raw }}</p>
         {% endif %}
 
         <div class="table-responsive">
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>Onderwerp</th>
-                        <th>Auteur</th>
-                        <th>Aangemaakt op</th>
-                        <th>Laatst gewijzigd op</th>
-                        <th>Gepubliceerd op</th>
-                        <th>Actie</th>
+                        <th>{{ translator.get('Subject') }}</th>
+                        <th>{{ translator.get('Author') }}</th>
+                        <th>{{ translator.get('CreatedAt') }}</th>
+                        <th>{{ translator.get('UpdatedAt') }}</th>
+                        <th>{{ translator.get('PublishedAt') }}</th>
+                        <th>{{ translator.get('Action') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,18 +44,18 @@
                             <td>{{ article.getCreatedAt }}</td>
                             <td>{{ article.getUpdatedAt }}</td>
                             <td>{{ article.getPublishedAt }}</td>
-                            <td><a href="{{ urlFor('article.edit', {id: article.id}) }}" title="Wijzigen">Wijzigen</a></td>
+                            <td><a href="{{ urlFor('article.edit', {id: article.id}) }}" title="Wijzigen">{{ translator.get('Edit') }}</a></td>
                         </tr>
                     {% endfor %}
                 </tbody>
 
                 <tr>
-                    <th>Onderwerp</th>
-                    <th>Auteur</th>
-                    <th>Aangemaakt op</th>
-                    <th>Laatst gewijzigd op</th>
-                    <th>Gepubliceerd op</th>
-                    <th>Actie</th>
+                    <th>{{ translator.get('Subject') }}</th>
+                    <th>{{ translator.get('Author') }}</th>
+                    <th>{{ translator.get('CreatedAt') }}</th>
+                    <th>{{ translator.get('UpdatedAt') }}</th>
+                    <th>{{ translator.get('PublishedAt') }}</th>
+                    <th>{{ translator.get('Action') }}</th>
                 </tr>
             </table>
         </div>
