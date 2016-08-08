@@ -7,7 +7,11 @@
     <div class="row toolbar">
         <div class="col-md-4 col-sm-6">
             <a href="{{ urlFor('page.create') }}" class="btn btn-primary">{{ translator.get('ButtonNew') }}</a>
-            <a href="#" id="sort-pages" class="btn btn-primary">{{ translator.get('ChangeOrder') }}</a>
+
+            {% if items is not empty and searchCount is not defined %}
+                <a href="#" id="sort-pages" class="btn btn-primary">{{ translator.get('ChangeOrder') }}</a>
+            {% endif %}
+
         </div>
         <div class="col-md-8 col-sm-6">
             {% include 'templates/partials/searchForm.twig' with {'url': urlFor('page.search'), 'translator': translator} only %}
