@@ -31,8 +31,8 @@ $app->post('/users/:userId/edit', $admin(), function($userId) use($app) {
     $v = $app->validation;
 
     $v->validate([
-        'email|E-mailadres' => [$email, "required|email|uniqueEmail({$user->email})|max(255)"],
-        'permission|Rechten' => [$permission, 'required|int'],
+        'email|' . $app->translator->get('Email') => [$email, "required|email|uniqueEmail({$user->email})|max(255)"],
+        'permission|' . $app->translator->get('Rights') => [$permission, 'required|int'],
     ]);
 
     if ($v->passes()) {

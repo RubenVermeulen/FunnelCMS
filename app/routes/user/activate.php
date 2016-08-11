@@ -61,8 +61,8 @@ $app->post('/activate', $guest(), function() use($app) {
     $v = $app->validation;
 
     $v->validate([
-        'password|Wachtwoord' => [$password, 'required|min(6)'],
-        'password_confirm|Bevestig wachtwoord' => [$passwordConfirm, 'required|matches(password)']
+        'password|' . $app->translator->get('Password') => [$password, 'required|min(6)'],
+        'password_confirm|' . $app->translator->get('ConfirmPassword') => [$passwordConfirm, 'required|matches(password)']
     ]);
 
     if ($v->passes()) {

@@ -170,5 +170,5 @@ $app->container->singleton('randomlib', function() {
 */
 
 $app->container->singleton('validation', function() use($app) {
-    return new Validator($app->user, $app->hash, $app->auth);
+    return new Validator($app->user, $app->hash, $app->auth, $app->translator);
 });

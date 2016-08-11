@@ -35,8 +35,8 @@ $app->post('/newsletters/mailing-list/edit/:address', $authenticated, function($
     $v = $app->validation;
 
     $v->validate([
-        'name|Naam' => [$name, 'max(150)'],
-        'subscribe|"Wil de nieuwsbrief ontvangen?"' => [$subscribe, 'min(0, number)|max(1, number)'],
+        'name|' . $app->translator->get('Name') => [$name, 'max(150)'],
+        'subscribe|"' . $app->translator->get('WantsNewsletter') . '"' => [$subscribe, 'min(0, number)|max(1, number)'],
     ]);
 
     if ($v->passes()) {

@@ -31,7 +31,7 @@ $app->post('/files/edit/:id', $authenticated, function($id) use ($app) {
     $v = $app->validation;
 
     $validationRules = [
-        'name|Naam' => [$name, 'required|max(255)'],
+        'name|' . $app->translator->get('Name') => [$name, 'required|max(255)'],
     ];
 
     $v->validate($validationRules);

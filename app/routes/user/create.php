@@ -19,8 +19,8 @@ $app->post('/users/create', $admin(), function() use($app) {
     $v = $app->validation;
 
     $v->validate([
-        'email|E-mailadres' => [$email, 'required|email|uniqueEmail|max(255)'],
-        'permission|Rechten' => [$permission, 'required|int'],
+        'email|' . $app->translator->get('Email') => [$email, 'required|email|uniqueEmail|max(255)'],
+        'permission|' . $app->translator->get('Rights') => [$permission, 'required|int'],
     ]);
 
     if ($v->passes()) {

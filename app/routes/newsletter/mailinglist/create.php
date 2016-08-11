@@ -21,8 +21,8 @@ $app->post('/newsletters/mailing-list/create', $authenticated, function() use ($
     $v = $app->validation;
 
     $v->validate([
-        'email|E-mailadres' => [$email, 'required|email'],
-        'name|Naam' => [$email, 'max(150)'],
+        'email|' . $app->translator->get('Email') => [$email, 'required|email'],
+        'name|' . $app->translator->get('Name') => [$email, 'max(150)'],
     ]);
 
     if ($v->passes()) {

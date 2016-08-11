@@ -23,8 +23,8 @@ $app->post('/login', $guest(), function() use ($app) {
     $v = $app->validation;
 
     $v->validate([
-        'identifier|E-mailadres' => [$identifier, 'required'],
-        'password|Wachtwoord' => [$password, 'required']
+        'identifier|' . $app->translator->get('Email') => [$identifier, 'required'],
+        'password|' . $app->translator->get('Password') => [$password, 'required']
     ]);
 
     if ($v->passes()) {

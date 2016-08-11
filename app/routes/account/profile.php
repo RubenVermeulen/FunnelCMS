@@ -21,9 +21,9 @@ $app->post('/account/profile', $authenticated, function() use($app) {
     $v = $app->validation;
 
     $v->validate([
-        'email|E-maildres' => [$email, "required|email|uniqueEmail({$app->auth->email})"],
-        'first_name|Voornaam' => [$firstName, 'alpha|max(50)'],
-        'last_name|Familienaam' => [$lastName, 'alpha|max(50)']
+        'email|' . $app->translator->get('Email') => [$email, "required|email|uniqueEmail({$app->auth->email})"],
+        'first_name|' . $app->translator->get('FirstName') => [$firstName, 'alpha|max(50)'],
+        'last_name|' . $app->translator->get('LastName') => [$lastName, 'alpha|max(50)']
     ]);
 
     if ($v->passes()) {

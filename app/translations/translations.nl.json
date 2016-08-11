@@ -90,8 +90,22 @@
   "CurrentPassword": "Huidig wachtwoord",
   "NewPassword": "Nieuw wachtwoord",
   "RequestPasswordReset": "Reset aanvragen",
+  "Date": "Datum",
+  "Time": "Tijd",
 
   "InfoChangeOrder": "Sleep een rij naar boven of onder om de volgorde te wijzigen",
   "InfoDelete": "Ben je zeker dat je dit wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
-  "InfoAllowedFiles": "Deze bestanden zijn toegestaan: jpg, png, gif en pdf"
+  "InfoAllowedFiles": "Deze bestanden zijn toegestaan: jpg, png, gif en pdf",
+
+  "ValidationRequired": "{field} is vereist.",
+  "ValidationInt": "{field} moet een nummer zijn.",
+  "ValidationMin": "{field} moet minimum uit {$0} tekens bestaan.",
+  "ValidationMax": "{field} mag maximum uit {$0} tekens bestaan.",
+  "ValidationBetween": "{field} moet tussen {$0} en {$1} liggen.",
+  "ValidationAlnumDash": "{field} mag enkel bestaan uit letters, cijfers, koppelteken en liggend streepje.",
+  "ValidationEmail": "{field} moet een geldig e-mailadres bevatten.",
+  "ValidationUniqueEmail": "Het e-mailadres is al gebruikt.",
+  "ValidationUniqueUsername": "De gebruikersnaam is al gebruikt.",
+  "ValidationMatches": "{field} moet overeenkomen met wachtwoord.",
+  "ValidationMatchesCurrentPassword": "Dit komt niet overeen met je huidig wachtwoord."
 }

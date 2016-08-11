@@ -2,6 +2,7 @@
 
 namespace FunnelCms\Validation;
 
+use FunnelCms\Translator\Translator;
 use Violin\Violin;
 use FunnelCms\User\User;
 use FunnelCms\Helpers\Hash;
@@ -30,24 +31,18 @@ class Validator extends  Violin
     protected $auth;
 
     /**
-     * Player instance.
-     *
-     * @var User
-     */
-    protected $player;
-
-    /**
      * Initiate the Validator instance.
      *
      * @param User $user
      * @param Hash $hash
      * @param null $auth
-     * @param Player $player
+     * @param Translator $translator
      */
-    public function __construct(User $user, Hash $hash, $auth = null) {
+    public function __construct(User $user, Hash $hash, $auth = null, Translator $translator) {
         $this->user = $user;
         $this->hash = $hash;
         $this->auth = $auth;
+        $this->translator = $translator;
 
         $this->addFieldMessages([
             'email' => [
@@ -56,24 +51,20 @@ class Validator extends  Violin
             'username' => [
                 'uniqueUsername' => 'De gebruikersnaam is al gebruikt.'
             ],
-            'membership_id' => [
-                'uniqueMembershipId' => 'Het lidnummer is al in gebruik.'
-            ],
             'password_confirm' => [
                 'matches' => '{field} moet overeenkomen met wachtwoord.'
             ]
         ]);
 
         $this->addRuleMessages([
-            'required' => '{field} is vereist.',
-            'int' => '{field} moet een nummer zijn.',
-            'min' => '{field} moet minimum uit {$0} tekens bestaan.',
-            'max' => '{field} mag maximum uit {$0} tekens bestaan.',
-            'between' => '{field} moet tussen {$0} en {$1} liggen.',
-            'alnumDash' => '{field} mag enkel bestaan uit letters, cijfers, koppelteken en liggend streepje.',
-            'email' => '{field} moet een geldig e-mailadres bevatten.',
-            'matchesCurrentPassword' => 'Dit komt niet overeen met je huidig wachtwoord.',
-            'resultFormat' => '{field} moet een geldig formaat hebben.'
+            'required' => $translator->get('ValidationRequired'),
+            'int' => $translator->get('ValidationInt'),
+            'min' => $translator->get('ValidationMin'),
+            'max' => $translator->get('ValidationMax'),
+            'between' => $translator->get('ValidationBetween'),
+            'alnumDash' => $translator->get('ValidationAlnumDash'),
+            'email' => $translator->get('ValidationEmail'),
+            'matchesCurrentPassword' =>$translator->get('ValidationMatchesCurrentPassword'),
         ]);
     }
 

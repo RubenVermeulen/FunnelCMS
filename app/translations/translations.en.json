@@ -89,8 +89,22 @@
   "CurrentPassword": "Current password",
   "NewPassword": "New password",
   "RequestPasswordReset": "Request reset",
+  "Date": "Date",
+  "Time": "Time",
 
   "InfoChangeOrder": "Drag a row upwards or downwards to change the order",
   "InfoDelete": "Are you sure you want to delete this? This action cannot be reverted.",
-  "InfoAllowedFiles": "Following files are allowed: jpg, png, gif en pdf"
+  "InfoAllowedFiles": "Following files are allowed: jpg, png, gif en pdf",
+
+  "ValidationRequired": "{field} is required.",
+  "ValidationInt": "{field} has to be a number.",
+  "ValidationMin": "{field} must contain at least {$0} character(s).",
+  "ValidationMax": "{field} may only contain a max of {$0} characters.",
+  "ValidationBetween": "{field} must be between {$0} and {$1}.",
+  "ValidationAlnumDash": "{field} may only contain letters, numbers, underscore and a dash.",
+  "ValidationEmail": "{field} has to be a valid email address.",
+  "ValidationUniqueEmail": "Email address is already taken.",
+  "ValidationUniqueUsername": "Username is already taken.",
+  "ValidationMatches": "{field} must be equel to password.",
+  "ValidationMatchesCurrentPassword": "Is not equal to your current password."
 }
