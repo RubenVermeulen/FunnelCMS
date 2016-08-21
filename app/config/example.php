@@ -53,8 +53,25 @@ return [
         'expiration' => 3600,
     ],
     'upload' => [
-        'filePath' => '', // start from the folder where app and public are located
         'galleryPath' => '', // start from the folder where app and public are located
-        'maxSize' => 500000, // in byte
+        'rules' => [
+            'maxSize' => 500000, // in byte
+            'extensions' => ['jpg', 'png', 'gif', 'pdf'],
+        ],
+        'storage' => '',
+        'local' => [
+            'filePath' => '', // start from the folder where app and public are located
+        ],
+        'aws' => [
+            'client' => [
+                'version' => '',
+                'region' => '',
+                'credentials' => [
+                    'key' => '',
+                    'secret' => '',
+                ],
+            ],
+            'bucket' => '',
+        ]
     ]
 ];

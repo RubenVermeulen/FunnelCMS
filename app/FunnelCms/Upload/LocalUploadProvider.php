@@ -15,7 +15,7 @@ class LocalUploadProvider implements UploadProvider
 
     public function upload(TmpFile $tmpFile)
     {
-        $newFilePath = INC_ROOT . "/{$this->config->get('upload.filePath')}/{$tmpFile->getNewName()}";
+        $newFilePath = INC_ROOT . "/{$this->config->get('upload.local.filePath')}/{$tmpFile->getNewName()}";
 
         move_uploaded_file($tmpFile->getSource(), $newFilePath);
     }

@@ -31,22 +31,26 @@ $app->post('/files/create', $authenticated(), function() use($app) {
 
             $extension = strtolower(end($extension));
 
-            $allowedExtensions = ['jpg', 'png', 'gif', 'pdf'];
-
-            if ( ! in_array($extension, $allowedExtensions)) {
+            if ( ! in_array($extension, $app->config->get('upload.rules.extensions'))) {
                 $app->flashNow('error', 'Enkel bestanden met de extensie jpg, png, gif of pdf zijn toegestaan.');
             }
-            else if ($size > $app->config->get('upload.maxSize')) {
-                $app->flashNow('error', "De bestandsgrootte mag niet groter zijn dan " . round($app->config->get('upload.maxSize') / 1000000, 1) . "MB.");
+            else if ($size > $app->config->get('upload.rules.maxSize')) {
+                $app->flashNow('error', "De bestandsgrootte mag niet groter zijn dan " . round($app->config->get('upload.rules.maxSize') / 1000000, 1) . "MB.");
             }
             else {
+
                 // New details
                 $key = md5(uniqid());
                 $systemFileName = "{$key}.{$extension}";
-                $newFilePath = INC_ROOT . "/{$app->config->get('upload.filePath')}/{$systemFileName}";
 
-                // Move the file
-                move_uploaded_file($tmpName, $newFilePath);
+                $tmp = new \FunnelCms\File\TmpFile();
+
+                $tmp->setExtension($extension)
+                    ->setNewName($systemFileName)
+                    ->setSource($tmpName)
+                    ->setContentType(mime_content_type($tmpName));
+                
+                $app->uploadProvider->upload($tmp);
 
                 $app->file->create([
                     'name_system' => $systemFileName,
