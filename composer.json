@@ -13,5 +13,6 @@
         "illuminate/database": "~5.0",
         "alexgarrett/violin": "2.*",
         "ircmaxell/random-lib": "~1.1",
-        "tijsverkoyen/css-to-inline-styles": "1.5.5"
+        "tijsverkoyen/css-to-inline-styles": "1.5.5",
+        "aws/aws-sdk-php": "^3.19"
     }}
