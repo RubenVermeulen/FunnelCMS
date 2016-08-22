@@ -1,5 +1,7 @@
 <?php
 
+use FunnelCms\File\TmpFile;
+
 $app->get('/files/create', $authenticated(), function() use($app) {
 
     $app->render('file/create.twig');
@@ -31,26 +33,23 @@ $app->post('/files/create', $authenticated(), function() use($app) {
 
             $extension = strtolower(end($extension));
 
-            if ( ! in_array($extension, $app->config->get('upload.rules.extensions'))) {
-                $app->flashNow('error', 'Enkel bestanden met de extensie jpg, png, gif of pdf zijn toegestaan.');
-            }
-            else if ($size > $app->config->get('upload.rules.maxSize')) {
-                $app->flashNow('error', "De bestandsgrootte mag niet groter zijn dan " . round($app->config->get('upload.rules.maxSize') / 1000000, 1) . "MB.");
-            }
-            else {
+            try
+            {
+                $tmpFile = new TmpFile($app->config->get('upload.rules'));
 
-                // New details
+                $tmpFile
+                    ->setExtension($extension)
+                    ->setSize($size);
+
                 $key = md5(uniqid());
                 $systemFileName = "{$key}.{$extension}";
 
-                $tmp = new \FunnelCms\File\TmpFile();
-
-                $tmp->setExtension($extension)
-                    ->setNewName($systemFileName)
+                $tmpFile
+                    ->setName($systemFileName)
                     ->setSource($tmpName)
                     ->setContentType(mime_content_type($tmpName));
-                
-                $app->uploadProvider->upload($tmp);
+
+                $app->uploadProvider->upload($tmpFile);
 
                 $app->file->create([
                     'name_system' => $systemFileName,
@@ -60,6 +59,9 @@ $app->post('/files/create', $authenticated(), function() use($app) {
 
                 $app->flash('global', 'Het bestand "' . $name . '" is geüpload.');
                 $app->redirect($app->urlFor('file.all'));
+            }
+            catch (\Exception $e) {
+                $app->flashNow('error', $e->getMessage());
             }
         }
     }

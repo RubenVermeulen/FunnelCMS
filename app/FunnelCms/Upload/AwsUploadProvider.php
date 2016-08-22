@@ -23,7 +23,7 @@ class AwsUploadProvider implements UploadProvider
         try {
             return $this->s3->putObject([
                 'Bucket' => $this->bucket,
-                'Key' => $tmpFile->getNewName(),
+                'Key' => $tmpFile->getName(),
                 'SourceFile' => $tmpFile->getSource(),
                 'ContentType' => $tmpFile->getContentType(),
                 'ACL' => 'public-read'

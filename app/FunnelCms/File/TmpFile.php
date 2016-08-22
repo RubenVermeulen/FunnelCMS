@@ -2,13 +2,19 @@
 
 namespace FunnelCms\File;
 
-
 class TmpFile
 {
-    private $newName;
+    private $rules;
+    private $name;
     private $extension;
+    private $size;
     private $source;
     private $contentType;
+
+    public function __construct($rules)
+    {
+        $this->rules = $rules;
+    }
 
     public function getContentType()
     {
@@ -34,14 +40,14 @@ class TmpFile
         return $this;
     }
 
-    public function getNewName()
+    public function getName()
     {
-        return $this->newName;
+        return $this->name;
     }
 
-    public function setNewName($newName)
+    public function setName($name)
     {
-        $this->newName = $newName;
+        $this->name = $name;
 
         return $this;
     }
@@ -53,10 +59,28 @@ class TmpFile
 
     public function setExtension($extension)
     {
+        if ( ! in_array($extension, $this->rules['extensions'])) {
+            throw new \Exception('Enkel bestanden met de extensie jpg, png, gif of pdf zijn toegestaan.');
+        }
+
         $this->extension = $extension;
 
         return $this;
     }
 
+    public function getSize()
+    {
+        return $this->size;
+    }
 
+    public function setSize($size)
+    {
+        if ($size > $this->rules['maxSize']) {
+            throw new \Exception("De bestandsgrootte mag niet groter zijn dan " . round($this->rules['maxSize'] / 1000000, 1) . "MB.");
+        }
+
+        $this->size = $size;
+
+        return $this;
+    }
 }
