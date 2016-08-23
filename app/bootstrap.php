@@ -116,6 +116,19 @@ $app->configureMode($app->config('mode'), function() use ($app) {
     $app->config = Config::load(INC_ROOT . '/app/config/' . trim($app->mode) . '.php');
 });
 
+
+/*
+|--------------------------------------------------------------------------
+| Constants
+|--------------------------------------------------------------------------
+|
+| Constants who use config.
+|
+*/
+
+define('SOURCE_UPLOADS', $app->config->get('app.uploadUrl'));
+define('SOURCE_UPLOADS_THUMBS', $app->config->get('app.uploadUrl') . '/thumbs');
+
 /*
 |--------------------------------------------------------------------------
 | Eloquent

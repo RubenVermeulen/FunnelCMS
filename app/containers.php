@@ -154,7 +154,7 @@ $app->container->singleton('mail', function() use($app) {
 */
 
 $app->container->singleton('uploadProvider', function() use($app) {
-    return new LocalUploadProvider($app->config);
+    return new LocalUploadProvider();
 });
 
 /*

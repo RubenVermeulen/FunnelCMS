@@ -58,10 +58,6 @@ return [
             'maxSize' => 500000, // in byte
             'extensions' => ['jpg', 'png', 'gif', 'pdf'],
         ],
-        'storage' => '',
-        'local' => [
-            'filePath' => '', // start from the folder where app and public are located
-        ],
 //        'aws' => [
 //            'client' => [
 //                'version' => '',

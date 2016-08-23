@@ -33,12 +33,13 @@
                 <div class="col-md-3 col-sm-6 file">
                     <div class="frame">
                         <div class="image">
-                            {% if file.getType == 'image' %}
-                                <a href="{{ assetUrl }}/files/{{ file.name_system }}" target="_blank" data-lightbox="files">
-                                    <img src="{{ assetUrl }}/files/{{ file.name_system }}" alt="{{ file.name_human }}">
+                            {% if file.isImage() %}
+
+                                <a href="{{ file.getUrl() }}" target="_blank" data-lightbox="files">
+                                    <img src="{{ file.getUrlThumbnail() }}" alt="{{ file.name_human }}">
                                 </a>
                             {% else %}
-                                <a href="{{ assetUrl }}/files/{{ file.name_system }}" target="_blank">
+                                <a href="{{ file.getUrl() }}" target="_blank">
                                     <img src="{{ assetUrl }}/images/pdf.svg" alt="{{ file.name_human }}" height="100%">
                                 </a>
                             {% endif %}

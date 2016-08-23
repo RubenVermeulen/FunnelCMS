@@ -7,9 +7,7 @@ $app->delete('/files/:id', $authenticated(), function($id) use($app) {
     if ( ! $file)
         $app->notFound();
 
-    $filePath = INC_ROOT . "/public/assets/files/{$file->name_system}";
-
-    unlink($filePath);
+    $app->uploadProvider->delete($file->name_system);
 
     $file->delete();
 
