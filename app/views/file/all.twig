@@ -47,7 +47,7 @@
                         <div class="details">
                             <p class="name" title="{{ file.name_human }}"><strong>{{ file.name_human }}</strong></p>
 
-                            <input type="text" name="url" id="url" value="{{ storageUrl.s3 ~ '/' ~ file.getUrl() }}" class="form-control url" onclick="this.select();">
+                            <input type="text" name="url" id="url" value="{{ storageUrl.local ~ '/' ~ file.getUrl() }}" class="form-control url" onclick="this.select();">
 
                             <div class="row">
                                 <div class="col-md-12">
