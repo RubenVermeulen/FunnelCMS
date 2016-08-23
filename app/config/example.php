@@ -62,16 +62,17 @@ return [
         'local' => [
             'filePath' => '', // start from the folder where app and public are located
         ],
-        'aws' => [
-            'client' => [
-                'version' => '',
-                'region' => '',
-                'credentials' => [
-                    'key' => '',
-                    'secret' => '',
-                ],
-            ],
-            'bucket' => '',
-        ]
+//        'aws' => [
+//            'client' => [
+//                'version' => '',
+//                'region' => '',
+//                'credentials' => [
+//                    'key' => '',
+//                    'secret' => '',
+//                ],
+//            ],
+//            'bucket' => '',
+//        ]
+
     ]
 ];

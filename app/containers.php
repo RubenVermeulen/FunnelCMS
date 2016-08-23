@@ -1,7 +1,5 @@
 <?php
 
-use Aws\S3\S3Client;
-use FunnelCms\Upload\AwsUploadProvider;
 use FunnelCms\Upload\LocalUploadProvider;
 use RandomLib\Factory as RandomLib;
 
@@ -156,16 +154,7 @@ $app->container->singleton('mail', function() use($app) {
 */
 
 $app->container->singleton('uploadProvider', function() use($app) {
-    $storage = $app->config->get('upload.storageType');
-
-    if ($storage == 'local') {
-        return new LocalUploadProvider($app->config);
-    }
-    else if ($storage == 'aws') {
-        $s3 = new S3Client($app->config->get('upload.aws.client'));
-
-        return new AwsUploadProvider($s3, $app->config->get('upload.aws.bucket'));
-    }
+    return new LocalUploadProvider($app->config);
 });
 
 /*
