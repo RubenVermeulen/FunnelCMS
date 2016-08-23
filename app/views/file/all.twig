@@ -35,11 +35,11 @@
                         <div class="image">
                             {% if file.isImage() %}
 
-                                <a href="{{ file.getUrl() }}" target="_blank" data-lightbox="files">
-                                    <img src="{{ file.getUrlThumbnail() }}" alt="{{ file.name_human }}">
+                                <a href="{{ storageUrl.local ~ '/' ~ file.getUrl() }}" target="_blank" data-lightbox="files">
+                                    <img src="{{ storageUrl.local ~ '/' ~ file.getUrlThumbnail() }}" alt="{{ file.name_human }}">
                                 </a>
                             {% else %}
-                                <a href="{{ file.getUrl() }}" target="_blank">
+                                <a href="{{ storageUrl.local ~ '/' ~ file.getUrl() }}" target="_blank">
                                     <img src="{{ assetUrl }}/images/pdf.svg" alt="{{ file.name_human }}" height="100%">
                                 </a>
                             {% endif %}
@@ -47,7 +47,7 @@
                         <div class="details">
                             <p class="name" title="{{ file.name_human }}"><strong>{{ file.name_human }}</strong></p>
 
-                            <input type="text" name="url" id="url" value="{{ assetUrl }}/files/{{ file.name_system }}" class="form-control url" onclick="this.select();">
+                            <input type="text" name="url" id="url" value="{{ storageUrl.s3 ~ '/' ~ file.getUrl() }}" class="form-control url" onclick="this.select();">
 
                             <div class="row">
                                 <div class="col-md-12">

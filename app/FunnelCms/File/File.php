@@ -24,18 +24,16 @@ class File extends Eloquent
     }
 
     public function getUrl() {
-        return SOURCE_UPLOADS . '/' . $this->name_system;
+        return $this->name_system;
     }
 
     public function getUrlThumbnail() {
-        if ($this->isImage()) {
-            return SOURCE_UPLOADS_THUMBS . '/' . $this->name_system;
-        }
-
-        return null;
+        return 'thumbs/' . $this->name_system;
     }
 
     public function isImage() {
-        return Image::isImage($this->getUrl());
+        $ext = explode('.', $this->name_system);
+
+        return ! (end($ext) == 'pdf');
     }
 }

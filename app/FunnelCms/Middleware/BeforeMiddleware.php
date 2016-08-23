@@ -25,10 +25,16 @@ class BeforeMiddleware extends Middleware
 
         $this->checkRememberMe();
 
+        $region = $this->app->config->get('storage.s3.client.region');
+
         $this->app->view()->appendData([
             'auth' => $this->app->auth,
             'baseUrl' => $this->app->config->get('app.url'),
             'assetUrl' => $this->app->config->get('app.assetUrl'),
+            'storageUrl' => [
+                'local' => $this->app->config->get('app.assetUrl') . '/files',
+                's3' => 'https://s3.' . ($region != 'us-east-1' ? $region . '.' : '') . 'amazonaws.com/' . $this->app->config->get('storage.s3.bucket'),
+            ],
             'translator' => $this->app->translator,
         ]);
     }

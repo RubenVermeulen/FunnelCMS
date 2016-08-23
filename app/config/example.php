@@ -52,23 +52,23 @@ return [
         'port' => '11211',
         'expiration' => 3600,
     ],
-    'upload' => [
-        'galleryPath' => '', // start from the folder where app and public are located
+    'storage' => [
         'rules' => [
             'maxSize' => 500000, // in byte
             'extensions' => ['jpg', 'png', 'gif', 'pdf'],
         ],
-//        'aws' => [
-//            'client' => [
-//                'version' => '',
-//                'region' => '',
-//                'credentials' => [
-//                    'key' => '',
-//                    'secret' => '',
-//                ],
-//            ],
-//            'bucket' => '',
-//        ]
+
+        's3' => [
+            'client' => [
+                'version' => '',
+                'region' => '',
+                'credentials' => [
+                    'key' => '',
+                    'secret' => '',
+                ],
+            ],
+            'bucket' => '',
+        ]
 
     ]
 ];
