@@ -25,11 +25,11 @@ class File extends Eloquent
     }
 
     public function getUrl() {
-        return $this->path . '/' . $this->name_system;
+        return ($this->path ? $this->path . '/' : '') . $this->name_system;
     }
 
     public function getUrlThumbnail() {
-        return $this->path . '/' . 'thumbs/' . $this->name_system;
+        return ($this->path ? $this->path . '/' : '') . 'thumbs/' . $this->name_system;
     }
 
     public function isImage() {
