@@ -1,6 +1,5 @@
 <?php
 
-use FunnelCms\Upload\LocalUploadProvider;
 use RandomLib\Factory as RandomLib;
 
 use Mailgun\Mailgun;
@@ -11,6 +10,7 @@ use FunnelCms\Mail\Mailer;
 use FunnelCms\Helpers\Hash;
 use FunnelCms\Mail\MailgunMailer;
 use FunnelCms\Validation\Validator;
+use FunnelCms\Storage\LocalStorageProvider;
 
 /*
 |--------------------------------------------------------------------------
@@ -153,8 +153,8 @@ $app->container->singleton('mail', function() use($app) {
 |
 */
 
-$app->container->singleton('uploadProvider', function() use($app) {
-    return new LocalUploadProvider();
+$app->container->singleton('storageProvider', function() use($app) {
+    return new LocalStorageProvider();
 });
 
 /*

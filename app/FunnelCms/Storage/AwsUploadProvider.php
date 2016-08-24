@@ -1,12 +1,12 @@
 <?php
 
-namespace FunnelCms\Upload;
+namespace FunnelCms\Storage;
 
 use Aws\S3\Exception\S3Exception;
 use Aws\S3\S3Client;
 use FunnelCms\File\TmpFile;
 
-class AwsUploadProvider implements UploadProvider
+class AwsStorageProvider implements StorageProvider
 {
     private $s3;
 

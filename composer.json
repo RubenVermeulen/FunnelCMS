@@ -15,5 +15,6 @@
         "ircmaxell/random-lib": "~1.1",
         "tijsverkoyen/css-to-inline-styles": "1.5.5",
         "aws/aws-sdk-php": "^3.19",
-        "intervention/image": "^2.3"
+        "intervention/image": "^2.3",
+        "symfony/http-foundation": "^3.1"
     }}

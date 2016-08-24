@@ -2,18 +2,52 @@
 
 namespace FunnelCms\File;
 
+use FunnelCms\Storage\StorageProvider;
+
 class TmpFile
 {
+    private $uploadProvider;
     private $rules;
     private $name;
     private $extension;
     private $size;
     private $source;
     private $contentType;
+    private $error;
 
-    public function __construct($rules)
+    public function __construct($rules, $file, StorageProvider $uploadProvider)
     {
         $this->rules = $rules;
+
+        $this->setError($file['error']);
+        $this->setName($file['name']);
+        $this->setExtension($this->getName());
+        $this->setSize($file['size']);
+        $this->setSource($file['tmp_name']);
+        $this->setContentType(mime_content_type($this->getName()));
+
+        $this->uploadProvider = $uploadProvider;
+
+    }
+
+    public function store($path) {
+
+    }
+
+    public function getError()
+    {
+        return $this->error;
+    }
+
+    public function setError($error)
+    {
+        if ($error != 0) {
+            throw new \Exception('Je hebt nog geen bestand gekozen.');
+        }
+
+        $this->error = $error;
+
+        return $this;
     }
 
     public function getContentType()
@@ -57,13 +91,16 @@ class TmpFile
         return $this->extension;
     }
 
-    public function setExtension($extension)
+    public function setExtension($name)
     {
-        if ( ! in_array($extension, $this->rules['extensions'])) {
+        $ext = explode('.', $name);
+        $ext = strtolower(end($ext));
+
+        if ( ! in_array($ext, $this->rules['extensions'])) {
             throw new \Exception('Enkel bestanden met de extensie jpg, png, gif of pdf zijn toegestaan.');
         }
 
-        $this->extension = $extension;
+        $this->extension = $ext;
 
         return $this;
     }

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b1c3e07c8821bbb02ab2183ae625c332",
-    "content-hash": "5614a754d2990709b69257c6142a0c7c",
+    "hash": "abe9ea7a7e6690322d579468e017bbe9",
+    "content-hash": "dd9b806ef191604ea775b440f5859269",
     "packages": [
         {
             "name": "alexgarrett/violin",
@@ -1315,6 +1315,59 @@
             "description": "Symfony CssSelector Component",
             "homepage": "https://symfony.com",
             "time": "2016-06-29 05:41:56"
+        },
+        {
+            "name": "symfony/http-foundation",
+            "version": "v3.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/http-foundation.git",
+                "reference": "399a44b73f6c176de40fb063dcdaa578bcfb94d6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/399a44b73f6c176de40fb063dcdaa578bcfb94d6",
+                "reference": "399a44b73f6c176de40fb063dcdaa578bcfb94d6",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9",
+                "symfony/polyfill-mbstring": "~1.1"
+            },
+            "require-dev": {
+                "symfony/expression-language": "~2.8|~3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\HttpFoundation\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony HttpFoundation Component",
+            "homepage": "https://symfony.com",
+            "time": "2016-07-17 14:02:08"
         },
         {
             "name": "symfony/polyfill-mbstring",
