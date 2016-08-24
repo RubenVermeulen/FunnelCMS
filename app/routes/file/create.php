@@ -35,7 +35,7 @@ $app->post('/files/create', $authenticated(), function() use($app) {
             $app->file->create([
                 'path' => $path,
                 'name_system' => $name,
-                'name_human' => strtolower($file->getClientOriginalname()),
+                'name_human' => strtolower(explode('.', $file->getClientOriginalname())[0]),
                 'size' => $file->getSize(),
             ]);
 
