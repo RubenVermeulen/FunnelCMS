@@ -31,7 +31,13 @@ class UploadedFile
 
     public function store($path = null, $thumbnail = true)
     {
-        return $this->storageProvider->store($this->file->getPathname(), $path, $this->hash(), $thumbnail);
+        return $this->storageProvider->store(
+            $this->file->getPathname(),
+            $path,
+            $this->hash(),
+            $this->file->getClientMimeType(),
+            $thumbnail
+        );
     }
 
     private function hash()

@@ -4,7 +4,8 @@ namespace FunnelCms\Storage;
 
 use Aws\S3\Exception\S3Exception;
 use Aws\S3\S3Client;
-use FunnelCms\File\TmpFile;
+
+// TODO: Thumbnail support
 
 class AwsStorageProvider implements StorageProvider
 {
@@ -18,14 +19,14 @@ class AwsStorageProvider implements StorageProvider
         $this->bucket = $bucket;
     }
 
-    public function upload(TmpFile $tmpFile)
+    public function store($source, $destination = null, $name, $mimeType, $thumbnail = false)
     {
         try {
             return $this->s3->putObject([
                 'Bucket' => $this->bucket,
-                'Key' => $tmpFile->getName(),
-                'SourceFile' => $tmpFile->getSource(),
-                'ContentType' => $tmpFile->getContentType(),
+                'Key' => $name,
+                'SourceFile' => $source,
+                'ContentType' => $mimeType,
                 'ACL' => 'public-read'
             ]);
         }
@@ -34,12 +35,18 @@ class AwsStorageProvider implements StorageProvider
         }
     }
 
-    public function delete($name)
+    public function delete($path, $name)
     {
+        $url = '';
+
+        if ($path) {
+            $url .= $path;
+        }
+
         try {
             $this->s3->deleteObject([
                 'Bucket' => $this->bucket,
-                'Key'    => $name,
+                'Key'    => $url . '/' . $name,
             ]);
         }
         catch (S3Exception $e) {

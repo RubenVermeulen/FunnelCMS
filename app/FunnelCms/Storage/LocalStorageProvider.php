@@ -9,7 +9,7 @@ class LocalStorageProvider implements StorageProvider
 {
     private $sourceLocal = INC_ROOT . '/public/storage';
 
-    public function store($source, $destination = null, $name, $thumbnail = false)
+    public function store($source, $destination = null, $name, $mimeType, $thumbnail = false)
     {
         $manager = new ImageManager(array('driver' => 'gd'));
         $image = $manager->make($source);
