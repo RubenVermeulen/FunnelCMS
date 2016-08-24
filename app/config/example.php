@@ -4,6 +4,7 @@ return [
     'app' => [
         'url' => 'http://www.example.local',
         'assetUrl' => 'http://static.example.local/assets',
+        'storageUrl' => 'http://static.example.local/storage',
         'hash' => [
             'algo' => PASSWORD_BCRYPT,
             'cost' => 10

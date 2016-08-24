@@ -32,7 +32,7 @@ class BeforeMiddleware extends Middleware
             'baseUrl' => $this->app->config->get('app.url'),
             'assetUrl' => $this->app->config->get('app.assetUrl'),
             'storageUrl' => [
-                'local' => $this->app->config->get('app.assetUrl') . '/files',
+                'local' => $this->app->config->get('app.storageUrl'),
                 's3' => 'https://s3.' . ($region != 'us-east-1' ? $region . '.' : '') . 'amazonaws.com/' . $this->app->config->get('storage.s3.bucket'),
             ],
             'translator' => $this->app->translator,
