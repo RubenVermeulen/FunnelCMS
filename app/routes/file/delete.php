@@ -7,7 +7,7 @@ $app->delete('/files/:id', $authenticated(), function($id) use($app) {
     if ( ! $file)
         $app->notFound();
 
-    $app->uploadProvider->delete($file->name_system);
+    $app->storageProvider->delete($file->path, $file->name_system);
 
     $file->delete();
 

@@ -9,23 +9,6 @@ class LocalStorageProvider implements StorageProvider
 {
     private $sourceLocal = INC_ROOT . '/public/storage';
 
-    public function delete($name)
-    {
-        // Original
-        $sourceOriginal = $this->sourceLocal . $name;
-
-        if (file_exists($sourceOriginal)) {
-            unlink($sourceOriginal);
-        }
-
-        // Thumbnail
-        $sourceThumbnail = $this->sourceLocal . '/thumbs/' . $name;
-
-        if (file_exists($sourceThumbnail)) {
-            unlink($sourceThumbnail);
-        }
-    }
-
     public function store($source, $destination = null, $name, $thumbnail = false)
     {
         $manager = new ImageManager(array('driver' => 'gd'));
@@ -56,6 +39,29 @@ class LocalStorageProvider implements StorageProvider
     public function createDirectory($path, $mode = 0777, $recursive = true) {
         if ( ! file_exists($path)) {
             mkdir($path, $mode, $recursive);
+        }
+    }
+
+    public function delete($path, $name)
+    {
+        $url = $this->sourceLocal;
+
+        if ($path) {
+            $url .= '/' . $path;
+        }
+
+        // Original
+        $sourceOriginal = $url . '/' . $name;
+
+        if (file_exists($sourceOriginal)) {
+            unlink($sourceOriginal);
+        }
+
+        // Thumbnail
+        $sourceThumbnail = $url . '/thumbs/' . $name;
+
+        if (file_exists($sourceThumbnail)) {
+            unlink($sourceThumbnail);
         }
     }
 }

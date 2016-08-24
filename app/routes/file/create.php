@@ -27,7 +27,7 @@ $app->post('/files/create', $authenticated(), function() use($app) {
 
             $uploadedFile = new UploadedFile($file, $app->storageProvider);
 
-            $items = explode('/', $uploadedFile->store('folder/folder/folder'));
+            $items = explode('/', $uploadedFile->store('files'));
 
             $name = array_pop($items);
             $path = empty($items) ? null : implode('/', $items);
