@@ -11,8 +11,6 @@ class LocalStorageProvider implements StorageProvider
 
     public function store($source, $destination = null, $name, $mimeType, $thumbnail = false)
     {
-        $manager = new ImageManager(array('driver' => 'gd'));
-        $image = $manager->make($source);
         $url = $this->sourceLocal;
 
         if (isset($destination)) {
@@ -21,16 +19,24 @@ class LocalStorageProvider implements StorageProvider
             $this->createDirectory($url);
         }
 
-        // Original
-        $image->save($url . '/' . $name);
+        if (Image::isImage($source)) {
+            $manager = new ImageManager(array('driver' => 'gd'));
+            $image = $manager->make($source);
 
-        // Thumbnail
-        if ($thumbnail && Image::isImage($source)) {
-            $this->createDirectory($url . '/thumbs/');
+            // Original
+            $image->save($url . '/' . $name);
 
-            Image::resizeImage($image, 350);
+            // Thumbnail
+            if ($thumbnail) {
+                $this->createDirectory($url . '/thumbs/');
 
-            $image->save($url . '/thumbs/' . $name);
+                Image::resizeImage($image, 350);
+
+                $image->save($url . '/thumbs/' . $name);
+            }
+        }
+        else {
+            move_uploaded_file($source, $url . '/' . $name);
         }
 
         return ($destination != null ? $destination . '/' : '') . $name;
