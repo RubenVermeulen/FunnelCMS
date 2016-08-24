@@ -43,7 +43,7 @@ class LocalStorageProvider implements StorageProvider
 
         // Thumbnail
         if ($thumbnail && Image::isImage($source)) {
-            $this->createDirectory($this->sourceLocal . $destination . '/thumbs/');
+            $this->createDirectory($url . '/thumbs/');
 
             Image::resizeImage($image, 350);
 

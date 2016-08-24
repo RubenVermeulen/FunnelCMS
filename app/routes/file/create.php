@@ -25,12 +25,16 @@ $app->post('/files/create', $authenticated(), function() use($app) {
             if( ! $file)
                 throw new \Exception('Please choose a file');
 
-            $uploadedFile = new UploadedFile($file, $app->uploadProvider);
+            $uploadedFile = new UploadedFile($file, $app->storageProvider);
 
-            $path = $uploadedFile->store();
+            $items = explode('/', $uploadedFile->store('folder/folder/folder'));
+
+            $name = array_pop($items);
+            $path = empty($items) ? null : implode('/', $items);
 
             $app->file->create([
-                'name_system' => $path,
+                'path' => $path,
+                'name_system' => $name,
                 'name_human' => strtolower($file->getClientOriginalname()),
                 'size' => $file->getSize(),
             ]);

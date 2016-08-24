@@ -14,6 +14,7 @@ class File extends Eloquent
      * @var array
      */
     protected $fillable = [
+        'path',
         'name_system',
         'name_human',
         'size'
@@ -24,11 +25,11 @@ class File extends Eloquent
     }
 
     public function getUrl() {
-        return $this->name_system;
+        return $this->path . '/' . $this->name_system;
     }
 
     public function getUrlThumbnail() {
-        return 'thumbs/' . $this->name_system;
+        return $this->path . '/' . 'thumbs/' . $this->name_system;
     }
 
     public function isImage() {
