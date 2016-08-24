@@ -4,7 +4,7 @@
 {% block pageTitle %}{{ translator.get('Files') }}{% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ assetUrl }}/css/lightbox.css">
+    <link rel="stylesheet" href="{{ assetUrl }}/lightgallery/css/lightgallery.min.css">
 {% endblock %}
 
 {% block content %}
@@ -35,7 +35,7 @@
                         <div class="image">
                             {% if file.isImage() %}
 
-                                <a href="{{ storageUrl.local ~ '/' ~ file.getUrl() }}" target="_blank" data-lightbox="files">
+                                <a class="test" href="{{ storageUrl.local ~ '/' ~ file.getUrl() }}" target="_blank" data-lightbox="files">
                                     <img src="{{ storageUrl.local ~ '/' ~ file.getUrlThumbnail() }}" alt="{{ file.name_human }}">
                                 </a>
                             {% else %}
@@ -75,6 +75,12 @@
 {% endblock %}
 
 {% block scripts %}
-    <script src="{{ assetUrl }}/js/lightbox.js"></script>
+    <script src="{{ assetUrl }}/lightgallery/js/lightgallery.min.js"></script>
+    <script src="{{ assetUrl }}/lightgallery/js/lg-zoom.min.js"></script>
+    <script>
+        $("#files").lightGallery({
+            selector: '.test',
+        });
+    </script>
 {% endblock %}
 
