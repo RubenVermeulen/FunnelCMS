@@ -4,7 +4,7 @@
 {% block pageTitle %}{{ translator.get('Files') }}{% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ assetUrl }}/lightgallery/css/lightgallery.min.css">
+    <link rel="stylesheet" href="{{ assetUrl }}/components/lightgallery/dist/css/lightgallery.min.css">
 {% endblock %}
 
 {% block content %}
@@ -75,8 +75,8 @@
 {% endblock %}
 
 {% block scripts %}
-    <script src="{{ assetUrl }}/lightgallery/js/lightgallery.min.js"></script>
-    <script src="{{ assetUrl }}/lightgallery/js/lg-zoom.min.js"></script>
+    <script src="{{ assetUrl }}/components/lightgallery/dist/js/lightgallery.min.js"></script>
+    <script src="{{ assetUrl }}/components/lightgallery/dist/js/lg-zoom.min.js"></script>
     <script>
         $("#files").lightGallery({
             selector: '.test',
