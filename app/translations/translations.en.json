@@ -91,6 +91,7 @@
   "RequestPasswordReset": "Request reset",
   "Date": "Date",
   "Time": "Time",
+  "FileUploaded": "The file \"%s\" is uploaded.",
 
   "InfoChangeOrder": "Drag a row upwards or downwards to change the order",
   "InfoDelete": "Are you sure you want to delete this? This action cannot be reverted.",
@@ -106,5 +107,9 @@
   "ValidationUniqueEmail": "Email address is already taken.",
   "ValidationUniqueUsername": "Username is already taken.",
   "ValidationMatches": "{field} must be equel to password.",
-  "ValidationMatchesCurrentPassword": "Is not equal to your current password."
+  "ValidationMatchesCurrentPassword": "Is not equal to your current password.",
+
+  "ExtensionNotAllowedFiles": "Following extensions are allowed: jpeg, jpg, png ,gif and pdf.",
+  "SizeLimitExceeded": "File size cannot be larger than %d MB.",
+  "CouldNotUploadFile": "It was not possible to upload the file, please try again."
 }

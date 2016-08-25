@@ -92,6 +92,7 @@
   "RequestPasswordReset": "Reset aanvragen",
   "Date": "Datum",
   "Time": "Tijd",
+  "FileUploaded": "Het bestand \"%s\" is geüpload.",
 
   "InfoChangeOrder": "Sleep een rij naar boven of onder om de volgorde te wijzigen",
   "InfoDelete": "Ben je zeker dat je dit wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
@@ -107,5 +108,9 @@
   "ValidationUniqueEmail": "Het e-mailadres is al gebruikt.",
   "ValidationUniqueUsername": "De gebruikersnaam is al gebruikt.",
   "ValidationMatches": "{field} moet overeenkomen met wachtwoord.",
-  "ValidationMatchesCurrentPassword": "Dit komt niet overeen met je huidig wachtwoord."
+  "ValidationMatchesCurrentPassword": "Dit komt niet overeen met je huidig wachtwoord.",
+
+  "ExtensionNotAllowedFiles": "Enkel volgende extensies zijn toegestaan: jpeg, jpg, png ,gif en pdf.",
+  "SizeLimitExceeded": "De bestandsgrootte mag niet groter zijn dan %s MB.",
+  "CouldNotUploadFile": "Het bestand kon niet worden geüpload, probeer het opnieuw."
 }
