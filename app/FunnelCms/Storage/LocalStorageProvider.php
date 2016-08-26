@@ -7,7 +7,12 @@ use Intervention\Image\ImageManager;
 
 class LocalStorageProvider implements StorageProvider
 {
-    private $sourceLocal = INC_ROOT . '/public/storage';
+    private $sourceLocal;
+
+    public function __construct()
+    {
+        $this->sourceLocal = INC_ROOT . '/public/storage';
+    }
 
     public function store($source, $destination = null, $name, $mimeType, $thumbnail = false)
     {
