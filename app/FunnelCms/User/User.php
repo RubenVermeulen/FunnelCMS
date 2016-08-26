@@ -136,7 +136,7 @@ class User extends Eloquent
      * @return bool
      */
     public function hasPermission($permission) {
-        return (bool) $this->permissions()->{$permission};
+        return (bool) $this->permissions->{$permission};
     }
 
     /**
