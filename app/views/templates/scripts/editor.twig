@@ -1,4 +1,6 @@
-<script src="{{ assetUrl }}/editor/ckeditor.js"></script>
+<script src="{{ assetUrl }}/components/ckeditor/ckeditor.js"></script>
 <script>
-    CKEDITOR.replace('content');
+    CKEDITOR.replace('content', {
+        'language': 'nl'
+    });
 </script>

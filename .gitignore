@@ -2,8 +2,5 @@
 /.idea
 /app/config/production.php
 /app/config/development.php
-# Created by .ignore support plugin (hsz.mobi)
 /composer.lock
-/public/assets/editor/
-/public/assets/lightgallery/
 /public/assets/components/
