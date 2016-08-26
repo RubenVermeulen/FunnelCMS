@@ -17,8 +17,8 @@ class UserSeeder extends AbstractSeed
         $users = [
             [
                 'email' => 'admin@funnelcms.com',
-                'first_name' => 'Harry',
-                'last_name' => 'Potter',
+                'first_name' => 'Tyrion',
+                'last_name' => 'Lannister',
                 'password' => password_hash('password', PASSWORD_BCRYPT, ['cost' => 10]),
                 'active' => 1,
                 'active_hash' => null,
