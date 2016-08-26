@@ -209,5 +209,6 @@ $view->parserOptions = [
 */
 
 $view->parserExtensions = [
-    new TwigExtension()
+    new TwigExtension(),
+    new Twig_Extension_Debug()
 ];
