@@ -36,7 +36,7 @@
                 <tbody>
                     {% for user in users %}
                         <tr>
-                            <td>{{ user.email }} {{ user.isActivated() ? "" : translator.get('NotActivated') }}</td>
+                            <td>{{ user.email }} {{ user.isActivated() ? "" : '(' ~ translator.get('NotActivated') ~ ')' }}</td>
                             <td>{{ user.isAdmin() ? translator.get('Admin') : translator.get('Normal') }}</td>
                             <td><a href="{{ urlFor('user.edit', {userId: user.id}) }}">{{ translator.get('Edit') }}</a></td>
                         </tr>
