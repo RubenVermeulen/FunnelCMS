@@ -40,10 +40,10 @@
                     {% for article in articles %}
                         <tr>
                             <td>{{ article.subject }}</td>
-                            <td>{{ article.author.getFullNameOrEmail }}</td>
-                            <td>{{ article.getCreatedAt }}</td>
-                            <td>{{ article.getUpdatedAt }}</td>
-                            <td>{{ article.getPublishedAt }}</td>
+                            <td>{{ article.author.getFullNameOrEmail() }}</td>
+                            <td>{{ article.getCreatedAt() }}</td>
+                            <td>{{ article.getUpdatedAt() }}</td>
+                            <td>{{ article.getPublishedAt() }}</td>
                             <td><a href="{{ urlFor('article.edit', {id: article.id}) }}" title="Wijzigen">{{ translator.get('Edit') }}</a></td>
                         </tr>
                     {% endfor %}

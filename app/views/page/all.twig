@@ -51,8 +51,8 @@
                             <td class="danger">{{ translator.get('No') }}</td>
                         {% endif %}
 
-                        <td>{{ item.getCreatedAt }}</td>
-                        <td>{{ item.getUpdatedAt }}</td>
+                        <td>{{ item.getCreatedAt() }}</td>
+                        <td>{{ item.getUpdatedAt() }}</td>
                         <td>
                             {% if item.is_locked == false %}
                                 <a href="{{ urlFor('page.edit', {id: item.id}) }}" title="Wijzigen">{{ translator.get('Edit') }}</a>

@@ -21,8 +21,8 @@
             <label for="permission">{{ translator.get('Rights') }}</label>
             <select name="permission" id="permission" class="form-control">
                 <option value="0">{{ translator.get('Choose') }}</option>
-                <option value="1" {{ (request.post('permission') and request.post('permission') == 1) or ( user and not user.isAdmin) ? 'selected' : '' }}>{{ translator.get('Normal') }}</option>
-                <option value="2" {{ (request.post('permission') and request.post('permission') == 2) or ( user and user.isAdmin) ? 'selected' : '' }}>{{ translator.get('Admin') }}</option>
+                <option value="1" {{ (request.post('permission') and request.post('permission') == 1) or ( user and not user.isAdmin()) ? 'selected' : '' }}>{{ translator.get('Normal') }}</option>
+                <option value="2" {{ (request.post('permission') and request.post('permission') == 2) or ( user and user.isAdmin()) ? 'selected' : '' }}>{{ translator.get('Admin') }}</option>
             </select>
             {% include 'errors/field.twig' with {field: 'permission'} %}
         </div>

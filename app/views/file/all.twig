@@ -52,7 +52,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="pull-left">
-                                        {{ file.getSizeInKiloByte }} kB
+                                        {{ file.getSizeInKiloByte() }} kB
                                     </div>
                                     <div class="pull-right">
                                         <a href="{{ urlFor('file.edit', {id: file.id}) }}" title="{{ translator.get('Edit') }}">
