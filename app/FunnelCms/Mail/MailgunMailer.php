@@ -86,7 +86,7 @@ class MailgunMailer implements MailerInterface
 
         $this->mailer->sendMessage($this->config->get('mail.domain'), [
             'from' => $credentials['from'],
-            'to' => $this->listAddress,
+            'to' => $credentials['to'],
             'subject' => $credentials['subject'],
             'html' => $this->view->render($template),
         ]);
