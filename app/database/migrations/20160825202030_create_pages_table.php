@@ -33,8 +33,8 @@ class CreatePagesTable extends AbstractMigration
             ->addColumn('name', 'string', ['limit' => 50])
             ->addColumn('slug', 'string', ['limit' => 100])
             ->addColumn('content', 'text')
-            ->addColumn('is_visible', 'boolean')
-            ->addColumn('is_locked', 'boolean')
+            ->addColumn('is_visible', 'boolean', ['default' => true])
+            ->addColumn('is_locked', 'boolean', ['default' => false])
             ->addColumn('priority', 'integer')
             ->addTimestamps()
             ->save();
