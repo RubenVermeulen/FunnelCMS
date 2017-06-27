@@ -36,7 +36,7 @@ class CreateArticlesTable extends AbstractMigration
             ->addColumn('summary', 'string', ['limit' => 255])
             ->addColumn('content', 'text')
             ->addTimestamps()
-            ->addColumn('published_at', 'timestamp', ['null' => false])
+            ->addColumn('published_at', 'timestamp', ['null' => true])
             ->save();
     }
 }
