@@ -32,6 +32,7 @@ class UpdatesAddsNullableToCertainColumnsUsersTable extends AbstractMigration
         $table
             ->changeColumn('first_name', 'string', ['limit' => 45, 'null' => true])
             ->changeColumn('last_name', 'string', ['limit' => 45, 'null' => true])
+            ->changeColumn('password', 'string', ['limit' => 255, 'null' => true])
             ->changeColumn('active_hash', 'string', ['limit' => 255, 'null' => true])
             ->changeColumn('recover_hash', 'string', ['limit' => 255, 'null' => true])
             ->changeColumn('remember_identifier', 'string', ['limit' => 255, 'null' => true])
