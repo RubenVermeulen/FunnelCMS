@@ -35,7 +35,7 @@ class CreatePagesTable extends AbstractMigration
             ->addColumn('content', 'text')
             ->addColumn('is_visible', 'boolean', ['default' => true])
             ->addColumn('is_locked', 'boolean', ['default' => false])
-            ->addColumn('priority', 'integer')
+            ->addColumn('priority', 'integer', ['default' => 0])
             ->addTimestamps()
             ->save();
     }
