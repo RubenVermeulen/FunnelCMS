@@ -33,7 +33,7 @@ class CreateUsersTable extends AbstractMigration
             ->addColumn('email', 'string', ['limit' => 255])
             ->addColumn('first_name', 'string', ['limit' => 45])
             ->addColumn('last_name', 'string', ['limit' => 45])
-            ->addColumn('password', 'string', ['limit' => 255])
+            ->addColumn('password', 'string', ['limit' => 255, 'null' => true])
             ->addColumn('active', 'integer')
             ->addColumn('active_hash', 'string', ['limit' => 255])
             ->addColumn('recover_hash', 'string', ['limit' => 255])
