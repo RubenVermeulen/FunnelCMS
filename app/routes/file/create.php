@@ -19,47 +19,65 @@ $app->post('/files/create', $authenticated(), function() use($app) {
 
     if(isset($_FILES['file']))
     {
-        try
-        {
-            $allowedExtensions = $app->config->get('storage.rules')['extensions'];
-            $maxSize = $app->config->get('storage.rules')['maxSize'];
-            $request = Request::createFromGlobals();
-            $files = $request->files->get('file');
+        $allowedExtensions = $app->config->get('storage.rules')['extensions'];
+        $maxSize = $app->config->get('storage.rules')['maxSize'];
+        $request = Request::createFromGlobals();
+        $files = $request->files->get('file');
+        $uploadedFiles = [];
+        $failedFiles = [];
 
-            foreach ($files as $file) {
-                if( ! $file)
-                    throw new \Exception('Please choose a file');
+        foreach ($files as $file) {
+            if( ! $file)
+                throw new \Exception('Please choose a file');
 
-                if ($file->getError() != UPLOAD_ERR_OK)
-                    throw new \Exception($app->translator->get('CouldNotUploadFile'));
-
-                if ( ! in_array(strtolower($file->guessClientExtension()), $allowedExtensions))
-                    throw new \Exception($app->translator->get('ExtensionNotAllowedFiles'));
-
-                if ($file->getClientSize() > $maxSize)
-                    throw new \Exception(sprintf($app->translator->get('SizeLimitExceeded'), $maxSize / 1000000));
-
-                $uploadedFile = new UploadedFile($file, $app->storageProvider);
-
-                $items = explode('/', $uploadedFile->store('files'));
-
-                $name = array_pop($items);
-                $path = empty($items) ? null : implode('/', $items);
-
-                $app->file->create([
-                    'path' => $path,
-                    'name_system' => $name,
-                    'name_human' => strtolower(explode('.', $file->getClientOriginalname())[0]),
-                    'size' => $file->getSize(),
-                ]);
+            $fileName = $file->getClientOriginalname();
+            if ($file->getError() != UPLOAD_ERR_OK) {
+                $failedFiles[$fileName] = $app->translator->get('CouldNotUploadFile');
+                continue;
             }
 
-            $app->flash('global', 'uploaded');
-            $app->redirect($app->urlFor('file.all'));
+            if ( ! in_array(strtolower($file->guessClientExtension()), $allowedExtensions)) {
+                $failedFiles[$fileName] = $app->translator->get('ExtensionNotAllowedFiles');
+                continue;
+            }
 
-        } catch (\Exception $e)
-        {
-            $app->flashNow('error', $e->getMessage());
+            if ($file->getClientSize() > $maxSize) {
+                $failedFiles[$fileName] = sprintf($app->translator->get('SizeLimitExceeded'), $maxSize / 1000000);
+                continue;
+            }
+
+            $uploadedFile = new UploadedFile($file, $app->storageProvider);
+
+            $items = explode('/', $uploadedFile->store('files'));
+
+            $name = array_pop($items);
+            $path = empty($items) ? null : implode('/', $items);
+
+            $app->file->create([
+                'path' => $path,
+                'name_system' => $name,
+                'name_human' => strtolower(explode('.', $fileName)[0]),
+                'size' => $file->getSize(),
+            ]);
+
+            $uploadedFiles[] = $fileName;
+        }
+
+        if (empty($failedFiles)) {
+            $app->flash('global', sprintf($app->translator->get('FileUploaded'), implode(', ', $uploadedFiles)));
+            $app->redirect($app->urlFor('file.all'));
+        }
+        else {
+            $res = "";
+            foreach ($failedFiles as $key => $value) {
+                $res .= "$key: $value";
+            }
+
+            if (!empty($uploadedFiles)) {
+                $app->flashNow('global', sprintf($app->translator->get('FileUploaded'), implode(', ', $uploadedFiles)));
+            }
+
+            $app->flashNow('error', $res);
         }
 
         $app->render('file/create.twig');

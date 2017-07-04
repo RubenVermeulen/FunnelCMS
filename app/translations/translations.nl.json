@@ -92,7 +92,7 @@
   "RequestPasswordReset": "Reset aanvragen",
   "Date": "Datum",
   "Time": "Tijd",
-  "FileUploaded": "Het bestand \"%s\" is geüpload.",
+  "FileUploaded": "Volgende bestanden zijn geüpload: \"%s\".",
 
   "InfoChangeOrder": "Sleep een rij naar boven of onder om de volgorde te wijzigen",
   "InfoDelete": "Ben je zeker dat je dit wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",

@@ -91,7 +91,7 @@
   "RequestPasswordReset": "Request reset",
   "Date": "Date",
   "Time": "Time",
-  "FileUploaded": "The file \"%s\" is uploaded.",
+  "FileUploaded": "Following files are uploaded: \"%s\".",
 
   "InfoChangeOrder": "Drag a row upwards or downwards to change the order",
   "InfoDelete": "Are you sure you want to delete this? This action cannot be reverted.",

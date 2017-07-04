@@ -17,9 +17,9 @@ environments:
     development:
         adapter: mysql
         host: localhost
-        name: development_db
-        user: root
-        pass: ''
+        name: funnelcms
+        user: homestead
+        pass: 'secret'
         port: 3306
         charset: utf8
 
