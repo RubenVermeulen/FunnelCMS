@@ -14,7 +14,7 @@
     <form action="{{ urlFor('file.create.post') }}" method="post" enctype="multipart/form-data" autocomplete="off">
         <div class="form-group">
             <label for="file">{{ translator.get('ChooseFiles') }}</label>
-            <input type="file" id="file" name="file">
+            <input type="file" id="file" name="file[]" multiple="multiple">
             <p class="help-block">{{ translator.get('InfoAllowedFiles') }}</p>
         </div>
         <div class="form-group">
