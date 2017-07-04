@@ -6,7 +6,7 @@ $app->get('/', function() use ($app) {
         $app->redirect($app->urlFor('login'));
     }
     else {
-        $app->render('home.twig');
+        $app->redirect($app->urlFor('page.all'));
     }
 
 })->name('home');
