@@ -1,6 +1,6 @@
 <?php
 
-$app->group('/funnelcms', function() use($app) {
+$app->group('/funnelcms', function() use($app, $guest, $admin, $authenticated) {
 
     require INC_ROOT . '/app/routes/home.php';
 
