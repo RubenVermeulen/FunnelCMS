@@ -48,11 +48,6 @@ return [
     'csrf' => [
         'key' => 'csrf_token'
     ],
-    'memcached' => [
-        'host' => '127.0.0.1',
-        'port' => '11211',
-        'expiration' => 3600,
-    ],
     'storage' => [
         'rules' => [
             'maxSize' => 500000, // in byte
